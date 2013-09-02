@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/GainViewLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/GainNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="頻帶?"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/GainNo"
+            android:text="增益"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/GainValue40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/textView1"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:text="0"
+            android:width="50dp" />
+
+        <TextView
+            android:id="@+id/Gain40db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/GainValue40"
+            android:text="40db"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/Gain60db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/gainValueSeek40"
+            android:text="60db"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/GainValue60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/gainValueSeek60"
+            android:layout_toRightOf="@+id/gainValueSeek40"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:text="0"
+            android:width="50dp" />
+
+        <TextView
+            android:id="@+id/Gain80db"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/gainValueSeek60"
+            android:text="80db"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white" />
+
+        <EditText
+            android:id="@+id/GainValue80"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/gainValueSeek80"
+            android:layout_alignParentRight="true"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:text="0"
+            android:width="50dp" />
+
+        <SeekBar
+            android:id="@+id/gainValueSeek40"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/GainValue40"
+            android:layout_toLeftOf="@+id/GainValue40"
+            android:max="60"
+            android:progress="30" />
+
+        <SeekBar
+            android:id="@+id/gainValueSeek60"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Gain60db"
+            android:layout_toLeftOf="@+id/GainValue60"
+            android:max="60"
+            android:progress="30" />
+
+        <SeekBar
+            android:id="@+id/gainValueSeek80"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Gain80db"
+            android:layout_toLeftOf="@+id/GainValue60"
+            android:max="60"
+            android:progress="30" />
+
+    </RelativeLayout>
+
+</LinearLayout>

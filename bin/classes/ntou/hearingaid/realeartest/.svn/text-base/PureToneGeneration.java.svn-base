@@ -1,0 +1,25 @@
+package ntou.hearingaid.realeartest;
+
+public class PureToneGeneration {
+	private int SampleRate;
+	private double db;
+	public PureToneGeneration(int SampleRate)
+	{
+		this.SampleRate = SampleRate;
+	}
+	
+	public short[] GeneratePureTone(int freqence, int second, double db)
+	{
+		this.db = Math.pow(10, db/20);
+		short[] sin = new short[second * SampleRate];
+		double samplingInterval = (double) (SampleRate / freqence);
+		for (int i = 0; i < sin.length; i++) {
+            double angle = (2.0 * Math.PI * i) / samplingInterval;
+            
+            //sin[i] = (short) (Math.sin(angle) * Volume * Short.MAX_VALUE);
+            sin[i] = (short) (Math.sin(angle) * this.db);
+            
+        }
+		return sin;
+	}
+}

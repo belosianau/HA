@@ -1,0 +1,17 @@
+package ntou.hearingaid.parameter;
+
+import android.content.SharedPreferences;
+import android.os.Build;
+
+public class Parameter {
+	public static String PreferencesStr = "ntou.hearingaid.hearingaid_preferences";	//參數設定檔
+	
+	public static String SoftVersion = Build.VERSION.RELEASE;
+	
+	public static long Mictime = 0;
+	public static long FilterBanktime = 0;
+	public static long SpeakerTime = 0;
+	
+	public static SharedPreferences pref = null;
+	
+}

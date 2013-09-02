@@ -1,0 +1,144 @@
+package ntou.hearingaid.customerview;
+
+import ntou.hearingaid.hearingaid.R;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
+
+public class GainView extends LinearLayout {
+
+	private View view;
+	private TextView GainNo;
+	private EditText GainValue40;
+	private SeekBar seekBar40;
+	private EditText GainValue60;
+	private SeekBar seekBar60;
+	private EditText GainValue80;
+	private SeekBar seekBar80;
+	private int SeekMaxValue = 120;
+	public GainView(Context context) {
+		super(context);
+		// TODO Auto-generated constructor stub
+		LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		view = layoutInflater.inflate(R.layout.gainview,this);
+		GainNo = (TextView)view.findViewById(R.id.GainNo);
+		GainValue40 = (EditText)view.findViewById(R.id.GainValue40);
+		seekBar40 = (SeekBar)view.findViewById(R.id.gainValueSeek40);
+		seekBar40.setMax(SeekMaxValue);
+		GainValue60 = (EditText)view.findViewById(R.id.GainValue60);
+		seekBar60 = (SeekBar)view.findViewById(R.id.gainValueSeek60);
+		seekBar60.setMax(SeekMaxValue);
+		GainValue80 = (EditText)view.findViewById(R.id.GainValue80);
+		seekBar80 = (SeekBar)view.findViewById(R.id.gainValueSeek80);
+		seekBar80.setMax(SeekMaxValue);
+		seekBar40.setOnSeekBarChangeListener(new SeekBarChange());
+		seekBar60.setOnSeekBarChangeListener(new SeekBarChange());
+		seekBar80.setOnSeekBarChangeListener(new SeekBarChange());
+		
+	}
+	
+	public class SeekBarChange implements OnSeekBarChangeListener
+	{
+
+		public void onProgressChanged(SeekBar seekBar, int progress,
+				boolean fromUser) {
+			// TODO Auto-generated method stub
+			switch(seekBar.getId())
+			{
+				case R.id.gainValueSeek40:
+					GainValue40.setText(String.valueOf(progress-(SeekMaxValue/2)));
+					break;
+				case R.id.gainValueSeek60:
+					GainValue60.setText(String.valueOf(progress-(SeekMaxValue/2)));
+					break;
+				case R.id.gainValueSeek80:
+					GainValue80.setText(String.valueOf(progress-(SeekMaxValue/2)));
+					break;
+			}
+		}
+
+		public void onStartTrackingTouch(SeekBar seekBar) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public void onStopTrackingTouch(SeekBar seekBar) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
+	public void setGainNo(int No)
+	{
+		GainNo.setText("頻帶"+Integer.toString(No));
+	}
+	
+	public void setGainNo(int No,int LeftorRight)
+	{
+		if(LeftorRight==0)
+			GainNo.setText("頻帶"+Integer.toString(No)+"左聲道");
+		else
+			GainNo.setText("頻帶"+Integer.toString(No)+"右聲道");
+	}
+	
+	public void setGainValue40(int value)
+	{
+		GainValue40.setText(Integer.toString(value));
+		seekBar40.setProgress(value+(SeekMaxValue/2));
+	}
+	
+	public int getGainValue40()
+	{
+		try
+		{
+			return Integer.parseInt(GainValue40.getText().toString());
+		}
+		catch(Exception e)
+		{
+			return -1;
+		}
+	}
+	
+	public void setGainValue60(int value)
+	{
+		GainValue60.setText(Integer.toString(value));
+		seekBar60.setProgress(value+(SeekMaxValue/2));
+	}
+	
+	public int getGainValue60()
+	{
+		try
+		{
+			return Integer.parseInt(GainValue60.getText().toString());
+		}
+		catch(Exception e)
+		{
+			return -1;
+		}
+	}
+	
+	public void setGainValue80(int value)
+	{
+		GainValue80.setText(Integer.toString(value));
+		seekBar80.setProgress(value+(SeekMaxValue/2));
+	}
+	
+	public int getGainValue80()
+	{
+		try
+		{
+			return Integer.parseInt(GainValue80.getText().toString());
+		}
+		catch(Exception e)
+		{
+			return -1;
+		}
+	}
+
+}

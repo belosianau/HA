@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   name=""
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/src/ntou/hearingaid/customerview"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="BodePlotGraph.java"
+   checksum="65d38c2bc6ee7013c43f25b4e9d5f6c2"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="FilterView.java"
+   checksum="090b7cb4bfab3ba247bcde71aceeaee9"
+   last-author="hamish"
+   text-time="2013-06-17T05:05:16.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="GainView.java"
+   checksum="a528173a1842022e2b38b102f7e58e22"
+   last-author="hamish"
+   text-time="2013-06-17T05:12:20.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="PureToneGraph.java"
+   checksum="dc0f9c59ea1e7eda5db0e342373a435f"
+   last-author="hamish"
+   text-time="2013-06-13T06:13:10.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+</wc-entries>

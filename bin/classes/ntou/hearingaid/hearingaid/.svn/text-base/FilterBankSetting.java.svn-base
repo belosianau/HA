@@ -1,0 +1,137 @@
+package ntou.hearingaid.hearingaid;
+
+import ntou.hearingaid.customerview.FilterView;
+import ntou.hearingaid.dsp.IIRFilter.IIR;
+import ntou.hearingaid.parameter.Parameter;
+import ntou.hearingaid.sound.SoundParameter;
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+public class FilterBankSetting extends Activity {
+
+	private Button CheckButton;
+	private EditText FilterNumber;
+	private FilterView[] filters;
+	private LinearLayout ll;
+	private SharedPreferences setting;
+	private SharedPreferences.Editor edit;
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_filter_bank_setting);
+		
+		ll = (LinearLayout)findViewById(R.id.ScrollLinearLayoutView);
+		CheckButton = (Button) findViewById(R.id.CheckButton);
+		FilterNumber = (EditText)findViewById(R.id.filterNumber);
+		CheckButton.setOnClickListener(new OnClickListener() {
+			
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				ll.removeAllViews();	//將原本的View先清空
+				
+				int Number = Integer.parseInt(FilterNumber.getText().toString());
+				if(Number>0)
+				{
+
+					filters = new FilterView[Number];
+					for(int index = 0; index < Number; index++)
+					{
+						filters[index] = new FilterView(FilterBankSetting.this);
+						filters[index].setFreqNo(index+1);
+						ll.addView(filters[index]);
+					}
+					
+					
+				}
+			}
+		});
+		
+		//讀取記錄
+		setting = getSharedPreferences(Parameter.PreferencesStr, 0);
+		edit = setting.edit();
+		if(setting.contains("FilterBankNumber"))
+		{
+			int FilterBankNumber = setting.getInt("FilterBankNumber", -1);
+			if(FilterBankNumber!=-1)
+			{
+				filters = new FilterView[FilterBankNumber];
+				for(int index = 0; index < FilterBankNumber; index++)
+				{
+					filters[index] = new FilterView(FilterBankSetting.this);
+					filters[index].setFreqNo(index+1);
+					ll.addView(filters[index]);
+				}
+				
+				//將頻率寫入
+				for(int index = 0; index < FilterBankNumber; index++)
+				{
+					int LowFreq =  setting.getInt("FilterLow"+String.valueOf(index+1), -1);
+					int HiFreq =  setting.getInt("FilterHi"+String.valueOf(index+1), -1);
+					filters[index].setLowFreq(LowFreq);
+					filters[index].setHiFreq(HiFreq);
+				}	
+			}
+		}
+	}
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		//Toast.makeText(FilterBankSetting.this, "Destroy", 5).show();
+		//驗證FilterNumber是否為空
+		if(!FilterNumber.getText().toString().equals(""))
+		{
+			int number = Integer.parseInt(FilterNumber.getText().toString());
+			
+			//驗證所有頻帶是否都已填寫
+			boolean check = true;
+			for(int filterindex = 0; filterindex < number && check; filterindex++)
+			{
+				if(filters[filterindex].getLowFreq()==-1 || filters[filterindex].getHiFreq()==-1)
+				{
+					check = false;
+				}
+			}
+			//將使用者設定頻帶儲存
+			if(check)
+			{
+				//SharedPreferences setting = getSharedPreferences(Parameter.PreferencesStr, 0);
+				
+				edit.putInt("FilterBankNumber", number);
+				for(int filterindex = 0; filterindex < number; filterindex++)
+				{
+					String key = "FilterLow"+String.valueOf(filterindex+1);
+					edit.putInt(key, filters[filterindex].getLowFreq());
+				}
+				for(int filterindex = 0; filterindex < number; filterindex++)
+				{
+					String key = "FilterHi"+String.valueOf(filterindex+1);
+					edit.putInt(key, filters[filterindex].getHiFreq());
+				}
+				
+				int filternumber = setting.getInt("FilterBankNumber", -1);
+				
+				for(int i=0; i<filternumber;i++)
+				{
+					String key = "Gain"+String.valueOf(i+1);
+					if(setting.contains(key))
+					{
+						edit.remove(key);
+					}
+				}
+				
+				edit.commit();
+				Toast.makeText(FilterBankSetting.this, "設定檔儲存!", 5).show();
+			}
+		}
+		super.onDestroy();
+	}
+
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   name=""
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/src/ntou/hearingaid/sound"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="Microphone.java"
+   checksum="fc2f47a422132ae4afb6442cc34f0bbe"
+   last-author="hamish"
+   text-time="2013-06-01T11:23:16.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="SoundControl.java"
+   checksum="faf086958468762a9f802e4287a84beb"
+   last-author="hamish"
+   text-time="2013-05-19T10:04:04.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="SoundParameter.java"
+   checksum="d49ced2404c6630e51e49b2afd245918"
+   last-author="hamish"
+   text-time="2013-05-21T16:12:02.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="Speaker.java"
+   checksum="4e588ccff2a9af3ade6edbd136e99a61"
+   last-author="hamish"
+   text-time="2013-06-12T10:48:52.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+</wc-entries>

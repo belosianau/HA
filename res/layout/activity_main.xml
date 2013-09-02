@@ -1,0 +1,76 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <Button
+        android:id="@+id/StartService"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/StartService" />
+
+    <Button
+        android:id="@+id/StopService"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/StartService"
+        android:text="@string/StopService" />
+
+    <Button
+        android:id="@+id/SettingButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/StopService"
+        android:text="@string/SettingButton" />
+
+    <Button
+        android:id="@+id/RealEarTestButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/SettingButton"
+        android:text="真耳測試" />
+
+    <Button
+        android:id="@+id/upVolume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RealEarTestButton"
+        android:layout_marginRight="26dp"
+        android:layout_toLeftOf="@+id/GainNo"
+        android:text="+"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/GainNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/upVolume"
+        android:layout_centerHorizontal="true"
+        android:text="@string/VolumeControl"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/downVolume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RealEarTestButton"
+        android:layout_marginLeft="24dp"
+        android:layout_toRightOf="@+id/GainNo"
+        android:text="-"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/testButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/upVolume"
+        android:text="test"
+        android:visibility="invisible" />
+    
+</RelativeLayout>

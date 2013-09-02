@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/src/ntou/hearingaid/dsp"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="BodePlotGeneration.java"
+   checksum="a853747b8e1339a8ef44e6f01a128104"
+   last-author="hamish"
+   text-time="2013-05-29T13:36:08.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="FilterBank.java"
+   checksum="490e914995952b60d2478da3bd4611ac"
+   last-author="hamish"
+   text-time="2013-06-18T18:18:14.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="Gain.java"
+   checksum="c6fc428ddc07a3613895b748233a8ca7"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="Gain2.java"
+   checksum="27d6a0cf7b579b56b9f2cce5b4f08881"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="IIRFilter"
+   kind="dir"/>
+</wc-entries>

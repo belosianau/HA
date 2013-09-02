@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   name=""
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/src/ntou/hearingaid/dsp/IIRFilter"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="Complex.java"
+   checksum="22011281abcc8e1b0710c6f242bb44a5"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="IIR.java"
+   checksum="99ad4a15e21a79b511bd1e0e3050f0a0"
+   last-author="hamish"
+   text-time="2013-05-29T13:39:16.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+</wc-entries>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">藍芽助聽器</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">藍芽助聽器</string>
+    <string name="StartService">啟動助聽器</string>
+    <string name="StopService">停止助聽器</string>
+    <string name="SettingButton">設定參數</string>
+    <string name="title_activity_setting_parameter">設定助聽器參數</string>
+    <string name="pref_AudioSource">聲音接收來源</string>
+
+    <string-array name="AudioSource">
+        <item>藍芽麥克風</item>
+        <item>內建麥克風</item>
+    </string-array>
+    <string-array name="AudioSource_value">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string name="BT_Mic">藍芽麥克風</string>
+    <string name="MIC">內建麥克風</string>
+    <string name="pref_AudioSource_title">音訊輸入來源</string>
+    <string name="pref_AudioSource_summary">選擇音訊輸入裝置</string>
+    <string name="Backup">備份助聽器設定</string>
+    <string name="Restore">還原助聽器設定</string>
+    <string name="VolumeControl">音量微調</string>
+
+    <string-array name="HearingType">
+        <item>低頻音加強</item>
+        <item>高頻音加強</item>
+        <item>混合性重聽加強</item>
+        <item>自訂</item>
+    </string-array>
+    <string-array name="HearingType_value">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_filter_bank_setting">FilterBankSetting</string>
+    <string name="FilterBankCountSetting">設定頻帶數量</string>
+    <string name="title_activity_gain_setting">GainSetting</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_backup_restore">BackupRestore</string>
+    <string name="title_activity_pure_tone_test">PureToneTest</string>
+    <string name="title_activity_test">TestActivity</string>
+
+</resources>

@@ -1,0 +1,212 @@
+package ntou.hearingaid.customerview;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
+import android.util.AttributeSet;
+import android.util.Log;
+import android.view.View;
+
+public class PureToneGraph extends View {
+
+	private Bitmap background;
+	private Paint paint;
+	
+	private int Width;
+	private int Height;
+	
+	private int data250 = 0;
+	private int data500 = 0;
+	private int data1000 = 0;
+	private int data2000 = 0;
+	private int data4000 = 0;
+	
+	private int data250R = 0;
+	private int data500R = 0;
+	private int data1000R = 0;
+	private int data2000R = 0;
+	private int data4000R = 0;
+	
+	public PureToneGraph(Context context) {
+		super(context);
+		// TODO Auto-generated constructor stub
+		paint = new Paint();
+	}
+
+	public PureToneGraph(Context context, AttributeSet attrs) {
+		super(context, attrs);
+		// TODO Auto-generated constructor stub
+		paint = new Paint();
+		
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas) {
+		// TODO Auto-generated method stub
+		super.onDraw(canvas);
+		//Log.e("debug","Draw");
+		DrawBackground(canvas);
+		DrawData(canvas);
+		
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		// TODO Auto-generated method stub
+		super.onSizeChanged(w, h, oldw, oldh);
+		//Log.e("debug",Integer.toString(w)+","+Integer.toString(h));
+		Width = w;
+		Height = h;
+		
+	}
+	
+	private void DrawBackground(Canvas canvas)
+	{
+		paint.setColor(Color.BLACK);
+		paint.setStyle(Style.STROKE);
+		paint.setStrokeWidth(5);
+		
+		canvas.drawLine(20, 20, 20, Height-20, paint);
+		canvas.drawLine(20, Height-20, Width-20, Height-20, paint);
+		
+		
+		paint.setColor(Color.GRAY);
+		paint.setStyle(Style.STROKE);
+		paint.setStrokeWidth(2);
+		
+		canvas.drawText(String.valueOf(120), 0, Height-20, paint);
+		int initfreq = 250;
+		int x_axis = (Width-40)/16;
+		for(int i=0; i < 16; i++)
+		{
+			int tmp = 250*(i+1);
+			if(tmp == initfreq)
+			{
+				canvas.drawLine(20+((i+1)*x_axis-1), 20, 20+((i+1)*x_axis-1), Height-20, paint);
+				canvas.drawText(String.valueOf(initfreq), 10+((i+1)*x_axis-1), 20 , paint);
+				canvas.drawText(String.valueOf(initfreq), 10+((i+1)*x_axis-1), Height , paint);
+				initfreq*=2;
+			}
+		}
+		
+		int y_axis = (Height-40)/14;
+		for(int i=0; i < 13; i++)
+		{
+			canvas.drawLine(20, Height-20-(y_axis*(i+1)), Width-20, Height-20-(y_axis*(i+1)), paint);
+			canvas.drawText(String.valueOf((120-((i+1)*10))), 0, Height-20-(y_axis*(i+1)), paint);
+		}
+	}
+	
+	private void DrawData(Canvas canvas)
+	{
+		paint.setColor(Color.BLUE);
+		paint.setStrokeWidth(10);
+		int freq = 0;
+		int db = 0;
+		for(int i=0; i<16; i++)
+		{
+			switch(250*(i+1))
+			{
+			case 250:
+				freq = 250;
+				db = data250;
+				break;
+			case 500:
+				freq = 500;
+				db = data500;
+				break;
+			case 1000:
+				freq = 1000;
+				db = data1000;
+				break;
+			case 2000:
+				freq = 2000;
+				db = data2000;
+				break;
+			case 4000:
+				freq = 4000;
+				db = data4000;
+				break;
+				
+			}
+			int x_i = (freq/250)-1;
+			float y_i = (120.0f-db)/10;
+			int x_axis = (Width-40)/16;
+			int y_axis = (Height-40)/14;
+			canvas.drawPoint(20+((x_i+1)*x_axis-1), Height-20-(y_axis*(y_i)), paint);
+		}
+		paint.setColor(Color.RED);
+		for(int i=0; i<16; i++)
+		{
+			switch(250*(i+1))
+			{
+			case 250:
+				freq = 250;
+				db = data250R;
+				break;
+			case 500:
+				freq = 500;
+				db = data500R;
+				break;
+			case 1000:
+				freq = 1000;
+				db = data1000R;
+				break;
+			case 2000:
+				freq = 2000;
+				db = data2000R;
+				break;
+			case 4000:
+				freq = 4000;
+				db = data4000R;
+				break;
+				
+			}
+			int x_i = (freq/250)-1;
+			float y_i = (120.0f-db)/10;
+			int x_axis = (Width-40)/16;
+			int y_axis = (Height-40)/14;
+			canvas.drawPoint(20+((x_i+1)*x_axis-1), Height-20-(y_axis*(y_i)), paint);
+		}
+	}
+	public void setData(int freq, int db, int LeftorRight)
+	{
+		
+		switch(freq)
+		{
+		case 250:
+			if(LeftorRight==0)
+				data250 = db;
+			else
+				data250R = db;
+			break;
+		case 500:
+			if(LeftorRight==0)
+				data500 = db;
+			else
+				data500R = db;
+			break;
+		case 1000:
+			if(LeftorRight==0)
+				data1000 = db;
+			else
+				data1000R = db;
+			break;
+		case 2000:
+			if(LeftorRight==0)
+				data2000 = db;
+			else
+				data2000R = db;
+			break;
+		case 4000:
+			if(LeftorRight==0)
+				data4000 = db;
+			else
+				data4000R = db;
+			break;
+		}
+	}
+}

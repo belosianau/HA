@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   name=""
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/res/menu"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="activity_backup_restore.xml"
+   checksum="6d3ea2836460c320be6e112e15c49469"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="activity_filter_bank_setting.xml"
+   checksum="ea5cbf7c97f0ed284fab6882da5c71fc"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="activity_main.xml"
+   checksum="5e182958a79ac3bf28b7fdfcff5af938"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="activity_setting_parameter.xml"
+   checksum="5e182958a79ac3bf28b7fdfcff5af938"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="gain_setting.xml"
+   checksum="1d24413a34533b6742bed97a07c56f75"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="pure_tone_test.xml"
+   checksum="52620ffd520d2e0c44b7a6a71185c14b"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+</wc-entries>

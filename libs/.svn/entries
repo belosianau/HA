@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/libs"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="android-support-v4.jar"
+   checksum="7c357558b1ef5cd16f1d312fe87c38a0"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.607000Z"/>
+</wc-entries>

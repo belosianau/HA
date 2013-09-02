@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/src/ntou/hearingaid/peformance"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="PerformanceParameter.java"
+   checksum="a8942ffafd08ff56b47b2b0c658f554d"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+</wc-entries>

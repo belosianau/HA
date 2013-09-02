@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   name=""
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/res/layout"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="activity_backup_restore.xml"
+   checksum="da67a5d72dd35a0f55af7e4fa6b05a47"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="activity_bodeplot.xml"
+   checksum="8869ec39421a4ef438ad3829cf9db4a4"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="activity_filter_bank_setting.xml"
+   checksum="02d4d066e2e68fc7fffe6e9081c958b9"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="activity_gain_setting.xml"
+   checksum="8ebca52fa279199e00ffcb4ea5cfb396"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="activity_main.xml"
+   checksum="9de48c40a8cc1cd115f282c4c078e25c"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="activity_pure_tone_test.xml"
+   checksum="6d1ee38ff1cd4da42e313e8769b70415"
+   last-author="hamish"
+   text-time="2013-06-13T05:44:34.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="activity_setting_parameter.xml"
+   checksum="09ffcc5717f8ad3cd16d18f9e56f69d3"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="backup_restore.xml"
+   checksum="da67a5d72dd35a0f55af7e4fa6b05a47"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="filterview.xml"
+   checksum="d3b5b44b966d6c6cfec9ea7a8c147769"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="gainview.xml"
+   checksum="ba9d615a1a8e0e5268769beea42a9c14"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+</wc-entries>

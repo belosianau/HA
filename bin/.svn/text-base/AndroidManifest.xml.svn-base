@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ntou.hearingaid.hearingaid"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="8" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="ntou.hearingaid.hearingaid.MainActivity"
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="ntou.hearingaid.hearingaid.HearingAidService" >
+            <intent-filter>
+                <action android:name="ntou.hearingaid.hearingaid.START_HearingAid" />
+
+                <category android:name="android.intent.category.default" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="ntou.hearingaid.hearingaid.SettingParameter"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="ntou.hearingaid.hearingaid.PrefSetting"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="ntou.hearingaid.hearingaid.FilterBankSetting"
+            android:label="@string/title_activity_filter_bank_setting"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="ntou.hearingaid.hearingaid.GainSetting"
+            android:label="@string/title_activity_gain_setting"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="ntou.hearingaid.hearingaid.BackupRestore"
+            android:label="@string/title_activity_backup_restore"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="ntou.hearingaid.hearingaid.PureToneTest"
+            android:label="@string/title_activity_pure_tone_test"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="ntou.hearingaid.hearingaid.BodePlotActivity"
+            android:label="@string/title_activity_test"
+            android:screenOrientation="landscape" >
+        </activity>
+    </application>
+
+</manifest>

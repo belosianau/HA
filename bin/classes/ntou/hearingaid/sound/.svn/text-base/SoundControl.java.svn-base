@@ -1,0 +1,97 @@
+package ntou.hearingaid.sound;
+
+
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.media.AudioManager;
+import android.os.Build;
+
+public class SoundControl extends Activity {
+	private AudioManager audioManager = null;
+	private boolean isMicInput = true;	//true:內建耳機輸入 false:藍芽輸入
+	public static SoundControl soundControl = null;
+	//記錄起始狀態
+	private boolean isWiredHeadsetOn = false;
+	private boolean isBluetoothA2DPOn = false;
+	
+	private SoundControl(AudioManager _audioManager)
+	{
+		this.audioManager = _audioManager;
+		//audioManager.setMode(AudioManager.MODE_IN_CALL);
+		audioManager.setMode(AudioManager.MODE_NORMAL);
+		
+		isWiredHeadsetOn = audioManager.isWiredHeadsetOn();
+		isBluetoothA2DPOn = audioManager.isBluetoothA2dpOn();
+		
+	}
+	
+	public static SoundControl getSoundControl(AudioManager _audioManager)
+	{
+		if(SoundControl.soundControl==null)
+		{
+			soundControl = new SoundControl(_audioManager);
+		}
+		return soundControl;
+	}
+	
+	public static SoundControl getSoundControl()
+	{
+		return soundControl;
+	}
+	
+	//檢查是否符合軟體需求
+	public boolean CheckSoundDeviceState()
+	{
+		//檢查耳機狀態
+		if(audioManager.isWiredHeadsetOn())
+		{
+			return true;
+		}
+		
+		//檢查藍芽狀態
+		if(audioManager.isBluetoothA2dpOn())
+		{
+			return true;
+		}
+		
+		return false;
+	}
+
+
+	//設定輸入裝置
+	public boolean setMicInput(boolean state)
+	{
+		if(state)
+		{
+			isMicInput = true;
+			audioManager.setBluetoothScoOn(false);
+			audioManager.stopBluetoothSco();
+			return true;
+		}
+		else
+		{
+			//if(audioManager.isBluetoothA2dpOn())
+			if(audioManager.isBluetoothA2dpOn())
+			{
+				isMicInput = false;
+				audioManager.setBluetoothScoOn(true);
+				audioManager.startBluetoothSco();
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean getMicInput()
+	{
+		return isMicInput;
+	}
+	
+	public void closeSoundControl()
+	{
+		audioManager.setBluetoothA2dpOn(isBluetoothA2DPOn);
+		audioManager.setWiredHeadsetOn(isWiredHeadsetOn);
+		audioManager.setBluetoothScoOn(false);
+		audioManager.stopBluetoothSco();
+	}
+}

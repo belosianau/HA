@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   name=""
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/src/ntou/hearingaid/hearingaid"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="BackupRestore.java"
+   checksum="b2198b86bdad823af5eb79a5fcc367f8"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="BodePlotActivity.java"
+   checksum="0c911556d7124eb8076133423b144268"
+   last-author="hamish"
+   text-time="2013-05-21T16:17:22.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="FilterBankSetting.java"
+   checksum="d49b892d6868701780246be1656bcbcd"
+   last-author="hamish"
+   text-time="2013-06-17T05:03:30.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="GainSetting.java"
+   checksum="a7b995547e63bba47f48d1cc19781c82"
+   last-author="hamish"
+   text-time="2013-06-17T05:19:46.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="HeadsetPlugReciver.java"
+   checksum="b50f3b46865f9d7c6a094fb4ee4f3e79"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="HearingAidService.java"
+   checksum="09f216ab3e9d54b4fccc405ccf0ebceb"
+   last-author="hamish"
+   text-time="2013-06-12T11:41:00.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="MainActivity.java"
+   checksum="a366a7714ffcdbe1ca20262350e2ffe3"
+   last-author="hamish"
+   text-time="2013-05-31T09:39:50.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="PrefSetting.java"
+   checksum="d8f69480d1a33aeaf4c229d6f7a6f9d5"
+   last-author="hamish"
+   text-time="2013-05-16T12:59:32.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="PureToneTest.java"
+   checksum="6fb462af0c88bf7c4d1a973013e7af04"
+   last-author="hamish"
+   text-time="2013-06-20T02:51:34.674000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="SettingParameter.java"
+   checksum="5a68033e8b354c43a3f106aaff371b63"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+</wc-entries>

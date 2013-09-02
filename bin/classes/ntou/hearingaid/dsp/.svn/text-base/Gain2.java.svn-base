@@ -1,0 +1,20 @@
+package ntou.hearingaid.dsp;
+
+public class Gain2 {
+
+	private double _gain = 0.0;
+	public Gain2(double gain)
+	{
+		_gain = Math.pow(10, gain/20);
+		//System.out.print(_gain);
+	}
+	
+	public short[] process(short[] data)
+	{
+		for(int i=0;i<data.length;i++)
+		{
+			data[i] = (short)(data[i] * _gain);
+		}
+		return data;
+	}
+}

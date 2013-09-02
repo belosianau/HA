@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   name=""
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/bin/dexedLibs"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="android-support-v4-8711f9bb3692bad23b2474b5c7037136.jar"
+   checksum="4edc0512c425c71a9f3ace8b6d8fc9ea"
+   last-author="hamish"
+   text-time="2013-06-13T04:02:10.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.566000Z"/>
+<entry
+   name="android-support-v4-a88b3641bdccb088a6d13597a894062f.jar"
+   checksum="40ea7b7d7c1422234fdcf15a88fb349e"
+   last-author="hamish"
+   text-time="2013-06-12T12:01:18.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.600000Z"/>
+<entry
+   name="android-support-v4-bb1194d22cb01bc4b5c39ce6d1c85751.jar"
+   checksum="dd9784a7fff2af23c7a8a8f03027db43"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.487000Z"/>
+<entry
+   name="android-support-v4-d8c0af0d0c5f324302b5267a8a3a24d5.jar"
+   checksum="24ce28b7cf90f4f1d5c6c69cd6c11404"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.411000Z"/>
+<entry
+   name="android-support-v4-e8409031b43b7774574a0a9642e8e8b0.jar"
+   checksum="89de8ffc63063f497a5fd33b75a8b3f5"
+   last-author="hamish"
+   text-time="2013-05-11T14:50:00.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.425000Z"/>
+<entry
+   name="annotations-65685bd2dde748f48b2fa467c29548df.jar"
+   checksum="d415f7f11cc8726cc4f66c7e005a49dd"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.580000Z"/>
+<entry
+   name="annotations-ca20d128890b5a42c0554b12d528aeb3.jar"
+   checksum="bccc74651ec1b7dec3090b7d34181fa3"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.556000Z"/>
+<entry
+   name="annotations-e7437c98f1ea40a462f62f5bb112012e.jar"
+   checksum="089780db24cab07cc37da5913b6e083b"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:28.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.464000Z"/>
+</wc-entries>

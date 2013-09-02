@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TextView
+        android:id="@+id/GainNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="音訊來源設定" />
+
+    <RadioGroup
+        android:id="@+id/RadioGroup1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/GainNo"
+        android:orientation="vertical" >
+
+        <RadioButton
+            android:id="@+id/bluetoothMic"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/BT_Mic" />
+
+        <RadioButton
+            android:id="@+id/Mic"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/MIC" />
+
+    </RadioGroup>
+
+</RelativeLayout>

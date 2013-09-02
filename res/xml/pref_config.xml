@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <PreferenceCategory android:key="AudioCategory" android:title="音訊設定"><ListPreference android:entryValues="@array/AudioSource_value" android:entries="@array/AudioSource" android:key="AudioSource" android:title="@string/pref_AudioSource_title" android:summary="@string/pref_AudioSource_summary" /></PreferenceCategory>
+    <PreferenceCategory android:key="HearingAidCategory" android:title="助聽器相關設定">
+        <ListPreference android:title="預設模式" android:key="DefaultMode" android:entryValues="@array/HearingType_value" android:entries="@array/HearingType"/><PreferenceScreen android:title="頻帶切割設定" android:key="FilterBank" android:enabled="false">
+        </PreferenceScreen>
+        <PreferenceScreen android:title="增益補償設定" android:key="Gain" android:enabled="false"></PreferenceScreen>
+        
+    </PreferenceCategory>
+    <PreferenceCategory android:title="系統設定" android:key="SystemCategory">
+        <PreferenceScreen android:key="BackupRestoreScreen" android:title="備份與還原">
+        </PreferenceScreen>
+    </PreferenceCategory>
+    
+
+</PreferenceScreen>

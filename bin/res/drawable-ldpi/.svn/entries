@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/bin/res/drawable-ldpi"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="ic_launcher.png"
+   checksum="c641a238bbc938e85b6563db00c80c47"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:58.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.501000Z"/>
+</wc-entries>

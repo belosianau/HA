@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   revision="45"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel"
+   uuid="bd4af6e3-3dcb-4749-9c7a-1216da5c9a97"
+   committed-rev="45"
+   kind="dir"
+   committed-date="2013-06-20T02:57:49.313440Z"/>
+<entry
+   name=".classpath"
+   revision="46"
+   checksum="190f666332cc550efd902a01024e2762"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:32.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name=".project"
+   revision="46"
+   checksum="876f484d3c5e23d83d380223f15d3d31"
+   last-author="hamish"
+   text-time="2013-06-12T12:01:08.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name=".settings"
+   kind="dir"/>
+<entry
+   name="AndroidManifest.xml"
+   revision="46"
+   checksum="b706bd26a4bbd9ac490b6b7ab0dfee32"
+   last-author="hamish"
+   text-time="2013-06-12T10:21:48.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="assets"
+   kind="dir"/>
+<entry
+   name="bin"
+   kind="dir"/>
+<entry
+   name="gen"
+   kind="dir"/>
+<entry
+   name="ic_launcher-web.png"
+   revision="46"
+   checksum="7b5aa5cf176714359ca74dde6c48aa26"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:32.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.552000Z"/>
+<entry
+   name="libs"
+   kind="dir"/>
+<entry
+   name="lint.xml"
+   revision="46"
+   checksum="1ce274a186a2afb9f76542702f6ecc4d"
+   last-author="hamish"
+   text-time="2013-05-28T17:11:50.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="proguard-project.txt"
+   revision="46"
+   checksum="18bfe77c342b4698f1cef19cf8d918e2"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:32.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="project.properties"
+   revision="46"
+   checksum="9c57dcdf382c16ec1e6ff4d497fa3a84"
+   last-author="hamish"
+   text-time="2013-05-11T14:49:32.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="res"
+   kind="dir"/>
+<entry
+   name="src"
+   kind="dir"/>
+</wc-entries>

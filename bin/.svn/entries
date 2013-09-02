@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   name=""
+   repos="http://jengda.no-ip.info/svn/HearingAid"
+   revision="46"
+   last-author="hamish"
+   url="http://jengda.no-ip.info/svn/HearingAid/HearingAid_2Channel/bin"
+   committed-rev="46"
+   kind="dir"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="AndroidManifest.xml"
+   checksum="b706bd26a4bbd9ac490b6b7ab0dfee32"
+   last-author="hamish"
+   text-time="2013-06-20T02:47:12.576000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="HearingAid.apk"
+   checksum="f519a908dccbde7d89b96ebb35b8beb3"
+   last-author="hamish"
+   text-time="2013-06-12T11:49:38.000000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.521000Z"/>
+<entry
+   name="HearingAid_2Channel.apk"
+   checksum="4287a475d791a051a725c15412047775"
+   last-author="hamish"
+   text-time="2013-06-20T02:51:37.040000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.374000Z"/>
+<entry
+   name="classes"
+   kind="dir"/>
+<entry
+   name="classes.dex"
+   checksum="6cd4c7184eecdc63df9f9cc90581bfea"
+   last-author="hamish"
+   text-time="2013-06-20T02:51:36.960000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.361000Z"/>
+<entry
+   name="dexedLibs"
+   kind="dir"/>
+<entry
+   name="jarlist.cache"
+   checksum="89e3bd3d36955bcf2aba5ee786f0f0a4"
+   last-author="hamish"
+   text-time="2013-06-20T02:47:09.661000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"/>
+<entry
+   name="res"
+   kind="dir"/>
+<entry
+   name="resources.ap_"
+   checksum="8119d204ec48042220b326137f668680"
+   last-author="hamish"
+   text-time="2013-06-20T02:48:03.288000Z"
+   committed-rev="46"
+   kind="file"
+   committed-date="2013-06-20T02:59:11.234000Z"
+   prop-time="2013-06-20T02:58:55.505000Z"/>
+</wc-entries>
