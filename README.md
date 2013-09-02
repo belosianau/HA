@@ -1,4 +1,4 @@
-HearingAid_2Channel
+Hearing_Aid
 ===================
 
 Hearing aid program
