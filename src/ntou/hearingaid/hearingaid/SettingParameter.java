@@ -24,9 +24,6 @@ public class SettingParameter extends Activity {
         
         bluetoothMic = (RadioButton)findViewById(R.id.bluetoothMic);
         Mic = (RadioButton)findViewById(R.id.Mic);
-        
-        
-        
     }
 
 	@Override
