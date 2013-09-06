@@ -3,8 +3,8 @@ package ntou.hearingaid.dsp;
 import java.util.ArrayList;
 
 /*
- * µL§@¥Î!!!¦¹µ{¦¡¤º³¡µLªk¨Ï¥Î
- * ½Ğ¨Ï¥ÎGain2
+ * ç„¡ä½œç”¨!!!æ­¤ç¨‹å¼å…§éƒ¨ç„¡æ³•ä½¿ç”¨
+ * è«‹ä½¿ç”¨Gain2
  */
 public class Gain  extends Thread{
 
@@ -16,7 +16,7 @@ public class Gain  extends Thread{
 		while(isRunning)
 		{
 			short[] buff = null;
-			yield();	//Á×§K¦¹µ{§Ç¤@ª½¥d¦íºX¼Ğ ³y¦¨µLªk·s¼W°T¸¹
+			yield();	//é¿å…æ­¤ç¨‹åºä¸€ç›´å¡ä½æ——æ¨™ é€ æˆç„¡æ³•æ–°å¢è¨Šè™Ÿ
 			synchronized (Signals) {
 				if(Signals.size()==0)
 					continue;

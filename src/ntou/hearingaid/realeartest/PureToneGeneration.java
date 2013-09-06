@@ -3,15 +3,15 @@ package ntou.hearingaid.realeartest;
 import android.util.Log;
 
 /*
- * ¯Â­µ²£¥Í
+ * ç´”éŸ³ç”¢ç”Ÿ
  */
 
 public class PureToneGeneration {
 	private int SampleRate;
 	private double db;
 	/*
-	 * «Øºc¨ç¦¡
-	 * SampleRate ¨ú¼ËÀW²v
+	 * å»ºæ§‹å‡½å¼
+	 * SampleRate å–æ¨£é »ç‡
 	 */
 	public PureToneGeneration(int SampleRate)
 	{
@@ -19,16 +19,16 @@ public class PureToneGeneration {
 	}
 	
 	/*
-	 * ²£¥Í¯Â­µ
-	 * freqence - ©Ò»İÀW±a
-	 * second - ¬í¼Æ
-	 * db - ­µ¶q
-	 * return ²£¥Íªº°T¸¹
+	 * ç”¢ç”Ÿç´”éŸ³
+	 * freqence - æ‰€éœ€é »å¸¶
+	 * second - ç§’æ•¸
+	 * db - éŸ³é‡
+	 * return ç”¢ç”Ÿçš„è¨Šè™Ÿ
 	 */
 	public short[] GeneratePureTone(int freqence, int second, double db)
 	{
-		this.db = Math.pow(10, db/20);	//­pºâ¬Û¹ï­µ¶q
-		//²£¥Ísinªi§Î
+		this.db = Math.pow(10, db/20);	//è¨ˆç®—ç›¸å°éŸ³é‡
+		//ç”¢ç”Ÿsinæ³¢å½¢
 		short[] sin = new short[second * SampleRate];
 		double samplingInterval = (double) (SampleRate / freqence);
 		for (int i = 0; i < sin.length; i++) {
@@ -38,7 +38,7 @@ public class PureToneGeneration {
             
             int tmp = (int)(Math.sin(angle) * this.db);
             
-            //Á×§Koverflow
+            //é¿å…overflow
             if(tmp > Short.MAX_VALUE)
             	sin[i] = Short.MAX_VALUE;
             else if (tmp<Short.MIN_VALUE)

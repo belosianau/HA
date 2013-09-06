@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 /*
- * Âoªi¾¹³]©w¤¶­±
+ * æ¿¾æ³¢å™¨è¨­å®šä»‹é¢
  */
 
 public class FilterBankSetting extends Activity {
@@ -39,7 +39,7 @@ public class FilterBankSetting extends Activity {
 			
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				ll.removeAllViews();	//±N­ì¥»ªºView¥ı²MªÅ
+				ll.removeAllViews();	//å°‡åŸæœ¬çš„Viewå…ˆæ¸…ç©º
 				
 				int Number = Integer.parseInt(FilterNumber.getText().toString());
 				if(Number>0)
@@ -58,7 +58,7 @@ public class FilterBankSetting extends Activity {
 			}
 		});
 		
-		//Åª¨ú°O¿ı
+		//è®€å–è¨˜éŒ„
 		setting = getSharedPreferences(Parameter.PreferencesStr, 0);
 		edit = setting.edit();
 		if(setting.contains("FilterBankNumber"))
@@ -74,7 +74,7 @@ public class FilterBankSetting extends Activity {
 					ll.addView(filters[index]);
 				}
 				
-				//±NÀW²v¼g¤J
+				//å°‡é »ç‡å¯«å…¥
 				for(int index = 0; index < FilterBankNumber; index++)
 				{
 					int LowFreq =  setting.getInt("FilterLow"+String.valueOf(index+1), -1);
@@ -89,12 +89,12 @@ public class FilterBankSetting extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		//Toast.makeText(FilterBankSetting.this, "Destroy", 5).show();
-		//ÅçÃÒFilterNumber¬O§_¬°ªÅ
+		//é©—è­‰FilterNumberæ˜¯å¦ç‚ºç©º
 		if(!FilterNumber.getText().toString().equals(""))
 		{
 			int number = Integer.parseInt(FilterNumber.getText().toString());
 			
-			//ÅçÃÒ©Ò¦³ÀW±a¬O§_³£¤w¶ñ¼g
+			//é©—è­‰æ‰€æœ‰é »å¸¶æ˜¯å¦éƒ½å·²å¡«å¯«
 			boolean check = true;
 			for(int filterindex = 0; filterindex < number && check; filterindex++)
 			{
@@ -103,7 +103,7 @@ public class FilterBankSetting extends Activity {
 					check = false;
 				}
 			}
-			//±N¨Ï¥ÎªÌ³]©wÀW±aÀx¦s
+			//å°‡ä½¿ç”¨è€…è¨­å®šé »å¸¶å„²å­˜
 			if(check)
 			{
 				//SharedPreferences setting = getSharedPreferences(Parameter.PreferencesStr, 0);
@@ -132,7 +132,7 @@ public class FilterBankSetting extends Activity {
 				}
 				
 				edit.commit();
-				Toast.makeText(FilterBankSetting.this, "³]©wÀÉÀx¦s!", 5).show();
+				Toast.makeText(FilterBankSetting.this, "è¨­å®šæª”å„²å­˜!", 5).show();
 			}
 		}
 		super.onDestroy();

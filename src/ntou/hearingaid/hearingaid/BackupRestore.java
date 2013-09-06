@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 /*
- * µ{¦¡¤¶­±-³Æ¥÷ÁÙ­ì¾Ş°µ
+ * ç¨‹å¼ä»‹é¢-å‚™ä»½é‚„åŸæ“åš
  */
 
 public class BackupRestore extends Activity {
@@ -41,17 +41,17 @@ public class BackupRestore extends Activity {
 			{
 				File file = new File("/sdcard/hearingaid.xml");
 				if(spbr.saveSharedPreferencesToFile(file))
-					Toast.makeText(BackupRestore.this, "³Æ¥÷§¹¦¨!!", 5).show();
+					Toast.makeText(BackupRestore.this, "å‚™ä»½å®Œæˆ!!", 5).show();
 				else
-					Toast.makeText(BackupRestore.this, "³Æ¥÷¥¢±Ñ!!", 5).show();
+					Toast.makeText(BackupRestore.this, "å‚™ä»½å¤±æ•—!!", 5).show();
 			}
 			else if(v.getId()==R.id.restore)
 			{
 				File file = new File("/sdcard/hearingaid.xml");
 				if(spbr.loadSharedPreferencesFromFile(file))
-					Toast.makeText(BackupRestore.this, "ÁÙ­ì§¹¦¨!!", 5).show();
+					Toast.makeText(BackupRestore.this, "é‚„åŸå®Œæˆ!!", 5).show();
 				else
-					Toast.makeText(BackupRestore.this, "ÁÙ­ì¥¢±Ñ!!", 5).show();
+					Toast.makeText(BackupRestore.this, "é‚„åŸå¤±æ•—!!", 5).show();
 			}
 		}
 		

@@ -7,9 +7,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 /*
- * ­t³dºÊÅ¥¤â¾÷¤º³¡¦U¶µ¼s¼½
- * ¦p ¦Õ¾÷´¡¤J©Ş°£
- * ¹q¸Ücall inµ¥
+ * è² è²¬ç›£è½æ‰‹æ©Ÿå…§éƒ¨å„é …å»£æ’­
+ * å¦‚ è€³æ©Ÿæ’å…¥æ‹”é™¤
+ * é›»è©±call inç­‰
  */
 
 public class HeadsetPlugReciver extends BroadcastReceiver {
@@ -26,36 +26,36 @@ public class HeadsetPlugReciver extends BroadcastReceiver {
 		// TODO Auto-generated method stub
 		if(arg1.getAction().equals("android.intent.action.HEADSET_PLUG"))
 		{
-			//¼s¼½§PÂ_¦Õ¾÷²¾°£»İ¥ı§PÂ_¬O§_¦bªA°Èª¬ºA ¦bªA°Èª¬ºA®É»İ±NisPauseByHeadsetUnplug§ïÅÜ ¥H§Q±µ¦^¦Õ¾÷«á±Ò¥Î
+			//å»£æ’­åˆ¤æ–·è€³æ©Ÿç§»é™¤éœ€å…ˆåˆ¤æ–·æ˜¯å¦åœ¨æœå‹™ç‹€æ…‹ åœ¨æœå‹™ç‹€æ…‹æ™‚éœ€å°‡isPauseByHeadsetUnplugæ”¹è®Š ä»¥åˆ©æ¥å›è€³æ©Ÿå¾Œå•Ÿç”¨
 			if(arg1.getIntExtra("state", -1)== HeadsetUnplugin && HearingAidService.isService)	
 			{
-				HearingAidService.isPauseByHeadsetUnplug = true;	//°µ¬°§PÂ_¬O§_¬°¼s¼½¤¤Â_
-				arg0.stopService(new Intent("ntou.hearingaid.hearingaid.START_HearingAid"));	//°±¤îªA°È
+				HearingAidService.isPauseByHeadsetUnplug = true;	//åšç‚ºåˆ¤æ–·æ˜¯å¦ç‚ºå»£æ’­ä¸­æ–·
+				arg0.stopService(new Intent("ntou.hearingaid.hearingaid.START_HearingAid"));	//åœæ­¢æœå‹™
 			}
 			else
 			{
-				if(HearingAidService.isPauseByHeadsetUnplug)	//¦pªG¬°¼s¼½¤¤Â_ªA°È®É 
+				if(HearingAidService.isPauseByHeadsetUnplug)	//å¦‚æœç‚ºå»£æ’­ä¸­æ–·æœå‹™æ™‚ 
 				{
-					HearingAidService.isPauseByHeadsetUnplug = false;	//±N¨ä¤¤Â_¦^´_
-					arg0.startService(new Intent("ntou.hearingaid.hearingaid.START_HearingAid"));	//­«·s±Ò°ÊªA°È
+					HearingAidService.isPauseByHeadsetUnplug = false;	//å°‡å…¶ä¸­æ–·å›å¾©
+					arg0.startService(new Intent("ntou.hearingaid.hearingaid.START_HearingAid"));	//é‡æ–°å•Ÿå‹•æœå‹™
 				}
 			}
 			//Log.d("DEBUG", String.valueOf(arg1.getIntExtra("state", 0)));
 		}
-		else if(arg1.getAction().equals("android.bluetooth.headset.action.STATE_CHANGED"))	//§PÂ_ÂÅªŞª¬ºA¬O§_§ïÅÜ
+		else if(arg1.getAction().equals("android.bluetooth.headset.action.STATE_CHANGED"))	//åˆ¤æ–·è—èŠ½ç‹€æ…‹æ˜¯å¦æ”¹è®Š
 		{
 			
 			if(arg1.getIntExtra(EXTRA_STATE, STATE_DISCONNECTED)== STATE_DISCONNECTED && HearingAidService.isService)	
 			{
-				HearingAidService.isPauseByHeadsetUnplug = true;	//°µ¬°§PÂ_¬O§_¬°¼s¼½¤¤Â_
-				arg0.stopService(new Intent("ntou.hearingaid.hearingaid.START_HearingAid"));	//°±¤îªA°È
+				HearingAidService.isPauseByHeadsetUnplug = true;	//åšç‚ºåˆ¤æ–·æ˜¯å¦ç‚ºå»£æ’­ä¸­æ–·
+				arg0.stopService(new Intent("ntou.hearingaid.hearingaid.START_HearingAid"));	//åœæ­¢æœå‹™
 			}
 			else
 			{
-				if(HearingAidService.isPauseByHeadsetUnplug)	//¦pªG¬°¼s¼½¤¤Â_ªA°È®É 
+				if(HearingAidService.isPauseByHeadsetUnplug)	//å¦‚æœç‚ºå»£æ’­ä¸­æ–·æœå‹™æ™‚ 
 				{
-					HearingAidService.isPauseByHeadsetUnplug = false;	//±N¨ä¤¤Â_¦^´_
-					arg0.startService(new Intent("ntou.hearingaid.hearingaid.START_HearingAid"));	//­«·s±Ò°ÊªA°È
+					HearingAidService.isPauseByHeadsetUnplug = false;	//å°‡å…¶ä¸­æ–·å›å¾©
+					arg0.startService(new Intent("ntou.hearingaid.hearingaid.START_HearingAid"));	//é‡æ–°å•Ÿå‹•æœå‹™
 				}
 			}
 		}

@@ -2,7 +2,7 @@ package ntou.hearingaid.peformance;
 
 import java.util.ArrayList;
 /*
- * ®Ä¯à²Î­pÃþ§O
+ * æ•ˆèƒ½çµ±è¨ˆé¡žåˆ¥
  */
 public class PerformanceParameter {
 	public static long SystemStartTime = 0;

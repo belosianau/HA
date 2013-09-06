@@ -1,3 +1,9 @@
+/*
+ * Test value 
+ * 
+ */
+
+
 package ntou.hearingaid.customerview;
 
 import ntou.hearingaid.dsp.IIRFilter.Complex;
@@ -12,51 +18,49 @@ import android.view.View;
 import android.widget.Toast;
 
 
-
-public class BodePlotGraph extends View {
-
-	private double[] s;	//°O¿ı s-domain ¤Á³Î«á¼Æ­È
-	private double[] db;	//°O¿ı¼W¯q­È
-	private double[] phase;	//°O¿ı¬Û¦ì¹Ï­È
-	public enum BodePlotType{db,phase};	//¦CÁ|¹ÏªºÃş«¬
-	private BodePlotType type = BodePlotType.db;	//¹w³]¨Ï¥Î¼W·N¹Ï
-	private Paint paint;	//³]©wµeµ§	
-	private int Width;	//µe¥¬¼e«×
-	private int Height;	//µe¤£°ª«×
-	//¥Ñ©ó¥ª¥k¤Á³Î¤ñ¨Ò¤£¦P¡A³z¹Lless1Count»Pgreater1Count°O¿ı¥ª¥kªº
-	private int less1Count = 0;		//°O¿ıs¤p©ó1®É °O¿ı­Ó¼Æ
-	private int greater1Count = 0;	//°O¿ıs¤j©ó1®É °O¿ı­Ó¼Æ
-	private float db_minData = -50;	//°O¿ı¼W¯q¹Ï³Ì¤p­È
-	private float db_maxData = 50;	//°O¿ı¼W¯q¹Ï³Ì¤j­È
-	private int db_increase = 10;	//°O¿ı¼W¯q¹Ïincrease
-	private float phase_minData = 0;	//°O¿ı¬Û¦ì¹Ï³Ì¤p­È
-	private float phase_maxData = 0;	//°O¿ı¬Û¦ì¹Ï³Ì¤j­È
-	private int phase_increase = 180;	//°O¿ı¬Û¦ì¹Ïincrease
+public class BodePlotGraph extends View
+{
+	private double[] s;	 //  è¨˜éŒ„ s-domain åˆ‡å‰²å¾Œæ•¸å€¼
+	private double[] db;  //  è¨˜éŒ„å¢ç›Šå€¼
+	private double[] phase;  //  è¨˜éŒ„ç›¸ä½åœ–å€¼
+	public enum BodePlotType{db,phase};  //  åˆ—èˆ‰åœ–çš„é¡å‹
+	private BodePlotType type = BodePlotType.db;  //  é è¨­ä½¿ç”¨å¢æ„åœ–
+	private Paint paint;  //  è¨­å®šç•«ç­†	
+	private int Width;  //  ç•«å¸ƒå¯¬åº¦
+	private int Height;  //  ç•«ä¸é«˜åº¦
+	//  ç”±æ–¼å·¦å³åˆ‡å‰²æ¯”ä¾‹ä¸åŒï¼Œé€éless1Countèˆ‡greater1Countè¨˜éŒ„å·¦å³çš„
+	private int less1Count = 0;  //  è¨˜éŒ„så°æ–¼1æ™‚ è¨˜éŒ„å€‹æ•¸
+	private int greater1Count = 0;  //  è¨˜éŒ„så¤§æ–¼1æ™‚ è¨˜éŒ„å€‹æ•¸
+	private float db_minData = -50;  //  è¨˜éŒ„å¢ç›Šåœ–æœ€å°å€¼
+	private float db_maxData = 50;  //  è¨˜éŒ„å¢ç›Šåœ–æœ€å¤§å€¼
+	private int db_increase = 10;  //  è¨˜éŒ„å¢ç›Šåœ–increase
+	private float phase_minData = 0;  //  è¨˜éŒ„ç›¸ä½åœ–æœ€å°å€¼
+	private float phase_maxData = 0;  //  è¨˜éŒ„ç›¸ä½åœ–æœ€å¤§å€¼
+	private int phase_increase = 180;  //  è¨˜éŒ„ç›¸ä½åœ–increase
 	
-	private int max_y_axis;	//¥Ø«e³Ì¤jy¶b­È
-	private int min_y_axis;	//¥Ø«e³Ì¤py¶b­È
+	private int max_y_axis;  //  ç›®å‰æœ€å¤§yè»¸å€¼
+	private int min_y_axis;  //  ç›®å‰æœ€å°yè»¸å€¼
 	
 	/*
-	 * ªi¼w¹Ïªì©l¤Æ
+	 * æ³¢å¾·åœ–åˆå§‹åŒ–
 	 */
-	public BodePlotGraph(Context context) {
+	public BodePlotGraph(Context context)
+	{
 		super(context);
-		// TODO Auto-generated constructor stub
 		paint = new Paint();
 	}
 
 	/*
-	 * ªi¼w¹Ïªì©l¤Æ
+	 * æ³¢å¾·åœ–åˆå§‹åŒ–
 	 */
-	public BodePlotGraph(Context context, AttributeSet attrs) {
+	public BodePlotGraph(Context context, AttributeSet attrs)
+	{
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
-		
 		paint = new Paint();
 	}
 	
 	/*
-	 * ¨ú±o¥Ø«eªi¼w¹Ï§ÎºA
+	 * å–å¾—ç›®å‰æ³¢å¾·åœ–å½¢æ…‹
 	 */
 	public BodePlotType getType()
 	{
@@ -64,7 +68,7 @@ public class BodePlotGraph extends View {
 	}
 	
 	/*
-	 * ³]©w¥Ø«eªi¼w¹Ï§ÎºA
+	 * è¨­å®šç›®å‰æ³¢å¾·åœ–å½¢æ…‹
 	 * type - dB or phase
 	 */
 	public void setType(BodePlotType type)
@@ -73,12 +77,12 @@ public class BodePlotGraph extends View {
 	}
 
 	/*
-	 * ¨ê·sµe¥¬
-	 * canvas - ±ıÃ¸»sªºµe¥¬
+	 * åˆ·æ–°ç•«å¸ƒ
+	 * canvas - æ¬²ç¹ªè£½çš„ç•«å¸ƒ
 	 */
 	@Override
-	protected void onDraw(Canvas canvas) {
-		// TODO Auto-generated method stub
+	protected void onDraw(Canvas canvas)
+	{
 		super.onDraw(canvas);
 		
 		DrawBackground(canvas);
@@ -86,16 +90,16 @@ public class BodePlotGraph extends View {
 	}
 	
 	/*
-	 * °»´ú¹Ï¼e°ª¬O§_§ïÅÜ
-	 * ¦p§ïÅÜ«h§ó§ï³]©w­È
-	 * w - ¥Ø«e¼e­È
-	 * h - ¥Ø«e°ª­È
-	 * oldw - «e¤@µ§¼e­È
-	 * oldh - «e¤@µ§°ª­È
+	 * åµæ¸¬åœ–å¯¬é«˜æ˜¯å¦æ”¹è®Š
+	 * å¦‚æ”¹è®Šå‰‡æ›´æ”¹è¨­å®šå€¼
+	 * w - ç›®å‰å¯¬å€¼
+	 * h - ç›®å‰é«˜å€¼
+	 * oldw - å‰ä¸€ç­†å¯¬å€¼
+	 * oldh - å‰ä¸€ç­†é«˜å€¼
 	 */
 	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		// TODO Auto-generated method stub
+	protected void onSizeChanged(int w, int h, int oldw, int oldh)
+	{
 		super.onSizeChanged(w, h, oldw, oldh);
 		//Log.e("debug",Integer.toString(w)+","+Integer.toString(h));
 		Width = w;
@@ -104,33 +108,32 @@ public class BodePlotGraph extends View {
 	}
 	
 	/*
-	 * Ã¸»sBodePlot ®y¼Ğ¶b 
-	 * canvas - ±ıÃ¸»sªºµe¥¬
+	 * ç¹ªè£½BodePlot åº§æ¨™è»¸ 
+	 * canvas - æ¬²ç¹ªè£½çš„ç•«å¸ƒ
 	 */
 	private void DrawBackground(Canvas canvas)
-	{
-		
+	{	
 		int y_num; 
 		float x_axis = (Width-40)/2;
 		float y_axis;
 		
 		switch(this.type)
 		{
-		//db®y¼Ğ¶b
+		//dbåº§æ¨™è»¸
 		case db:
-			y_num = (max_y_axis-min_y_axis)/db_increase;//y¶b¤Á³Î­Ó¼Æ
+			y_num = (max_y_axis-min_y_axis)/db_increase;//yè»¸åˆ‡å‰²å€‹æ•¸
 			y_axis = (Height-40)/y_num;
-			//³]©wµeµ§°ò·Ç½uÃC¦â
+			//è¨­å®šç•«ç­†åŸºæº–ç·šé¡è‰²
 			paint.setColor(Color.BLACK);
 			paint.setStyle(Style.STROKE);
 			paint.setStrokeWidth(5);
 			
-			//µe¨â±øXY°ò·Ç½u
+			//ç•«å…©æ¢XYåŸºæº–ç·š
 			canvas.drawLine(20, 20, 20, Height-20, paint);
 			canvas.drawLine(20, Height-20, Width-20, Height-20, paint);
 			
 			
-			//³]©wµeµ§¤º³¡½uÃC¦â
+			//è¨­å®šç•«ç­†å…§éƒ¨ç·šé¡è‰²
 			paint.setColor(Color.GRAY);
 			paint.setStyle(Style.STROKE);
 			paint.setStrokeWidth(2);
@@ -138,7 +141,7 @@ public class BodePlotGraph extends View {
 			canvas.drawText(String.valueOf(min_y_axis), 0, ((Height-20)), paint);
 			canvas.drawText(String.valueOf(0.1), 25, ((Height-20))+20, paint);
 			
-			//µe¥Xy¶b ¨Ã¼Ğ¤Wy¶b¹ïÀ³¼Æ­È
+			//ç•«å‡ºyè»¸ ä¸¦æ¨™ä¸Šyè»¸å°æ‡‰æ•¸å€¼
 			for(int i=0;i<y_num;i++)
 			{
 				//canvas.drawLine(20, ((Height-20)/2)+(i+1)*y_axis, Width-20, ((Height-20)/2)+(i+1)*y_axis, paint);
@@ -146,7 +149,7 @@ public class BodePlotGraph extends View {
 				//canvas.drawText(String.valueOf((i+1)*10), 0, ((Height-20)/2)-(i+1)*y_axis, paint);
 				canvas.drawText(String.valueOf(min_y_axis+(i+1)*db_increase), 0, ((Height-20))-(i+1)*y_axis, paint);
 			}
-			//µe¥Xx¶b ¨Ã¼Ğ¤Wx¶b¹ïÀ³¼Æ­È
+			//ç•«å‡ºxè»¸ ä¸¦æ¨™ä¸Šxè»¸å°æ‡‰æ•¸å€¼
 			for(int i=0;i<2;i++)
 			{
 				
@@ -155,7 +158,7 @@ public class BodePlotGraph extends View {
 			}
 			break;
 		case phase:
-			y_num = (max_y_axis-min_y_axis)/phase_increase;//y¶b¤Á³Î­Ó¼Æ
+			y_num = (max_y_axis-min_y_axis)/phase_increase;//yè»¸åˆ‡å‰²å€‹æ•¸
 			y_axis = (Height-40)/y_num;
 			paint.setColor(Color.BLACK);
 			paint.setStyle(Style.STROKE);
@@ -164,7 +167,7 @@ public class BodePlotGraph extends View {
 			canvas.drawLine(20, 20, 20, Height-20, paint);
 			canvas.drawLine(20, Height-20, Width-20, Height-20, paint);
 			
-			//³]©wµeµ§¤º³¡½uÃC¦â
+			//è¨­å®šç•«ç­†å…§éƒ¨ç·šé¡è‰²
 			paint.setColor(Color.GRAY);
 			paint.setStyle(Style.STROKE);
 			paint.setStrokeWidth(2);
@@ -175,7 +178,7 @@ public class BodePlotGraph extends View {
 			paint.setStyle(Style.STROKE);
 			paint.setStrokeWidth(2);
 			
-			//µe¥Xy¶b ¨Ã¼Ğ¤Wy¶b¹ïÀ³¼Æ­È
+			//ç•«å‡ºyè»¸ ä¸¦æ¨™ä¸Šyè»¸å°æ‡‰æ•¸å€¼
 			for(int i=0;i<y_num;i++)
 			{
 				//canvas.drawLine(20, ((Height-20)/2)+(i+1)*y_axis, Width-20, ((Height-20)/2)+(i+1)*y_axis, paint);
@@ -183,7 +186,7 @@ public class BodePlotGraph extends View {
 				//canvas.drawText(String.valueOf((i+1)*10), 0, ((Height-20)/2)-(i+1)*y_axis, paint);
 				canvas.drawText(String.valueOf(min_y_axis+(i+1)*phase_increase), 0, ((Height-20))-(i+1)*y_axis, paint);
 			}
-			//µe¥Xx¶b ¨Ã¼Ğ¤Wx¶b¹ïÀ³¼Æ­È
+			//ç•«å‡ºxè»¸ ä¸¦æ¨™ä¸Šxè»¸å°æ‡‰æ•¸å€¼
 			for(int i=0;i<2;i++)
 			{
 				
@@ -197,72 +200,72 @@ public class BodePlotGraph extends View {
 	}
 	
 	/*
-	 * ±N¸ê®Æµe¦Ü®y¼Ğ¶b¤W
-	 * canvas - ±ıÃ¸»sªºµe¥¬
+	 * å°‡è³‡æ–™ç•«è‡³åº§æ¨™è»¸ä¸Š
+	 * canvas - æ¬²ç¹ªè£½çš„ç•«å¸ƒ
 	 */
 	private void DrawData(Canvas canvas)
 	{
 		if(db==null && phase==null)
 			return;
 		
-		float x_axis = (Width-40)/2;	//±N§¤¼Ğ¶b¹ï¥b¤Á¨ú±o­Ó§Oªø«×
-		float x_axis_less1 = (((float)20+x_axis)-20)/(float)less1Count;	//­pºâs<1¶¡¹j¤j¤p
+		float x_axis = (Width-40)/2;	//å°‡åæ¨™è»¸å°åŠåˆ‡å–å¾—å€‹åˆ¥é•·åº¦
+		float x_axis_less1 = (((float)20+x_axis)-20)/(float)less1Count;	//è¨ˆç®—s<1é–“éš”å¤§å°
 		float x_axis_greater1 = (float) ((((float)20+(2.0*x_axis))-((float)20+(1.0*x_axis)))/greater1Count);
-		//­pºâs>1¶¡¹j¤j¤p
+		//è¨ˆç®—s>1é–“éš”å¤§å°
 		
-		float[] prePoint = new float[2];	//°O¿ı«e¤@­ÓÂI [0]:x [1]:y
-		//³]©wData¼ĞÂI
+		float[] prePoint = new float[2];	//è¨˜éŒ„å‰ä¸€å€‹é» [0]:x [1]:y
+		//è¨­å®šDataæ¨™é»
 		paint.setColor(Color.BLUE);
 		paint.setStrokeWidth(1);
 		
 		switch(this.type)
 		{
-		//±N¸ê®ÆÃ¸»s¤W¹Ï
-		case db:	//Ã¸»s¼W¯q¹Ï
+		//å°‡è³‡æ–™ç¹ªè£½ä¸Šåœ–
+		case db:	//ç¹ªè£½å¢ç›Šåœ–
 			
 			//Log.d("debug", String.valueOf(x_axis_less1));
 			//Log.d("debug",String.valueOf(x_axis_greater1));
 			
 			for(int i=0;i<s.length;i++)
 			{
-				//­pºây¶b¨C¤@¨è«×¶¡¹j
+				//è¨ˆç®—yè»¸æ¯ä¸€åˆ»åº¦é–“éš”
 				float y_axis = ((float)(Height-40))/(max_y_axis-min_y_axis);
 				//Log.d("debug",String.valueOf(y_axis));
 				//Log.d("debug",String.valueOf(db[i]));
 				
-				//·ís<1®É
+				//ç•¶s<1æ™‚
 				if(s[i]<=1.0)
 				{
 					if(i==0)
 					{
-						//²Ä¤@­ÓÂI®É±NprePointªì©l¤Æ
+						//ç¬¬ä¸€å€‹é»æ™‚å°‡prePointåˆå§‹åŒ–
 						prePoint[0] = 20+((0)*x_axis_less1-1);
 						prePoint[1] = ((float)(Height-20))-((float)((this.db[999-0]-min_y_axis)*y_axis));
 					}
 					else
 					{
-						//±N«e¤@¸`ÂI»P·í«e¸`ÂI³s½u
+						//å°‡å‰ä¸€ç¯€é»èˆ‡ç•¶å‰ç¯€é»é€£ç·š
 						canvas.drawLine(prePoint[0], prePoint[1], 20+((i)*x_axis_less1-1), ((float)(Height-20))-((float)((this.db[999-i]-min_y_axis)*y_axis)), paint);
-						//±N¥Ø«e¸`ÂI¨ú¥N«e¤@¸`ÂI
+						//å°‡ç›®å‰ç¯€é»å–ä»£å‰ä¸€ç¯€é»
 						prePoint[0] = 20+((i)*x_axis_less1-1);
 						prePoint[1] = ((float)(Height-20))-((float)((this.db[999-i]-min_y_axis)*y_axis));
 					}
 					//canvas.drawPoint(20+((i)*x_axis_less1-1),((float)(Height-20))-((float)((this.db[999-i]-min_y_axis)*y_axis)),paint);
 					
 				}
-				else	//·ís>1®É
+				else	//ç•¶s>1æ™‚
 				{
 					if(i==0)
 					{
-						//²Ä¤@­ÓÂI®É±NprePointªì©l¤Æ
+						//ç¬¬ä¸€å€‹é»æ™‚å°‡prePointåˆå§‹åŒ–
 						prePoint[0] = 20+((i)*x_axis_greater1-1);
 						prePoint[1] = ((float)(Height-20))-((float)((this.db[999-i]-min_y_axis)*y_axis));
 					}
 					else
 					{
-						//±N«e¤@¸`ÂI»P·í«e¸`ÂI³s½u
+						//å°‡å‰ä¸€ç¯€é»èˆ‡ç•¶å‰ç¯€é»é€£ç·š
 						canvas.drawLine(prePoint[0], prePoint[1], 20+((i)*x_axis_greater1-1), ((float)(Height-20))-((float)((this.db[999-i]-min_y_axis)*y_axis)), paint);
-						//±N¥Ø«e¸`ÂI¨ú¥N«e¤@¸`ÂI
+						//å°‡ç›®å‰ç¯€é»å–ä»£å‰ä¸€ç¯€é»
 						prePoint[0] = 20+((i)*x_axis_greater1-1);
 						prePoint[1] = ((float)(Height-20))-((float)((this.db[999-i]-min_y_axis)*y_axis));
 					}
@@ -271,30 +274,30 @@ public class BodePlotGraph extends View {
 				}
 			}
 			break;
-		case phase:	//¬Û¦ì¹Ï
+		case phase:	//ç›¸ä½åœ–
 			
 			//Log.d("debug", String.valueOf(x_axis_less1));
 			//Log.d("debug",String.valueOf(x_axis_greater1));
 			for(int i=0;i<s.length;i++)
 			{
-				//­pºây¶b¨C¤@¨è«×¶¡¹j
+				//è¨ˆç®—yè»¸æ¯ä¸€åˆ»åº¦é–“éš”
 				float y_axis = ((float)(Height-40))/(max_y_axis-min_y_axis);
 				
 				//Log.d("debug",String.valueOf(phase[999-i]));
-				//·ís<1®É
+				//ç•¶s<1æ™‚
 				if(s[i]<=1.0)
 				{
 					if(i==0)
 					{
-						//²Ä¤@­ÓÂI®É±NprePointªì©l¤Æ
+						//ç¬¬ä¸€å€‹é»æ™‚å°‡prePointåˆå§‹åŒ–
 						prePoint[0] = 20+((i)*x_axis_less1-1);
 						prePoint[1] = ((float)(Height-20))-((float)((this.phase[999-i]-min_y_axis)*y_axis));
 					}
 					else
 					{
-						//±N«e¤@¸`ÂI»P·í«e¸`ÂI³s½u
+						//å°‡å‰ä¸€ç¯€é»èˆ‡ç•¶å‰ç¯€é»é€£ç·š
 						canvas.drawLine(prePoint[0], prePoint[1], 20+((i)*x_axis_less1-1), ((float)(Height-20))-((float)((this.phase[999-i]-min_y_axis)*y_axis)), paint);
-						//±N¥Ø«e¸`ÂI¨ú¥N«e¤@¸`ÂI
+						//å°‡ç›®å‰ç¯€é»å–ä»£å‰ä¸€ç¯€é»
 						prePoint[0] = 20+((i)*x_axis_less1-1);
 						prePoint[1] = ((float)(Height-20))-((float)((this.phase[999-i]-min_y_axis)*y_axis));
 						
@@ -302,20 +305,20 @@ public class BodePlotGraph extends View {
 					//canvas.drawPoint(20+((i)*x_axis_less1-1),((float)(Height-20))-((float)((this.phase[999-i]-min_y_axis)*y_axis)),paint);
 					
 				}
-				//·ís>1®É
+				//ç•¶s>1æ™‚
 				else
 				{
 					if(i==0)
 					{
-						//²Ä¤@­ÓÂI®É±NprePointªì©l¤Æ
+						//ç¬¬ä¸€å€‹é»æ™‚å°‡prePointåˆå§‹åŒ–
 						prePoint[0] = 20+((i)*x_axis_greater1-1);
 						prePoint[1] = ((float)(Height-20))-((float)((this.phase[999-i]-min_y_axis)*y_axis));
 					}
 					else
 					{
-						//±N«e¤@¸`ÂI»P·í«e¸`ÂI³s½u
+						//å°‡å‰ä¸€ç¯€é»èˆ‡ç•¶å‰ç¯€é»é€£ç·š
 						canvas.drawLine(prePoint[0], prePoint[1], 20+((i)*x_axis_less1-1), ((float)(Height-20))-((float)((this.phase[999-i]-min_y_axis)*y_axis)), paint);
-						//±N¥Ø«e¸`ÂI¨ú¥N«e¤@¸`ÂI
+						//å°‡ç›®å‰ç¯€é»å–ä»£å‰ä¸€ç¯€é»
 						prePoint[0] = 20+((i)*x_axis_less1-1);
 						prePoint[1] = ((float)(Height-20))-((float)((this.phase[999-i]-min_y_axis)*y_axis));
 					}
@@ -329,9 +332,9 @@ public class BodePlotGraph extends View {
 	}
 	
 	/*
-	 * ±N¸ê®Æ¶Ç¤J ¤è«K¤¸¥óÃ¸¹Ï
-	 * s - s¥­­±¼Æ­È
-	 * data - ¹ïÀ³sªº¬ÛÃö¼Æ­È
+	 * å°‡è³‡æ–™å‚³å…¥ æ–¹ä¾¿å…ƒä»¶ç¹ªåœ–
+	 * s - så¹³é¢æ•¸å€¼
+	 * data - å°æ‡‰sçš„ç›¸é—œæ•¸å€¼
 	 */
 	public void setData(double[]s ,double[] data)
 	{
@@ -340,7 +343,7 @@ public class BodePlotGraph extends View {
 		less1Count = 0;
 		greater1Count = 0;
 		/*
-		 * ²Î­ps<1¤Îs>1ªº¸`ÂI¼Æ
+		 * çµ±è¨ˆs<1åŠs>1çš„ç¯€é»æ•¸
 		 */
 		for(int i=0;i<s.length;i++)
 		{
@@ -353,8 +356,8 @@ public class BodePlotGraph extends View {
 				greater1Count++;
 		}
 		/*
-		 * §PÂ_¶Ç¤Jªº¸ê®ÆÄİ©ó¦óÃş«¬¹Ï
-		 * ¨Ã¨Ì·Ó¨äÃş«¬±N¹Ïªì©l¤Æ
+		 * åˆ¤æ–·å‚³å…¥çš„è³‡æ–™å±¬æ–¼ä½•é¡å‹åœ–
+		 * ä¸¦ä¾ç…§å…¶é¡å‹å°‡åœ–åˆå§‹åŒ–
 		 */
 		switch(this.type)
 		{
@@ -375,13 +378,13 @@ public class BodePlotGraph extends View {
 	}
 	
 	/*
-	 * ¨ú±o»İ³]©wªº®y¼Ğ¤W¤U­­ 
-	 * data - ±ı¤ÀªRªº°T¸¹¸ê®Æ
-	 * return [0]³Ì¤p­È [1]³Ì¤j­È
+	 * å–å¾—éœ€è¨­å®šçš„åº§æ¨™ä¸Šä¸‹é™ 
+	 * data - æ¬²åˆ†æçš„è¨Šè™Ÿè³‡æ–™
+	 * return [0]æœ€å°å€¼ [1]æœ€å¤§å€¼
 	 */
 	private int[] getAxis_Value(double[] data)
 	{
-		//§ä¥X¼Æ¾Ú³Ì¤j³Ì¤p­È
+		//æ‰¾å‡ºæ•¸æ“šæœ€å¤§æœ€å°å€¼
 		double[] tmp = new double[2];
 		tmp[0] = data[0];
 		tmp[1] = data[0];
@@ -393,7 +396,7 @@ public class BodePlotGraph extends View {
 				tmp[1] = data[i];
 		}
 		
-		//©w¸q§¤¼Ğ¶b½d³ò
+		//å®šç¾©åæ¨™è»¸ç¯„åœ
 		int[] res = new int[2];
 		if(tmp[0]>=0)
 		{
@@ -446,5 +449,4 @@ public class BodePlotGraph extends View {
 		}
 		return res;
 	}
-	
 }

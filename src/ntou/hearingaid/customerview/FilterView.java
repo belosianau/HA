@@ -13,16 +13,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /*
- * «È»s¤Æ¤¸¥ó-Âoªi¾¹¤Á³Î³]©w
+ * å®¢è£½åŒ–å…ƒä»¶-æ¿¾æ³¢å™¨åˆ‡å‰²è¨­å®š
  */
 
 public class FilterView extends LinearLayout {
 
 	private View view;
-	private TextView FreqNo;	//ÀW±a¼Æ
-	private TextView LowFreq;	//§CÀW
-	private TextView HiFreq;	//°ªÀW
-	private Button BodePlotButton;	//BodePlotÀËµøbutton
+	private TextView FreqNo;	//é »å¸¶æ•¸
+	private TextView LowFreq;	//ä½é »
+	private TextView HiFreq;	//é«˜é »
+	private Button BodePlotButton;	//BodePlotæª¢è¦–button
 	private Context context;
 	
 	public FilterView(Context context) {
@@ -39,17 +39,17 @@ public class FilterView extends LinearLayout {
 	}
 	
 	/*
-	 * ³]©wÀW±a½s¸¹
-	 * No - ½s¸¹
+	 * è¨­å®šé »å¸¶ç·¨è™Ÿ
+	 * No - ç·¨è™Ÿ
 	 */
 	public void setFreqNo(int No)
 	{
-		FreqNo.setText("ÀW±a"+Integer.toString(No));
+		FreqNo.setText("é »å¸¶"+Integer.toString(No));
 	}
 	
 	/*
-	 * ¨ú±o§CÀW
-	 * return LowFreq¼Æ­È
+	 * å–å¾—ä½é »
+	 * return LowFreqæ•¸å€¼
 	 */
 	public int getLowFreq()
 	{
@@ -64,8 +64,8 @@ public class FilterView extends LinearLayout {
 	}
 	
 	/*
-	 * ³]©w§CÀW
-	 * freq - ÀW²v
+	 * è¨­å®šä½é »
+	 * freq - é »ç‡
 	 */
 	public void setLowFreq(int freq)
 	{
@@ -73,8 +73,8 @@ public class FilterView extends LinearLayout {
 	}
 	
 	/*
-	 * ¨ú±o°ªÀW
-	 * return HiFreq ¼Æ­È
+	 * å–å¾—é«˜é »
+	 * return HiFreq æ•¸å€¼
 	 */
 	public int getHiFreq()
 	{
@@ -90,27 +90,27 @@ public class FilterView extends LinearLayout {
 	}
 	
 	/*
-	 * ³]©w°ªÀW
-	 * freq - ÀW²v
+	 * è¨­å®šé«˜é »
+	 * freq - é »ç‡
 	 */
 	public void setHiFreq(int freq)
 	{
 		HiFreq.setText(String.valueOf(freq));
 	}
 	
-	//Button Click¨Æ¥ó
+	//Button Clickäº‹ä»¶
 	private class OnClick implements OnClickListener
 	{
 
 		public void onClick(View arg0) {
 			// TODO Auto-generated method stub
-			//¦pªG«ö¤Ubodeplotbutton
+			//å¦‚æœæŒ‰ä¸‹bodeplotbutton
 			if(arg0.getId()==R.id.bodeplotbutton)
 			{
-				//§PÂ_¬O§_¤w¶ñ¤WÀW²v
+				//åˆ¤æ–·æ˜¯å¦å·²å¡«ä¸Šé »ç‡
 				if(!(HiFreq.getText().toString().equals("")||LowFreq.getText().toString().equals("")))
 				{
-					//±N¸ê°T¶Ç¦Ü¥t¤@­Ó­¶­±
+					//å°‡è³‡è¨Šå‚³è‡³å¦ä¸€å€‹é é¢
 					Bundle bundle = new Bundle();
 					bundle.putInt("LowFreq", Integer.parseInt(LowFreq.getText().toString()));
 					bundle.putInt("HiFreq", Integer.parseInt(HiFreq.getText().toString()));
@@ -122,7 +122,7 @@ public class FilterView extends LinearLayout {
 				}
 				else
 				{
-					Toast.makeText(context,"½Ğ¿é¤JÀW±a½d³ò!!", 5).show();
+					Toast.makeText(context,"è«‹è¼¸å…¥é »å¸¶ç¯„åœ!!", 5).show();
 				}
 			}
 		}

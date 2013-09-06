@@ -20,9 +20,9 @@ import android.preference.PreferenceManager;
 import android.widget.Toast;
 
 /*
- * §UÅ¥¾¹¥D­nªA°È
- * ·í«ö¤U±Ò°Ê®É
- * «h±N¦¹ªA°È±Ò°Ê
+ * åŠ©è½å™¨ä¸»è¦æœå‹™
+ * ç•¶æŒ‰ä¸‹å•Ÿå‹•æ™‚
+ * å‰‡å°‡æ­¤æœå‹™å•Ÿå‹•
  */
 
 public class HearingAidService extends Service {
@@ -61,7 +61,7 @@ public class HearingAidService extends Service {
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
-		//¨Ì§Ç±N°õ¦æºü±Ò°Ê
+		//ä¾åºå°‡åŸ·è¡Œç·’å•Ÿå‹•
 		isService = true;
 		mic.open();
 		filterBank.open();
@@ -76,7 +76,7 @@ public class HearingAidService extends Service {
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
-		//¨Ì§Ç±N°õ¦æºü¤¤Â_
+		//ä¾åºå°‡åŸ·è¡Œç·’ä¸­æ–·
 		isService = false;
 		mic.close();
 		filterBank.close();
@@ -105,7 +105,7 @@ public class HearingAidService extends Service {
 			
 			public void OnRec(short[] data) {
 				// TODO Auto-generated method stub
-				filterBank.AddSignals(data);	//mic³B²z§¹°T¸¹°e¤JfilterBank
+				filterBank.AddSignals(data);	//micè™•ç†å®Œè¨Šè™Ÿé€å…¥filterBank
 				//eq.AddSignals(data);
 				
 			}
@@ -117,7 +117,7 @@ public class HearingAidService extends Service {
 			public void OnSuccess(short[] data) {
 				// TODO Auto-generated method stub
 				//gain1.AddSignals(data);
-				speaker.AddSignals(data);	//filterBank³B²z§¹°T¸¹°e¦Üspeaker
+				speaker.AddSignals(data);	//filterBankè™•ç†å®Œè¨Šè™Ÿé€è‡³speaker
 			}
 		});
 	}

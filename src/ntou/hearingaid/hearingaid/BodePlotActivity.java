@@ -16,7 +16,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 /*
- * ªi¼w¹ÏÂsÄı¤¶­±
+ * æ³¢å¾·åœ–ç€è¦½ä»‹é¢
  */
 
 public class BodePlotActivity extends Activity {
@@ -56,7 +56,7 @@ public class BodePlotActivity extends Activity {
 		}
 		changeButton.setOnClickListener(new OnClick(this));
 	}
-	//·í§ïÅÜÅã¥Ü¹Ï§Î®É°õ¦æ
+	//ç•¶æ”¹è®Šé¡¯ç¤ºåœ–å½¢æ™‚åŸ·è¡Œ
 	public void change()
 	{
 		switch(this.type)

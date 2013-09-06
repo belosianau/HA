@@ -3,11 +3,11 @@ package ntou.hearingaid.sound;
 import android.media.AudioFormat;
 import android.media.AudioTrack;
 /*
- * ³Á§J­·¤Î¿é¥X¬ÛÃö­µ°T°Ñ¼Æ³]©w
+ * éº¥å…‹é¢¨åŠè¼¸å‡ºç›¸é—œéŸ³è¨Šåƒæ•¸è¨­å®š
  */
 
 public class SoundParameter {
-	public static int frequency = 16000;	//44100 SDK ¨Ï¥ÎÂÅªŞ ¨ú¼ËÀW²v ¥u¯à¬°8000
+	public static int frequency = 16000;	//44100 SDK ä½¿ç”¨è—èŠ½ å–æ¨£é »ç‡ åªèƒ½ç‚º8000
 	public static final int channelConfiguration = AudioFormat.CHANNEL_CONFIGURATION_MONO;
 	public static final int audioEncoding = AudioFormat.ENCODING_PCM_16BIT;
 	public static final int PureTonefrequency = 16000;

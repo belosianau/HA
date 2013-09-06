@@ -11,7 +11,7 @@ import android.util.Log;
 import android.view.View;
 
 /*
- * «È¨î¤Æ¤¸¥ó-Å¥¤O¹Ï
+ * å®¢åˆ¶åŒ–å…ƒä»¶-è½åŠ›åœ–
  */
 
 public class PureToneGraph extends View {
@@ -19,16 +19,16 @@ public class PureToneGraph extends View {
 	private Bitmap background;
 	private Paint paint;
 	
-	private int Width;	//°O¿ıµe­±¼e«×
-	private int Height;	//°O¿ıµe­±°ª«×
+	private int Width;	//è¨˜éŒ„ç•«é¢å¯¬åº¦
+	private int Height;	//è¨˜éŒ„ç•«é¢é«˜åº¦
 	
-	//¥ª¦Õ¤£¦PÀW±a¸ê®Æ
+	//å·¦è€³ä¸åŒé »å¸¶è³‡æ–™
 	private int data250 = 0;
 	private int data500 = 0;
 	private int data1000 = 0;
 	private int data2000 = 0;
 	private int data4000 = 0;
-	//¥k¦Õ¤£¦PÀW±a¸ê®Æ
+	//å³è€³ä¸åŒé »å¸¶è³‡æ–™
 	private int data250R = 0;
 	private int data500R = 0;
 	private int data1000R = 0;
@@ -49,7 +49,7 @@ public class PureToneGraph extends View {
 	}
 
 	/*
-	 * ¨ê·sµe¥¬
+	 * åˆ·æ–°ç•«å¸ƒ
 	 */
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -62,8 +62,8 @@ public class PureToneGraph extends View {
 	}
 
 	/*
-	 * °»´ú¹Ï¼e°ª¬O§_§ïÅÜ
-	 * ¦p§ïÅÜ«h§ó§ï³]©w­È
+	 * åµæ¸¬åœ–å¯¬é«˜æ˜¯å¦æ”¹è®Š
+	 * å¦‚æ”¹è®Šå‰‡æ›´æ”¹è¨­å®šå€¼
 	 */
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
@@ -74,45 +74,45 @@ public class PureToneGraph extends View {
 		Height = h;
 		
 	}
-	//Ã¸»sÅ¥¤O¹Ï ®y¼Ğ¶b 
+	//ç¹ªè£½è½åŠ›åœ– åº§æ¨™è»¸ 
 	private void DrawBackground(Canvas canvas)
 	{
-		//³]©wµeµ§
+		//è¨­å®šç•«ç­†
 		paint.setColor(Color.BLACK);
 		paint.setStyle(Style.STROKE);
 		paint.setStrokeWidth(5);
-		//µe¥X¥D­nªºx-y¶b
+		//ç•«å‡ºä¸»è¦çš„x-yè»¸
 		canvas.drawLine(20, 20, 20, Height-20, paint);
 		canvas.drawLine(20, Height-20, Width-20, Height-20, paint);
 		
-		//³]©wµeµ§
+		//è¨­å®šç•«ç­†
 		paint.setColor(Color.GRAY);
 		paint.setStyle(Style.STROKE);
 		paint.setStrokeWidth(2);
 		
-		//¼Ğ¤W°_ÂI®y¼Ğ¶b­È
+		//æ¨™ä¸Šèµ·é»åº§æ¨™è»¸å€¼
 		canvas.drawText(String.valueOf(120), 0, Height-20, paint);
-		int initfreq = 250;	//ªì©lÃ¸»sÀW±a½u
-		int x_axis = (Width-40)/16;	//±N16±ø½u¥­§¡¤À°t
+		int initfreq = 250;	//åˆå§‹ç¹ªè£½é »å¸¶ç·š
+		int x_axis = (Width-40)/16;	//å°‡16æ¢ç·šå¹³å‡åˆ†é…
 		/*
-		 * ¨Ì·Ó¬Û¹ï¦ì¸mÃ¸»s16±ø½u 250 500 750 1000 1250 .... 4000
+		 * ä¾ç…§ç›¸å°ä½ç½®ç¹ªè£½16æ¢ç·š 250 500 750 1000 1250 .... 4000
 		 */
 		for(int i=0; i < 16; i++)
 		{
-			int tmp = 250*(i+1);	//­pºâ·í«eÃ¸»sÀW±a
-			if(tmp == initfreq)	//ÀË¬d¬O§_²Å¦X©Ò­nªº¤U¤@­ÓÀW±a 250 500 1000 2000 4000
+			int tmp = 250*(i+1);	//è¨ˆç®—ç•¶å‰ç¹ªè£½é »å¸¶
+			if(tmp == initfreq)	//æª¢æŸ¥æ˜¯å¦ç¬¦åˆæ‰€è¦çš„ä¸‹ä¸€å€‹é »å¸¶ 250 500 1000 2000 4000
 			{
 				canvas.drawLine(20+((i+1)*x_axis-1), 20, 20+((i+1)*x_axis-1), Height-20, paint);
 				canvas.drawText(String.valueOf(initfreq), 10+((i+1)*x_axis-1), 20 , paint);
 				canvas.drawText(String.valueOf(initfreq), 10+((i+1)*x_axis-1), Height , paint);
-				initfreq*=2;	//±NÀË¬d­È¸õ¦Ü¤U¤@­Ó­nÃ¸»sªºÀW±a
+				initfreq*=2;	//å°‡æª¢æŸ¥å€¼è·³è‡³ä¸‹ä¸€å€‹è¦ç¹ªè£½çš„é »å¸¶
 			}
 		}
 		
-		int y_axis = (Height-40)/14;	//±N y¶b¥­§¡14±ø½u
+		int y_axis = (Height-40)/14;	//å°‡ yè»¸å¹³å‡14æ¢ç·š
 		/*
-		 * ³v¤@µe¤W14±ø½u
-		 * ¨Ã¼Ğ¤W¹ïÀ³¼Æ­È
+		 * é€ä¸€ç•«ä¸Š14æ¢ç·š
+		 * ä¸¦æ¨™ä¸Šå°æ‡‰æ•¸å€¼
 		 */
 		for(int i=0; i < 13; i++)
 		{
@@ -122,15 +122,15 @@ public class PureToneGraph extends View {
 	}
 	
 	/*
-	 * ±N¸ê®Æµe¦Ü®y¼Ğ¶b¤W
-	 * canvas - ±ıÃ¸»sµe¥¬
+	 * å°‡è³‡æ–™ç•«è‡³åº§æ¨™è»¸ä¸Š
+	 * canvas - æ¬²ç¹ªè£½ç•«å¸ƒ
 	 */
 	private void DrawData(Canvas canvas)
 	{
-		//³]©wÂÅ¦âµeµ§ Ã¸»s¥ª¦Õ
+		//è¨­å®šè—è‰²ç•«ç­† ç¹ªè£½å·¦è€³
 		paint.setColor(Color.BLUE);
 		paint.setStrokeWidth(10);
-		//±N¥ª¦Õ¸ê®Æ³v¤@Ã¸¥X
+		//å°‡å·¦è€³è³‡æ–™é€ä¸€ç¹ªå‡º
 		int freq = 0;
 		int db = 0;
 		for(int i=0; i<16; i++)
@@ -165,9 +165,9 @@ public class PureToneGraph extends View {
 			int y_axis = (Height-40)/14;
 			canvas.drawPoint(20+((x_i+1)*x_axis-1), Height-20-(y_axis*(y_i)), paint);
 		}
-		//³]©w¬õ¦âµeµ§ Ã¸»s¥k¦Õ
+		//è¨­å®šç´…è‰²ç•«ç­† ç¹ªè£½å³è€³
 		paint.setColor(Color.RED);
-		//±N¥k¦Õ¸ê®Æ³v¤@Ã¸¥X
+		//å°‡å³è€³è³‡æ–™é€ä¸€ç¹ªå‡º
 		for(int i=0; i<16; i++)
 		{
 			switch(250*(i+1))
@@ -203,10 +203,10 @@ public class PureToneGraph extends View {
 	}
 	
 	/*
-	 * ³]©wÅ¥¤O¸ê®Æ
-	 * freq - ´ú¸ÕÀW±a
-	 * db - ­µ¶q
-	 * LeftorRight - ¥ª¦Õ©Î¥k¦Õ
+	 * è¨­å®šè½åŠ›è³‡æ–™
+	 * freq - æ¸¬è©¦é »å¸¶
+	 * db - éŸ³é‡
+	 * LeftorRight - å·¦è€³æˆ–å³è€³
 	 */
 	public void setData(int freq, int db, int LeftorRight)
 	{

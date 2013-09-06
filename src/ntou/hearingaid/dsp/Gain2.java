@@ -1,15 +1,15 @@
 package ntou.hearingaid.dsp;
 
 /*
- * ¼W¯q³B²z
+ * å¢žç›Šè™•ç†
  */
 
 public class Gain2 {
 
 	private double _gain = 0.0;
 	/*
-	 * «Øºc¨ç¦¡
-	 * gain - ³]©w¼W¯q­È
+	 * å»ºæ§‹å‡½å¼
+	 * gain - è¨­å®šå¢žç›Šå€¼
 	 */
 	public Gain2(double gain)
 	{
@@ -18,9 +18,9 @@ public class Gain2 {
 	}
 	
 	/*
-	 * ¶i¦æ¼W¯q­pºâ
-	 * data - ±ý³B²zªº¸ê®Æ
-	 * return ³B²z«áµ²ªG
+	 * é€²è¡Œå¢žç›Šè¨ˆç®—
+	 * data - æ¬²è™•ç†çš„è³‡æ–™
+	 * return è™•ç†å¾Œçµæžœ
 	 */
 	public short[] process(short[] data)
 	{
@@ -28,7 +28,7 @@ public class Gain2 {
 		{
 			int tmp = data[i];
 			tmp = (int) (tmp * _gain);
-			//Á×§Koverflow
+			//é¿å…overflow
 			if(tmp>Short.MAX_VALUE)
 				data[i] = Short.MAX_VALUE;
 			else if(tmp<Short.MIN_VALUE)

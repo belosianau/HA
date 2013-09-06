@@ -1,3 +1,8 @@
+/*
+ * Setting program value
+ * 
+ */
+
 package ntou.hearingaid.hearingaid;
 
 import ntou.hearingaid.parameter.Parameter;
@@ -13,8 +18,8 @@ import android.preference.PreferenceScreen;
 import android.widget.Toast;
 
 
-public class PrefSetting extends PreferenceActivity {
-
+public class PrefSetting extends PreferenceActivity
+{
 	private ListPreference AudioSource;
 	private ListPreference DefaultMode;
 	private PreferenceScreen FilterBank;
@@ -23,21 +28,21 @@ public class PrefSetting extends PreferenceActivity {
 	public SharedPreferences setting;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.pref_config);
 		
 		AudioSource = (ListPreference)findPreference("AudioSource");
 		DefaultMode = (ListPreference)findPreference("DefaultMode");
-		FilterBank = (PreferenceScreen)findPreference("FilterBank");
+		FilterBank  = (PreferenceScreen)findPreference("FilterBank");
 		Gain = (PreferenceScreen)findPreference("Gain");
 		
 		DefaultMode.setOnPreferenceChangeListener(new onPreferenceChangeListener());
 		
 		//Log.e("DEBUG", DefaultMode.getValue());
 		
-		//≈™®˙≥]©w¿…πw≥]≠»
+		//  ËÆÄÂèñË®≠ÂÆöÊ™îÈ†êË®≠ÂÄº
 		setting = getSharedPreferences(Parameter.PreferencesStr, 0);
 		if(setting.contains("DefaultMode"))
 		{
@@ -52,15 +57,12 @@ public class PrefSetting extends PreferenceActivity {
 				FilterBank.setEnabled(false);
 				Gain.setEnabled(false);
 			}
-			
 		}
-		
 	}
 
 	@Override
-	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
-			Preference preference) {
-		// TODO Auto-generated method stub
+	public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference)
+	{
 		if(preference.getKey().equals("FilterBank"))
 		{
 			Intent intent = new Intent();
@@ -85,9 +87,8 @@ public class PrefSetting extends PreferenceActivity {
 	
 	private class onPreferenceChangeListener implements OnPreferenceChangeListener
 	{
-
-		public boolean onPreferenceChange(Preference preference, Object newValue) {
-			// TODO Auto-generated method stub
+		public boolean onPreferenceChange(Preference preference, Object newValue)
+		{
 			if(preference.getKey().equals("DefaultMode"))
 			{
 				if(newValue.equals("5"))
@@ -118,25 +119,24 @@ public class PrefSetting extends PreferenceActivity {
 			}
 			return false;
 		}
-		
 	}
 
 	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
+	protected void onDestroy()
+	{
 		SharedPreferences.Editor edit = setting.edit();
 		
-		if(setting.getString("DefaultMode", "-1").equals("2"))	//ßC¿W
+		if(setting.getString("DefaultMode", "-1").equals("2"))	//  ‰ΩéÈ†ª
 		{
 			edit.putInt("FilterBankNumber", 3);
-			String FilterLow = "FilterLow"+Integer.toString(1);
-			String FilterHi = "FilterHi"+Integer.toString(1);
-			String Gain40 = "Gain40db"+String.valueOf(1);
-			String Gain60 = "Gain60db"+String.valueOf(1);
-			String Gain80 = "Gain80db"+String.valueOf(1);
-			String Gain40R = "Gain40db"+String.valueOf(1)+"R";
-			String Gain60R = "Gain60db"+String.valueOf(1)+"R";
-			String Gain80R = "Gain80db"+String.valueOf(1)+"R";
+			String FilterLow = "FilterLow" + Integer.toString(1);
+			String FilterHi  = "FilterHi"  + Integer.toString(1);
+			String Gain40    = "Gain40db"  + String.valueOf(1);
+			String Gain60    = "Gain60db"  + String.valueOf(1);
+			String Gain80    = "Gain80db"  + String.valueOf(1);
+			String Gain40R   = "Gain40db"  + String.valueOf(1) + "R";
+			String Gain60R   = "Gain60db"  + String.valueOf(1) + "R";
+			String Gain80R   = "Gain80db"  + String.valueOf(1) + "R";
 			edit.putInt(FilterLow, 176);
 			edit.putInt(FilterHi, 353);
 			edit.putInt(Gain40, 8);
@@ -146,14 +146,14 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(Gain60R, 15);
 			edit.putInt(Gain80R, 5);
 			
-			FilterLow = "FilterLow"+Integer.toString(2);
-			FilterHi = "FilterHi"+Integer.toString(2);
-			Gain40 = "Gain40db"+String.valueOf(2);
-			Gain60 = "Gain60db"+String.valueOf(2);
-			Gain80 = "Gain80db"+String.valueOf(2);
-			Gain40R = "Gain40db"+String.valueOf(2)+"R";
-			Gain60R = "Gain60db"+String.valueOf(2)+"R";
-			Gain80R = "Gain80db"+String.valueOf(2)+"R";
+			FilterLow = "FilterLow" + Integer.toString(2);
+			FilterHi  = "FilterHi"  + Integer.toString(2);
+			Gain40    = "Gain40db"  + String.valueOf(2);
+			Gain60    = "Gain60db"  + String.valueOf(2);
+			Gain80    = "Gain80db"  + String.valueOf(2);
+			Gain40R   = "Gain40db"  + String.valueOf(2) + "R";
+			Gain60R   = "Gain60db"  + String.valueOf(2) + "R";
+			Gain80R   = "Gain80db"  + String.valueOf(2) + "R";
 			edit.putInt(FilterLow, 353);
 			edit.putInt(FilterHi, 707);
 			edit.putInt(Gain40, 5);
@@ -163,14 +163,14 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(Gain60R, 15);
 			edit.putInt(Gain80R, 6);
 			
-			FilterLow = "FilterLow"+Integer.toString(3);
-			FilterHi = "FilterHi"+Integer.toString(3);
-			Gain40 = "Gain40db"+String.valueOf(3);
-			Gain60 = "Gain60db"+String.valueOf(3);
-			Gain80 = "Gain80db"+String.valueOf(3);
-			Gain40R = "Gain40db"+String.valueOf(3)+"R";
-			Gain60R = "Gain60db"+String.valueOf(3)+"R";
-			Gain80R = "Gain80db"+String.valueOf(3)+"R";
+			FilterLow = "FilterLow" + Integer.toString(3);
+			FilterHi  = "FilterHi"  + Integer.toString(3);
+			Gain40    = "Gain40db"  + String.valueOf(3);
+			Gain60    = "Gain60db"  + String.valueOf(3);
+			Gain80    = "Gain80db"  + String.valueOf(3);
+			Gain40R   = "Gain40db"  + String.valueOf(3) + "R";
+			Gain60R   = "Gain60db"  + String.valueOf(3) + "R";
+			Gain80R   = "Gain80db"  + String.valueOf(3) + "R";
 			edit.putInt(FilterLow, 707);
 			edit.putInt(FilterHi, 3500);
 			edit.putInt(Gain40, 8);
@@ -189,21 +189,20 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(FilterHi, 3500);
 			edit.putInt(Gain40, 0);
 			edit.putInt(Gain60, 0);
-			edit.putInt(Gain80, 0);
-			
+			edit.putInt(Gain80, 0);		
 			*/
 		}
-		else if(setting.getString("DefaultMode", "-1").equals("3"))	//∞™¿W
+		else if(setting.getString("DefaultMode", "-1").equals("3"))	 //  È´òÈ†ª
 		{
 			edit.putInt("FilterBankNumber", 4);
-			String FilterLow = "FilterLow"+Integer.toString(1);
-			String FilterHi = "FilterHi"+Integer.toString(1);
-			String Gain40 = "Gain40db"+String.valueOf(1);
-			String Gain60 = "Gain60db"+String.valueOf(1);
-			String Gain80 = "Gain80db"+String.valueOf(1);
-			String Gain40R = "Gain40db"+String.valueOf(1)+"R";
-			String Gain60R = "Gain60db"+String.valueOf(1)+"R";
-			String Gain80R = "Gain80db"+String.valueOf(1)+"R";
+			String FilterLow = "FilterLow" + Integer.toString(1);
+			String FilterHi  = "FilterHi"  + Integer.toString(1);
+			String Gain40    = "Gain40db"  + String.valueOf(1);
+			String Gain60    = "Gain60db"  + String.valueOf(1);
+			String Gain80    = "Gain80db"  + String.valueOf(1);
+			String Gain40R   = "Gain40db"  + String.valueOf(1) + "R";
+			String Gain60R   = "Gain60db"  + String.valueOf(1) + "R";
+			String Gain80R   = "Gain80db"  + String.valueOf(1) + "R";
 			edit.putInt(FilterLow, 88);
 			edit.putInt(FilterHi, 707);
 			edit.putInt(Gain40, 4);
@@ -213,14 +212,14 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(Gain60R, 13);
 			edit.putInt(Gain80R, 5);
 			
-			FilterLow = "FilterLow"+Integer.toString(2);
-			FilterHi = "FilterHi"+Integer.toString(2);
-			Gain40 = "Gain40db"+String.valueOf(2);
-			Gain60 = "Gain60db"+String.valueOf(2);
-			Gain80 = "Gain80db"+String.valueOf(2);
-			Gain40R = "Gain40db"+String.valueOf(2)+"R";
-			Gain60R = "Gain60db"+String.valueOf(2)+"R";
-			Gain80R = "Gain80db"+String.valueOf(2)+"R";
+			FilterLow = "FilterLow" + Integer.toString(2);
+			FilterHi  = "FilterHi"  + Integer.toString(2);
+			Gain40    = "Gain40db"  + String.valueOf(2);
+			Gain60    = "Gain60db"  + String.valueOf(2);
+			Gain80    = "Gain80db"  + String.valueOf(2);
+			Gain40R   = "Gain40db"  + String.valueOf(2) + "R";
+			Gain60R   = "Gain60db"  + String.valueOf(2) + "R";
+			Gain80R   = "Gain80db"  + String.valueOf(2) + "R";
 			edit.putInt(FilterLow, 707);
 			edit.putInt(FilterHi, 1414);
 			edit.putInt(Gain40, 2);
@@ -230,14 +229,14 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(Gain60R, 8);
 			edit.putInt(Gain80R, 4);
 			
-			FilterLow = "FilterLow"+Integer.toString(3);
-			FilterHi = "FilterHi"+Integer.toString(3);
-			Gain40 = "Gain40db"+String.valueOf(3);
-			Gain60 = "Gain60db"+String.valueOf(3);
-			Gain80 = "Gain80db"+String.valueOf(3);
-			Gain40R = "Gain40db"+String.valueOf(3)+"R";
-			Gain60R = "Gain60db"+String.valueOf(3)+"R";
-			Gain80R = "Gain80db"+String.valueOf(3)+"R";
+			FilterLow = "FilterLow" + Integer.toString(3);
+			FilterHi  = "FilterHi"  + Integer.toString(3);
+			Gain40    = "Gain40db"  + String.valueOf(3);
+			Gain60    = "Gain60db"  + String.valueOf(3);
+			Gain80    = "Gain80db"  + String.valueOf(3);
+			Gain40R   = "Gain40db"  + String.valueOf(3) + "R";
+			Gain60R   = "Gain60db"  + String.valueOf(3) + "R";
+			Gain80R   = "Gain80db"  + String.valueOf(3) + "R";
 			edit.putInt(FilterLow, 1414);
 			edit.putInt(FilterHi, 2828);
 			edit.putInt(Gain40, 2);
@@ -248,13 +247,13 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(Gain80R, 3);
 			
 			FilterLow = "FilterLow"+Integer.toString(4);
-			FilterHi = "FilterHi"+Integer.toString(4);
-			Gain40 = "Gain40db"+String.valueOf(4);
-			Gain60 = "Gain60db"+String.valueOf(4);
-			Gain80 = "Gain80db"+String.valueOf(4);
-			Gain40R = "Gain40db"+String.valueOf(4)+"R";
-			Gain60R = "Gain60db"+String.valueOf(4)+"R";
-			Gain80R = "Gain80db"+String.valueOf(4)+"R";
+			FilterHi  = "FilterHi"+Integer.toString(4);
+			Gain40    = "Gain40db"+String.valueOf(4);
+			Gain60    = "Gain60db"+String.valueOf(4);
+			Gain80    = "Gain80db"+String.valueOf(4);
+			Gain40R   = "Gain40db"+String.valueOf(4) + "R";
+			Gain60R   = "Gain60db"+String.valueOf(4) + "R";
+			Gain80R   = "Gain80db"+String.valueOf(4) + "R";
 			edit.putInt(FilterLow, 2828);
 			edit.putInt(FilterHi, 3500);
 			edit.putInt(Gain40, 3);
@@ -264,17 +263,17 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(Gain60R, 8);
 			edit.putInt(Gain80R, 2);
 		}
-		else if(setting.getString("DefaultMode", "-1").equals("4"))	//≤V¶X© ≠´≈•
+		else if(setting.getString("DefaultMode", "-1").equals("4"))	 //  Ê∑∑ÂêàÊÄßÈáçËÅΩ
 		{
 			edit.putInt("FilterBankNumber", 5);
-			String FilterLow = "FilterLow"+Integer.toString(1);
-			String FilterHi = "FilterHi"+Integer.toString(1);
-			String Gain40 = "Gain40db"+String.valueOf(1);
-			String Gain60 = "Gain60db"+String.valueOf(1);
-			String Gain80 = "Gain80db"+String.valueOf(1);
-			String Gain40R = "Gain40db"+String.valueOf(1)+"R";
-			String Gain60R = "Gain60db"+String.valueOf(1)+"R";
-			String Gain80R = "Gain80db"+String.valueOf(1)+"R";
+			String FilterLow = "FilterLow" + Integer.toString(1);
+			String FilterHi  = "FilterHi"  + Integer.toString(1);
+			String Gain40    = "Gain40db"  + String.valueOf(1);
+			String Gain60    = "Gain60db"  + String.valueOf(1);
+			String Gain80    = "Gain80db"  + String.valueOf(1);
+			String Gain40R   = "Gain40db"  + String.valueOf(1) + "R";
+			String Gain60R   = "Gain60db"  + String.valueOf(1) + "R";
+			String Gain80R   = "Gain80db"  + String.valueOf(1) + "R";
 			edit.putInt(FilterLow, 176);
 			edit.putInt(FilterHi, 353);
 			edit.putInt(Gain40, 2);
@@ -284,14 +283,14 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(Gain60R, 7);
 			edit.putInt(Gain80R, -2);
 			
-			FilterLow = "FilterLow"+Integer.toString(2);
-			FilterHi = "FilterHi"+Integer.toString(2);
-			Gain40 = "Gain40db"+String.valueOf(2);
-			Gain60 = "Gain60db"+String.valueOf(2);
-			Gain80 = "Gain80db"+String.valueOf(2);
-			Gain40R = "Gain40db"+String.valueOf(2)+"R";
-			Gain60R = "Gain60db"+String.valueOf(2)+"R";
-			Gain80R = "Gain80db"+String.valueOf(2)+"R";
+			FilterLow = "FilterLow" + Integer.toString(2);
+			FilterHi  = "FilterHi"  + Integer.toString(2);
+			Gain40    = "Gain40db"  + String.valueOf(2);
+			Gain60    = "Gain60db"  + String.valueOf(2);
+			Gain80    = "Gain80db"  + String.valueOf(2);
+			Gain40R   = "Gain40db"  + String.valueOf(2) + "R";
+			Gain60R   = "Gain60db"  + String.valueOf(2) + "R";
+			Gain80R   = "Gain80db"  + String.valueOf(2) + "R";
 			edit.putInt(FilterLow, 353);
 			edit.putInt(FilterHi, 707);
 			edit.putInt(Gain40, 5);
@@ -301,14 +300,14 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(Gain60R, 10);
 			edit.putInt(Gain80R, 7);
 			
-			FilterLow = "FilterLow"+Integer.toString(3);
-			FilterHi = "FilterHi"+Integer.toString(3);
-			Gain40 = "Gain40db"+String.valueOf(3);
-			Gain60 = "Gain60db"+String.valueOf(3);
-			Gain80 = "Gain80db"+String.valueOf(3);
-			Gain40R = "Gain40db"+String.valueOf(3)+"R";
-			Gain60R = "Gain60db"+String.valueOf(3)+"R";
-			Gain80R = "Gain80db"+String.valueOf(3)+"R";
+			FilterLow = "FilterLow" + Integer.toString(3);
+			FilterHi  = "FilterHi"  + Integer.toString(3);
+			Gain40    = "Gain40db"  + String.valueOf(3);
+			Gain60    = "Gain60db"  + String.valueOf(3);
+			Gain80    = "Gain80db"  + String.valueOf(3);
+			Gain40R   = "Gain40db"  + String.valueOf(3) + "R";
+			Gain60R   = "Gain60db"  + String.valueOf(3) + "R";
+			Gain80R   = "Gain80db"  + String.valueOf(3) + "R";
 			edit.putInt(FilterLow, 707);
 			edit.putInt(FilterHi, 1414);
 			edit.putInt(Gain40, 3);
@@ -318,14 +317,14 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(Gain60R, 8);
 			edit.putInt(Gain80R, 2);
 			
-			FilterLow = "FilterLow"+Integer.toString(4);
-			FilterHi = "FilterHi"+Integer.toString(4);
-			Gain40 = "Gain40db"+String.valueOf(4);
-			Gain60 = "Gain60db"+String.valueOf(4);
-			Gain80 = "Gain80db"+String.valueOf(4);
-			Gain40R = "Gain40db"+String.valueOf(4)+"R";
-			Gain60R = "Gain60db"+String.valueOf(4)+"R";
-			Gain80R = "Gain80db"+String.valueOf(4)+"R";
+			FilterLow = "FilterLow" + Integer.toString(4);
+			FilterHi  = "FilterHi"  + Integer.toString(4);
+			Gain40    = "Gain40db"  + String.valueOf(4);
+			Gain60    = "Gain60db"  + String.valueOf(4);
+			Gain80    = "Gain80db"  + String.valueOf(4);
+			Gain40R   = "Gain40db"  + String.valueOf(4) + "R";
+			Gain60R   = "Gain60db"  + String.valueOf(4) + "R";
+			Gain80R   = "Gain80db"  + String.valueOf(4) + "R";
 			edit.putInt(FilterLow, 1414);
 			edit.putInt(FilterHi, 2828);
 			edit.putInt(Gain40, 6);
@@ -335,14 +334,14 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(Gain60R, 13);
 			edit.putInt(Gain80R, 8);
 			
-			FilterLow = "FilterLow"+Integer.toString(5);
-			FilterHi = "FilterHi"+Integer.toString(5);
-			Gain40 = "Gain40db"+String.valueOf(5);
-			Gain60 = "Gain60db"+String.valueOf(5);
-			Gain80 = "Gain80db"+String.valueOf(5);
-			Gain40R = "Gain40db"+String.valueOf(5)+"R";
-			Gain60R = "Gain60db"+String.valueOf(5)+"R";
-			Gain80R = "Gain80db"+String.valueOf(5)+"R";
+			FilterLow = "FilterLow" + Integer.toString(5);
+			FilterHi  = "FilterHi"  + Integer.toString(5);
+			Gain40    = "Gain40db"  + String.valueOf(5);
+			Gain60    = "Gain60db"  + String.valueOf(5);
+			Gain80    = "Gain80db"  + String.valueOf(5);
+			Gain40R   = "Gain40db"  + String.valueOf(5)+"R";
+			Gain60R   = "Gain60db"  + String.valueOf(5)+"R";
+			Gain80R   = "Gain80db"  + String.valueOf(5)+"R";
 			edit.putInt(FilterLow, 2828);
 			edit.putInt(FilterHi, 3500);
 			edit.putInt(Gain40, 2);
@@ -352,22 +351,22 @@ public class PrefSetting extends PreferenceActivity {
 			edit.putInt(Gain60R, 7);
 			edit.putInt(Gain80R, 4);
 		}
-		else if(setting.getString("DefaultMode", "-1").equals("5"))	//¶€≠q
+		else if(setting.getString("DefaultMode", "-1").equals("5")) 	//  Ëá™Ë®Ç
 		{
-			if(!(setting.contains("FilterBankNumber")))	//ßP¬_¨Oß_¶≥πw≥]
+			if(!(setting.contains("FilterBankNumber")))	 //  Âà§Êñ∑ÊòØÂê¶ÊúâÈ†êË®≠
 			{
-				if(setting.getInt("FilterBankNumber", 0)==0)
+				if(setting.getInt("FilterBankNumber", 0) == 0)
 				{
-					//¶pµL≥]©w¿…´h™Ï©l§∆
+					//  Â¶ÇÁÑ°Ë®≠ÂÆöÊ™îÂâáÂàùÂßãÂåñ
 					edit.putInt("FilterBankNumber", 5);
-					String FilterLow = "FilterLow"+Integer.toString(1);
-					String FilterHi = "FilterHi"+Integer.toString(1);
-					String Gain40 = "Gain40db"+String.valueOf(1);
-					String Gain60 = "Gain60db"+String.valueOf(1);
-					String Gain80 = "Gain80db"+String.valueOf(1);
-					String Gain40R = "Gain40db"+String.valueOf(1)+"R";
-					String Gain60R = "Gain60db"+String.valueOf(1)+"R";
-					String Gain80R = "Gain80db"+String.valueOf(1)+"R";
+					String FilterLow = "FilterLow" + Integer.toString(1);
+					String FilterHi  = "FilterHi"  + Integer.toString(1);
+					String Gain40    = "Gain40db"  + String.valueOf(1);
+					String Gain60    = "Gain60db"  + String.valueOf(1);
+					String Gain80    = "Gain80db"  + String.valueOf(1);
+					String Gain40R   = "Gain40db"  + String.valueOf(1) + "R";
+					String Gain60R   = "Gain60db"  + String.valueOf(1) + "R";
+					String Gain80R   = "Gain80db"  + String.valueOf(1) + "R";
 					edit.putInt(FilterLow, 176);
 					edit.putInt(FilterHi, 353);
 					edit.putInt(Gain40, 0);
@@ -377,14 +376,14 @@ public class PrefSetting extends PreferenceActivity {
 					edit.putInt(Gain60R, 0);
 					edit.putInt(Gain80R, 0);
 					
-					FilterLow = "FilterLow"+Integer.toString(2);
-					FilterHi = "FilterHi"+Integer.toString(2);
-					Gain40 = "Gain40db"+String.valueOf(2);
-					Gain60 = "Gain60db"+String.valueOf(2);
-					Gain80 = "Gain80db"+String.valueOf(2);
-					Gain40R = "Gain40db"+String.valueOf(2)+"R";
-					Gain60R = "Gain60db"+String.valueOf(2)+"R";
-					Gain80R = "Gain80db"+String.valueOf(2)+"R";
+					FilterLow = "FilterLow" + Integer.toString(2);
+					FilterHi  = "FilterHi"  + Integer.toString(2);
+					Gain40    = "Gain40db"  + String.valueOf(2);
+					Gain60    = "Gain60db"  + String.valueOf(2);
+					Gain80    = "Gain80db"  + String.valueOf(2);
+					Gain40R   = "Gain40db"  + String.valueOf(2) + "R";
+					Gain60R   = "Gain60db"  + String.valueOf(2) + "R";
+					Gain80R   = "Gain80db"  + String.valueOf(2) + "R";
 					edit.putInt(FilterLow, 353);
 					edit.putInt(FilterHi, 707);
 					edit.putInt(Gain40, 0);
@@ -394,14 +393,14 @@ public class PrefSetting extends PreferenceActivity {
 					edit.putInt(Gain60R, 0);
 					edit.putInt(Gain80R, 0);
 					
-					FilterLow = "FilterLow"+Integer.toString(3);
-					FilterHi = "FilterHi"+Integer.toString(3);
-					Gain40 = "Gain40db"+String.valueOf(3);
-					Gain60 = "Gain60db"+String.valueOf(3);
-					Gain80 = "Gain80db"+String.valueOf(3);
-					Gain40R = "Gain40db"+String.valueOf(3)+"R";
-					Gain60R = "Gain60db"+String.valueOf(3)+"R";
-					Gain80R = "Gain80db"+String.valueOf(3)+"R";
+					FilterLow = "FilterLow" + Integer.toString(3);
+					FilterHi  = "FilterHi"  + Integer.toString(3);
+					Gain40    = "Gain40db"  + String.valueOf(3);
+					Gain60    = "Gain60db"  + String.valueOf(3);
+					Gain80    = "Gain80db"  + String.valueOf(3);
+					Gain40R   = "Gain40db"  + String.valueOf(3) + "R";
+					Gain60R   = "Gain60db"  + String.valueOf(3) + "R";
+					Gain80R   = "Gain80db"  + String.valueOf(3) + "R";
 					edit.putInt(FilterLow, 707);
 					edit.putInt(FilterHi, 1414);
 					edit.putInt(Gain40, 0);
@@ -411,14 +410,14 @@ public class PrefSetting extends PreferenceActivity {
 					edit.putInt(Gain60R, 0);
 					edit.putInt(Gain80R, 0);
 					
-					FilterLow = "FilterLow"+Integer.toString(4);
-					FilterHi = "FilterHi"+Integer.toString(4);
-					Gain40 = "Gain40db"+String.valueOf(4);
-					Gain60 = "Gain60db"+String.valueOf(4);
-					Gain80 = "Gain80db"+String.valueOf(4);
-					Gain40R = "Gain40db"+String.valueOf(4)+"R";
-					Gain60R = "Gain60db"+String.valueOf(4)+"R";
-					Gain80R = "Gain80db"+String.valueOf(4)+"R";
+					FilterLow = "FilterLow" + Integer.toString(4);
+					FilterHi  = "FilterHi"  + Integer.toString(4);
+					Gain40    = "Gain40db"  + String.valueOf(4);
+					Gain60    = "Gain60db"  + String.valueOf(4);
+					Gain80    = "Gain80db"  + String.valueOf(4);
+					Gain40R   = "Gain40db"  + String.valueOf(4) + "R";
+					Gain60R   = "Gain60db"  + String.valueOf(4) + "R";
+					Gain80R   = "Gain80db"  + String.valueOf(4) + "R";
 					edit.putInt(FilterLow, 1414);
 					edit.putInt(FilterHi, 2828);
 					edit.putInt(Gain40, 0);
@@ -428,14 +427,14 @@ public class PrefSetting extends PreferenceActivity {
 					edit.putInt(Gain60R, 0);
 					edit.putInt(Gain80R, 0);
 					
-					FilterLow = "FilterLow"+Integer.toString(5);
-					FilterHi = "FilterHi"+Integer.toString(5);
-					Gain40 = "Gain40db"+String.valueOf(5);
-					Gain60 = "Gain60db"+String.valueOf(5);
-					Gain80 = "Gain80db"+String.valueOf(5);
-					Gain40R = "Gain40db"+String.valueOf(5)+"R";
-					Gain60R = "Gain60db"+String.valueOf(5)+"R";
-					Gain80R = "Gain80db"+String.valueOf(5)+"R";
+					FilterLow = "FilterLow" + Integer.toString(5);
+					FilterHi  = "FilterHi"  + Integer.toString(5);
+					Gain40    = "Gain40db"  + String.valueOf(5);
+					Gain60    = "Gain60db"  + String.valueOf(5);
+					Gain80    = "Gain80db"  + String.valueOf(5);
+					Gain40R   = "Gain40db"  + String.valueOf(5) + "R";
+					Gain60R   = "Gain60db"  + String.valueOf(5) + "R";
+					Gain80R   = "Gain80db"  + String.valueOf(5) + "R";
 					edit.putInt(FilterLow, 2828);
 					edit.putInt(FilterHi, 3500);
 					edit.putInt(Gain40, 0);
@@ -446,10 +445,9 @@ public class PrefSetting extends PreferenceActivity {
 					edit.putInt(Gain80R, 0);
 				}
 			}
-			
 		}
 		edit.commit();
-		Toast.makeText(PrefSetting.this, "≥]©wßπΩ–≠´∑s±“∞ !!", 5).show();
+		Toast.makeText(PrefSetting.this, "Ë®≠ÂÆöÂÆåË´ãÈáçÊñ∞ÂïüÂãï!!", 5).show();
 		
 		super.onDestroy();
 	}

@@ -23,7 +23,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 /*
- * ¯u¦Õ´ú¸Õ¤¶­±
+ * çœŸè€³æ¸¬è©¦ä»‹é¢
  */
 
 public class PureToneTest extends Activity {
@@ -146,7 +146,7 @@ public class PureToneTest extends Activity {
 				{
 					for(int i=0;i<res2.length;i++)
 					{
-						//¥ª¦Õ´ú¸Õ
+						//å·¦è€³æ¸¬è©¦
 						if(i%2==0)
 							res2[i] = res[i/2];
 						else
@@ -158,7 +158,7 @@ public class PureToneTest extends Activity {
 				{
 					for(int i=0;i<res2.length;i++)
 					{
-						//¥ª¦Õ´ú¸Õ
+						//å·¦è€³æ¸¬è©¦
 						if(i%2==1)
 							res2[i] = res[i/2];
 						else

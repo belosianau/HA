@@ -1,5 +1,9 @@
-package ntou.hearingaid.hearingaid;
+/*
+ * Program start panel
+ */
 
+
+package ntou.hearingaid.hearingaid;
 
 import ntou.hearingaid.customerview.BodePlotGraph;
 import ntou.hearingaid.customerview.BodePlotGraph.BodePlotType;
@@ -7,6 +11,7 @@ import ntou.hearingaid.dsp.BodePlotGeneration;
 import ntou.hearingaid.parameter.Parameter;
 import ntou.hearingaid.sound.SoundControl;
 import ntou.hearingaid.sound.SoundParameter;
+import ntou.hearingaid.debug.Debug;
 
 import android.media.AudioManager;
 import android.os.Build;
@@ -24,13 +29,10 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-/*
- * ¥Dµe­±
- */
 
-public class MainActivity extends Activity {
-
-	//Button¹ïÀ³ÅÜ¼Æ
+public class MainActivity extends Activity
+{
+	//Buttonå°æ‡‰è®Šæ•¸
 	private Button startButton;
 	private Button stopButton;
 	private Button settingButton;
@@ -38,16 +40,20 @@ public class MainActivity extends Activity {
 	private Button downVolumeButton;
 	private Button realearButton;
 	private Button testButton;
-	//­µ°TºŞ²z¥Î
+	//éŸ³è¨Šç®¡ç†ç”¨
 	private AudioManager audioManager;
 	private SoundControl soundControl;
 	
 	private HeadsetPlugReciver headsetPlugReciver;
-	//³]©wÀÉ
+	//è¨­å®šæª”
 	public static SharedPreferences setting;
 	
+	public Debug debug;
+	
+	
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+	{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setting = getSharedPreferences(Parameter.PreferencesStr, 0);
@@ -57,106 +63,95 @@ public class MainActivity extends Activity {
         intentFilter.addAction("android.intent.action.HEADSET_PLUG");
         intentFilter.addAction("android.bluetooth.headset.action.STATE_CHANGED");
         registerReceiver(headsetPlugReciver, intentFilter);
-        
-        
+               
         audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
         soundControl = SoundControl.getSoundControl(audioManager);
         
-        
+        //  check headphone status
         if(!soundControl.CheckSoundDeviceState())
         {
-        	Toast.makeText(MainActivity.this, "½ĞÀË¬d¬O§_³s±µ¦Õ¾÷©Î¨ã¦³A2DP¥\¯àÂÅªŞ¦Õ¾÷", 5).show();
-        	this.finish();
+        	Toast.makeText(MainActivity.this, "è«‹æª¢æŸ¥æ˜¯å¦é€£æ¥è€³æ©Ÿæˆ–å…·æœ‰A2DPåŠŸèƒ½è—èŠ½è€³æ©Ÿ", 5).show();
         	
+        	//  I can't stop here
+        	//  When I am debugging program, I do't want be stopped.
+        	//  Just temporarily!!
+        	if (Debug.version.equals("RELEASE"))
+        	{
+        		this.finish();
+        	}
         }
         
-        //¥¼¨Ó¥iÅª¨ú³]©wÀÉ«á ¨Ó³]©w¹w³]¼Ò¦¡
+        //æœªä¾†å¯è®€å–è¨­å®šæª”å¾Œ ä¾†è¨­å®šé è¨­æ¨¡å¼
        
         if(setting.contains("AudioSource"))
         {
-        	if(setting.getString("AudioSource", "-1").equals("0"))
+        	if(setting.getString("AudioSource", "-1").equals("0"))  //  I have headphone
         	{
 	        	audioManager.setMode(AudioManager.MODE_NORMAL);
 	        	//audioManager.setBluetoothA2dpOn(true);
 	        	if(soundControl.setMicInput(false))
 	        	{
 	        		SoundParameter.frequency = 8000;
-	        		Toast.makeText(MainActivity.this, "ÂÅªŞ³Á§J­·¿é¤J¸Ë¸m³]©w¦¨¥\!", 5).show();
+	        		Toast.makeText(MainActivity.this, "è—èŠ½éº¥å…‹é¢¨è¼¸å…¥è£ç½®è¨­å®šæˆåŠŸ!", 5).show();
 	        	}
 	        	else
 	        	{
 	        		SoundParameter.frequency = 16000;
-	        		Toast.makeText(MainActivity.this, "§ó§ï¬°¤º«Ø³Á§J­·¿é¤J¸Ë¸m³]©w¦¨¥\!", 5).show();
+	        		Toast.makeText(MainActivity.this, "æ›´æ”¹ç‚ºå…§å»ºéº¥å…‹é¢¨è¼¸å…¥è£ç½®è¨­å®šæˆåŠŸ!", 5).show();
 	        	}
         	}
-        	else
+        	else  //  I don't have headphone
         	{
         		audioManager.setMode(AudioManager.MODE_NORMAL);
 	        	//audioManager.setBluetoothA2dpOn(true);
 	        	if(soundControl.setMicInput(true))
 	        	{
 	        		SoundParameter.frequency = 16000;
-	        		Toast.makeText(MainActivity.this, "¤º«Ø³Á§J­·¿é¤J¸Ë¸m³]©w¦¨¥\!", 5).show();
+	        		Toast.makeText(MainActivity.this, "å…§å»ºéº¥å…‹é¢¨è¼¸å…¥è£ç½®è¨­å®šæˆåŠŸ!", 5).show();
 	        	}
         	}
         }
-        else
+        else  //  first time use it
         {
         	Intent intent = new Intent();
 			intent.setClass(MainActivity.this, PrefSetting.class);
-			//intent.setClass(MainActivity.this, SettingParameter.class);
 			startActivity(intent);
-			Toast.makeText(MainActivity.this, "²Ä¤@¦¸±Ò°Ê½Ğ¶i¦æÀô¹Ò³]©w", 5).show();
-        	/*audioManager.setMode(AudioManager.MODE_NORMAL);
+			Toast.makeText(MainActivity.this, "ç¬¬ä¸€æ¬¡å•Ÿå‹•è«‹é€²è¡Œç’°å¢ƒè¨­å®š", 5).show();
+        	/*
+        	audioManager.setMode(AudioManager.MODE_NORMAL);
         	//audioManager.setBluetoothA2dpOn(true);
         	if(soundControl.setMicInput(true))
         	{
-        		Toast.makeText(MainActivity.this, "¹w³]¿é¤J¸Ë¸m³]©w¦¨¥\!", 5).show();
-        	}*/
+        		Toast.makeText(MainActivity.this, "é è¨­è¼¸å…¥è£ç½®è¨­å®šæˆåŠŸ!", 5).show();
+        	}
+        	*/
         }
         
         
+        //å°‡æ‰€æœ‰å°æ‡‰è‡³Buttonè®Šæ•¸
+        startButton			= (Button)findViewById(R.id.StartService);
+        stopButton			= (Button)findViewById(R.id.StopService);
+        settingButton		= (Button)findViewById(R.id.SettingButton);
+        upVolumeButton		= (Button)findViewById(R.id.upVolume);
+        downVolumeButton	= (Button)findViewById(R.id.downVolume);
+        realearButton		= (Button)findViewById(R.id.RealEarTestButton);
+        testButton			= (Button)findViewById(R.id.testButton);
         
-        //±N©Ò¦³¹ïÀ³¦ÜButtonÅÜ¼Æ
-        startButton = (Button)findViewById(R.id.StartService);
-        stopButton = (Button)findViewById(R.id.StopService);
-        settingButton = (Button)findViewById(R.id.SettingButton);
-        upVolumeButton = (Button)findViewById(R.id.upVolume);
-        downVolumeButton = (Button)findViewById(R.id.downVolume);
-        realearButton = (Button)findViewById(R.id.RealEarTestButton);
-        testButton = (Button)findViewById(R.id.testButton);
-        
-        if(HearingAidService.isService)
+        if(HearingAidService.isService)  //ç•¶æœå‹™å•Ÿå‹•æ™‚ è¨­å®š æ¯å€‹Button æ‡‰è™•æ–¼çš„ç‹€æ…‹
         {
-        	//·íªA°È±Ò°Ê®É ³]©w ¨C­ÓButton À³³B©óªºª¬ºA
         	startButton.setEnabled(false);
         	stopButton.setEnabled(true);
         	settingButton.setEnabled(false);
         }
-        else
+        else  //ç•¶æœå‹™é—œé–‰æ™‚ è¨­å®š æ¯å€‹Button æ‡‰è™•æ–¼çš„ç‹€æ…‹
         {
-        	//·íªA°ÈÃö³¬®É ³]©w ¨C­ÓButton À³³B©óªºª¬ºA
         	startButton.setEnabled(true);
         	stopButton.setEnabled(false);
         	settingButton.setEnabled(true);
         }
         
-        /*if(isServiceRunning())
-        {
-        	//·íªA°È±Ò°Ê®É ³]©w ¨C­ÓButton À³³B©óªºª¬ºA
-        	startButton.setEnabled(false);
-        	stopButton.setEnabled(true);
-        	settingButton.setEnabled(false);
-        }
-        else
-        {
-        	//·íªA°ÈÃö³¬®É ³]©w ¨C­ÓButton À³³B©óªºª¬ºA
-        	startButton.setEnabled(true);
-        	stopButton.setEnabled(false);
-        	settingButton.setEnabled(true);
-        }*/
         
-        //³]©w¦UButton¹ïÀ³ªºÄ²µo¨Æ¥ó
+        //è¨­å®šå„Buttonå°æ‡‰çš„è§¸ç™¼äº‹ä»¶
         startButton.setOnClickListener(new OnClick()); 
         stopButton.setOnClickListener(new OnClick()); 
         settingButton.setOnClickListener(new OnClick());
@@ -167,12 +162,13 @@ public class MainActivity extends Activity {
 		//Toast.makeText(MainActivity.this, Build.VERSION.RELEASE, 5).show();
     }
     
-    //Button Ä²µo¨Æ¥ó¹ê°µ
-    private class OnClick implements OnClickListener{
-
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			if(v.getId()==R.id.StartService)
+	
+    //Button è§¸ç™¼äº‹ä»¶å¯¦åš
+    private class OnClick implements OnClickListener
+    {
+		public void onClick(View v)
+		{
+			if(v.getId() == R.id.StartService)  //  start work
 			{
 				setting = getSharedPreferences(Parameter.PreferencesStr, 0);
 				startButton.setEnabled(false);
@@ -181,7 +177,7 @@ public class MainActivity extends Activity {
 		        
 		        startService(new Intent("ntou.hearingaid.hearingaid.START_HearingAid"));
 			}
-			else if(v.getId()==R.id.StopService)
+			else if(v.getId() == R.id.StopService)  //  stop work
 			{
 				startButton.setEnabled(true);
 		        stopButton.setEnabled(false);
@@ -191,31 +187,30 @@ public class MainActivity extends Activity {
 		        
 		        //soundControl.closeSoundControl();
 			}
-			else if(v.getId()==R.id.SettingButton)
+			else if(v.getId() == R.id.SettingButton)  //  setting  panel
 			{
 				Intent intent = new Intent();
 				intent.setClass(MainActivity.this, PrefSetting.class);
 				//intent.setClass(MainActivity.this, SettingParameter.class);
 				startActivity(intent);
 			}
-			else if(v.getId()==R.id.upVolume)
+			else if(v.getId() == R.id.upVolume)  //  sound up
 			{
 				audioManager.adjustVolume(AudioManager.ADJUST_RAISE, 0);
 			}
-			else if(v.getId()==R.id.downVolume)
+			else if(v.getId() == R.id.downVolume)  //  sound down
 			{
 				audioManager.adjustVolume(AudioManager.ADJUST_LOWER, 0);
 			}
-			else if(v.getId()==R.id.RealEarTestButton)
+			else if(v.getId() == R.id.RealEarTestButton)  //  REtest  panel
 			{
 				Intent intent = new Intent();
 				intent.setClass(MainActivity.this, PureToneTest.class);
 				//intent.setClass(MainActivity.this, SettingParameter.class);
 				startActivity(intent);
 			}
-			else if(v.getId()==R.id.testButton)
+			else if(v.getId() == R.id.testButton)  //  test panel
 			{
-				
 				Intent intent = new Intent();
 				intent.setClass(MainActivity.this, BodePlotActivity.class);
 				startActivity(intent);
@@ -223,14 +218,15 @@ public class MainActivity extends Activity {
 		}
     }
 
+    
 	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
+	protected void onDestroy()
+	{
 		super.onDestroy();
 		unregisterReceiver(headsetPlugReciver);
 	}
     
-	//§PÂ_ªA°Èª¬ºA
+	//åˆ¤æ–·æœå‹™ç‹€æ…‹
 	/*private boolean isServiceRunning()
 	{
 		ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);

@@ -20,16 +20,16 @@ import ntou.hearingaid.parameter.Parameter;
 import ntou.hearingaid.peformance.PerformanceParameter;
 import ntou.hearingaid.sound.SoundParameter;
 /*
- * ­µ°T³B²z¼Ò²Õ- Âoªi¾¹²Õ
- * ¶i¦æÀW±a¤Á³Î ¨Ã ±N¿é¤J°T¸¹¶i¦æÂoªi³B²z
+ * éŸ³è¨Šè™•ç†æ¨¡çµ„- æ¿¾æ³¢å™¨çµ„
+ * é€²è¡Œé »å¸¶åˆ‡å‰² ä¸¦ å°‡è¼¸å…¥è¨Šè™Ÿé€²è¡Œæ¿¾æ³¢è™•ç†
  */
 public class FilterBank extends Thread {
 	
-	private boolean isRunning = false;	//§PÂ_°õ¦æÄò¬O§_°õ¦æ
-	private ArrayList<short[]> Signals = new ArrayList<short[]>();	//°O¿ı¥¼³B²z°T¸¹
-	public static int filterorder = 3 ;	//³]©wÂoªi¾¹¶¥¼Æ ¶¥¼Æ·U°ª·U¨Î
+	private boolean isRunning = false;	//åˆ¤æ–·åŸ·è¡ŒçºŒæ˜¯å¦åŸ·è¡Œ
+	private ArrayList<short[]> Signals = new ArrayList<short[]>();	//è¨˜éŒ„æœªè™•ç†è¨Šè™Ÿ
+	public static int filterorder = 3 ;	//è¨­å®šæ¿¾æ³¢å™¨éšæ•¸ éšæ•¸æ„ˆé«˜æ„ˆä½³
 	/*
-	 * ¤º«Ø¹w³]ÀW±a¤Á³Î
+	 * å…§å»ºé è¨­é »å¸¶åˆ‡å‰²
 	 */
 	//private IIR iir_band1 = new IIR(1);
 	private IIR iir_band1 = new IIR(FilterBank.filterorder, 143.0, 280.0);
@@ -42,10 +42,10 @@ public class FilterBank extends Thread {
 	//private IIR iir_band5 = new IIR(5);
 	private IIR iir_band5 = new IIR(FilterBank.filterorder, 2230.0, 3540.0);
 	
-	//°ÊºAÀW±a¤Á³Î
+	//å‹•æ…‹é »å¸¶åˆ‡å‰²
 	private IIR[] iir_bands = null;
 	/*
-	 * °ÊºA¼W¯q¸ÉÀv ¥ª¥k¦Õ
+	 * å‹•æ…‹å¢ç›Šè£œå„Ÿ å·¦å³è€³
 	 */
 	private Gain2[] gain40;
 	private Gain2[] gain60;
@@ -53,28 +53,28 @@ public class FilterBank extends Thread {
 	private Gain2[] gain40R;
 	private Gain2[] gain60R;
 	private Gain2[] gain80R;
-	//§UÅ¥¾¹¤º«Ø³]©wÀÉ
+	//åŠ©è½å™¨å…§å»ºè¨­å®šæª”
 	private SharedPreferences setting;
 
 	//private SharedPreferences setting;
-	private int FilterBankNumber;	//°O¿ıÂoªi¾¹­Ó¼Æ
+	private int FilterBankNumber;	//è¨˜éŒ„æ¿¾æ³¢å™¨å€‹æ•¸
 	
 	/*
-	 * «Øºc¨ç¦¡
-	 * setting - ¤º«Ø³]©wÀÉ
+	 * å»ºæ§‹å‡½å¼
+	 * setting - å…§å»ºè¨­å®šæª”
 	 */
 	public FilterBank(SharedPreferences setting)
 	{
-		if(setting.contains("FilterBankNumber"))	//§PÂ_¬O§_¥]§tFilterBankNumber³]©w­È
+		if(setting.contains("FilterBankNumber"))	//åˆ¤æ–·æ˜¯å¦åŒ…å«FilterBankNumberè¨­å®šå€¼
 		{
 			
-			FilterBankNumber = setting.getInt("FilterBankNumber", -1);	//¨ú¥X¼Æ­È
+			FilterBankNumber = setting.getInt("FilterBankNumber", -1);	//å–å‡ºæ•¸å€¼
 			//Log.d("Debug", String.valueOf(FilterBankNumber));
 			
 			if(FilterBankNumber!=-1)
 			{
 				/*
-				 * °ÊºA²£¥Í¹ïÀ³ªºÂoªi¾¹¤Î¼W¯q¸ÉÀvÅÜ¼Æ­Ó¼Æ
+				 * å‹•æ…‹ç”¢ç”Ÿå°æ‡‰çš„æ¿¾æ³¢å™¨åŠå¢ç›Šè£œå„Ÿè®Šæ•¸å€‹æ•¸
 				 */
 				iir_bands = new IIR[FilterBankNumber];
 				gain40 = new Gain2[FilterBankNumber];
@@ -95,8 +95,8 @@ public class FilterBank extends Thread {
 					if(setting.contains(db40)&&setting.contains(db60)&&setting.contains(db80))
 					{
 						/*
-						 * ¦p¼W¯q¸ÉÀv¬ÛÃö³]©w¦s¦b
-						 * «h±N¨äªì©l¤Æ
+						 * å¦‚å¢ç›Šè£œå„Ÿç›¸é—œè¨­å®šå­˜åœ¨
+						 * å‰‡å°‡å…¶åˆå§‹åŒ–
 						 */
 						double value40 = setting.getInt(db40, 0);
 						double value60 = setting.getInt(db60, 0);
@@ -115,8 +115,8 @@ public class FilterBank extends Thread {
 					else
 					{
 						/*
-						 * ¦p¼W¯q¸ÉÀv¬ÛÃö³]©w¤£¦s¦b
-						 * «h±N¨äªì©l¤Æ¬°0
+						 * å¦‚å¢ç›Šè£œå„Ÿç›¸é—œè¨­å®šä¸å­˜åœ¨
+						 * å‰‡å°‡å…¶åˆå§‹åŒ–ç‚º0
 						 */
 						gain40[i] = new Gain2(0);
 						gain60[i] = new Gain2(0);
@@ -126,17 +126,17 @@ public class FilterBank extends Thread {
 						gain80R[i] = new Gain2(0);
 						
 					}
-					//Åª¨úÂoªi¾¹°ª§CÀW±a­È
+					//è®€å–æ¿¾æ³¢å™¨é«˜ä½é »å¸¶å€¼
 					String band_Low_str = "FilterLow" + String.valueOf((i+1));
 					String band_Hi_str = "FilterHi" + String.valueOf((i+1));
-					//±NÀW±aªì©l¤Æ
+					//å°‡é »å¸¶åˆå§‹åŒ–
 					iir_bands[i] = new IIR(FilterBank.filterorder,(double)setting.getInt(band_Low_str, 1),(double)setting.getInt(band_Hi_str, 3999));
 				}
 				
 			}
 		}
 	}
-	//¥\¯à¦P¤W
+	//åŠŸèƒ½åŒä¸Š
 	public FilterBank()
 	{
 		//setting = service.getSharedPreferences(Parameter.PreferencesStr, 0);
@@ -202,7 +202,7 @@ public class FilterBank extends Thread {
 		
 	}
 	
-	//°õ¦æºü ¶i¦æÂoªi³B²z
+	//åŸ·è¡Œç·’ é€²è¡Œæ¿¾æ³¢è™•ç†
 	public void run()
 	{
 		Signals = new ArrayList<short[]>();
@@ -213,10 +213,10 @@ public class FilterBank extends Thread {
 		{
 			//Log.e("debug", "FilterBank Process Time:"+String.valueOf(time1));
 			/*
-			 * Åª¨ú³Ì¦­ªº¤@µ§¸ê®Æ
+			 * è®€å–æœ€æ—©çš„ä¸€ç­†è³‡æ–™
 			 */
 			short[] buff = null;
-			yield();	//Á×§K¦¹µ{§Ç¤@ª½¥d¦íºX¼Ğ ³y¦¨µLªk·s¼W°T¸¹
+			yield();	//é¿å…æ­¤ç¨‹åºä¸€ç›´å¡ä½æ——æ¨™ é€ æˆç„¡æ³•æ–°å¢è¨Šè™Ÿ
 			synchronized (Signals) {
 				if(Signals.size()==0)
 					continue;
@@ -225,30 +225,30 @@ public class FilterBank extends Thread {
 				
 			}
 			
-			short[] tmp = new short[buff.length];	//±N­ì°T¸¹¼È¦s°_¨Ó! µ¥«İ¹Bºâ ¥ª¦Õ
-			short[] tmpR = new short[buff.length];	//±N­ì°T¸¹¼È¦s°_¨Ó! µ¥«İ¹Bºâ ¥k¦Õ
+			short[] tmp = new short[buff.length];	//å°‡åŸè¨Šè™Ÿæš«å­˜èµ·ä¾†! ç­‰å¾…é‹ç®— å·¦è€³
+			short[] tmpR = new short[buff.length];	//å°‡åŸè¨Šè™Ÿæš«å­˜èµ·ä¾†! ç­‰å¾…é‹ç®— å³è€³
 			System.arraycopy(buff, 0, tmp, 0, buff.length);
 			
 			
-			if(iir_bands!=null)	//¦pªG°ÊºAÀW±a¤Á³Î¦³ªì©l¤Æ
+			if(iir_bands!=null)	//å¦‚æœå‹•æ…‹é »å¸¶åˆ‡å‰²æœ‰åˆå§‹åŒ–
 			{
 				short[][] tmp_bands;
 				short[][] tmp_bandsL;
 				short[][] tmp_bandsR;
-				tmp_bands = new short[iir_bands.length][];	//­ì°T¸¹
-				tmp_bandsL = new short[iir_bands.length][];	//¥ª¦Õ¼Æ­È
-				tmp_bandsR = new short[iir_bands.length][];	//¥k¦Õ¼Æ­È
+				tmp_bands = new short[iir_bands.length][];	//åŸè¨Šè™Ÿ
+				tmp_bandsL = new short[iir_bands.length][];	//å·¦è€³æ•¸å€¼
+				tmp_bandsR = new short[iir_bands.length][];	//å³è€³æ•¸å€¼
 				for(int i=0;i<iir_bands.length;i++)
 				{
-					tmp_bands[i] = iir_bands[i].process(tmp.clone());	//±N­ì°T¸¹¶i¦æ³B²z
-					int db = Calculatedb(tmp_bands[i]);	//­pºâ­µ¶q
-					tmp_bandsL[i] = AutoGain(i, tmp_bands[i].clone(), db, 0);	//¨Ì·Ó¤£¦P­µ¶q¤Î¥ª¥k¦Õµ¹»P¤£¦P¼W¯q³B²z 0¥ª¦Õ
-					tmp_bandsR[i] = AutoGain(i, tmp_bands[i].clone(), db, 1);	//¨Ì·Ó¤£¦P­µ¶q¤Î¥ª¥k¦Õµ¹»P¤£¦P¼W¯q³B²z 1¥k¦Õ
+					tmp_bands[i] = iir_bands[i].process(tmp.clone());	//å°‡åŸè¨Šè™Ÿé€²è¡Œè™•ç†
+					int db = Calculatedb(tmp_bands[i]);	//è¨ˆç®—éŸ³é‡
+					tmp_bandsL[i] = AutoGain(i, tmp_bands[i].clone(), db, 0);	//ä¾ç…§ä¸åŒéŸ³é‡åŠå·¦å³è€³çµ¦èˆ‡ä¸åŒå¢ç›Šè™•ç† 0å·¦è€³
+					tmp_bandsR[i] = AutoGain(i, tmp_bands[i].clone(), db, 1);	//ä¾ç…§ä¸åŒéŸ³é‡åŠå·¦å³è€³çµ¦èˆ‡ä¸åŒå¢ç›Šè™•ç† 1å³è€³
 				}
 				
 				/*
-				 * ¥ª¥k¦Õ¤À§O¥[Á`
-				 * §â¦UÀW±a³B²z¹Lªº°T¸¹²Õ¦X¦¨­ì©l°T¸¹
+				 * å·¦å³è€³åˆ†åˆ¥åŠ ç¸½
+				 * æŠŠå„é »å¸¶è™•ç†éçš„è¨Šè™Ÿçµ„åˆæˆåŸå§‹è¨Šè™Ÿ
 				 */
 				for(int j=0;j<tmp.length;j++)
 				{
@@ -266,9 +266,9 @@ public class FilterBank extends Thread {
 				
 				
 			}
-			else	//¦pªG°ÊºAÀW±a¤Á³Î¥¼ªì©l¤Æ
+			else	//å¦‚æœå‹•æ…‹é »å¸¶åˆ‡å‰²æœªåˆå§‹åŒ–
 			{
-				//¨Ï¥Î¹w³]ÀW±a³B²z
+				//ä½¿ç”¨é è¨­é »å¸¶è™•ç†
 				int db;
 				short[] tmp1 = iir_band1.process(tmp.clone());
 				db = Calculatedb(tmp1);
@@ -286,7 +286,7 @@ public class FilterBank extends Thread {
 				db = Calculatedb(tmp5);
 				tmp5 = AutoGain(4, tmp5, db,0);
 				/*
-				 * §â¦UÀW±a³B²z¹Lªº°T¸¹²Õ¦X¦¨­ì©l°T¸¹
+				 * æŠŠå„é »å¸¶è™•ç†éçš„è¨Šè™Ÿçµ„åˆæˆåŸå§‹è¨Šè™Ÿ
 				 */
 				for(int i=0;i<tmp.length;i++)
 				{
@@ -296,14 +296,14 @@ public class FilterBank extends Thread {
 				}
 			}
 			
-			//§PÂ_¥Ø«e¨ú¼ËÀW²v °µ¬°§PÂ_¨Ï¥Î¥ª¥k¦Õ§UÅ¥¾¹ ©Î ³æ¦Õ§UÅ¥¾¹
+			//åˆ¤æ–·ç›®å‰å–æ¨£é »ç‡ åšç‚ºåˆ¤æ–·ä½¿ç”¨å·¦å³è€³åŠ©è½å™¨ æˆ– å–®è€³åŠ©è½å™¨
 			if(SoundParameter.frequency==8000)
 			{
-				onFilterBankListener.OnSuccess(tmp);	//­Y¬°³æ¦Õ«hª½±µ°e¥X
+				onFilterBankListener.OnSuccess(tmp);	//è‹¥ç‚ºå–®è€³å‰‡ç›´æ¥é€å‡º
 			}
 			else
 			{
-				//­Y¬°Âù¦Õ«h»İ±N°T¸¹ LRLR¶ñ¤J¦A°e¥X
+				//è‹¥ç‚ºé›™è€³å‰‡éœ€å°‡è¨Šè™Ÿ LRLRå¡«å…¥å†é€å‡º
 				short[] tmp_out = new short[tmp.length*2];
 				for(int i=0;i<tmp_out.length/2;i++)
 				{
@@ -327,20 +327,20 @@ public class FilterBank extends Thread {
 				//tmp[i] = (short)(tmp1[i] * gain);
 				//tmp[i] = tmp5[i];
 				tmp[i] = (short) (tmp1[i]+tmp2[i]+tmp3[i]+tmp4[i]+tmp5[i]);
-			}*/	//updat by Hamish 2013/3/14 ¼W¥[°ÊºAÀW¼e³]©w ±N­ì¥»¥\¯à§ï¦Ü¤W¤è
+			}*/	//updat by Hamish 2013/3/14 å¢åŠ å‹•æ…‹é »å¯¬è¨­å®š å°‡åŸæœ¬åŠŸèƒ½æ”¹è‡³ä¸Šæ–¹
 			
 			//if(tmp !=null)
 			//{
 				/*synchronized(PerformanceParameter.FilterTime)
 				{
 					long FilterTime = System.currentTimeMillis()-PerformanceParameter.FilterTime.get(0);
-					//Log.d("debug","FilterBank±µ¦¬¿é¥X©µ¿ğ:"+String.valueOf(FilterTime));
+					//Log.d("debug","FilterBankæ¥æ”¶è¼¸å‡ºå»¶é²:"+String.valueOf(FilterTime));
 					PerformanceParameter.FilterTime.remove(0);
 					if(PerformanceParameter.avg_FilterTime ==0)
 						PerformanceParameter.avg_FilterTime = FilterTime;
 					else
 						PerformanceParameter.avg_FilterTime = (PerformanceParameter.avg_FilterTime + FilterTime)/2;
-					Log.d("debug","¥­§¡FilterBank±µ¦¬¿é¥X©µ¿ğ:"+String.valueOf(PerformanceParameter.avg_FilterTime));
+					Log.d("debug","å¹³å‡FilterBankæ¥æ”¶è¼¸å‡ºå»¶é²:"+String.valueOf(PerformanceParameter.avg_FilterTime));
 				}*/
 				//onFilterBankListener.OnSuccess(tmp);
 			//}
@@ -350,7 +350,7 @@ public class FilterBank extends Thread {
 		PerformanceParameter.FilterTime.clear();
 	}
 	
-	//ºÊÅ¥¦¹Ãş§O¤¶­±
+	//ç›£è½æ­¤é¡åˆ¥ä»‹é¢
 	public interface OnFilterBankListener
 	{
 		public void OnSuccess(short[] data);
@@ -358,15 +358,15 @@ public class FilterBank extends Thread {
 	
 	private OnFilterBankListener onFilterBankListener;
 	
-	//³]©wºÊÅ¥¨Æ¥ó
+	//è¨­å®šç›£è½äº‹ä»¶
 	public void setOnFilterBankListener(OnFilterBankListener _onFilterBankListener)
 	{
 		onFilterBankListener = _onFilterBankListener;
 	}
 	
 	/*
-	 * ·s¼W°T¸¹
-	 * data - ±ı¥[¤Jªº°T¸¹
+	 * æ–°å¢è¨Šè™Ÿ
+	 * data - æ¬²åŠ å…¥çš„è¨Šè™Ÿ
 	 */
 	public void AddSignals(short[] data)
 	{
@@ -396,7 +396,7 @@ public class FilterBank extends Thread {
 		
 		//this.stop();
 	}
-	//ÀË¬d¥Ø«e¼Ò¦¡
+	//æª¢æŸ¥ç›®å‰æ¨¡å¼
 	public boolean CheckMode()
 	{
 		if(iir_bands == null)
@@ -406,9 +406,9 @@ public class FilterBank extends Thread {
 	}
 	
 	/*
-	 * ­pºâ­µ¶q
-	 * data - ±ı­pºâªº¸ê®Æ
-	 * return ­µ¶q
+	 * è¨ˆç®—éŸ³é‡
+	 * data - æ¬²è¨ˆç®—çš„è³‡æ–™
+	 * return éŸ³é‡
 	 */
 	private int Calculatedb(short[] data)
 	{
@@ -431,19 +431,19 @@ public class FilterBank extends Thread {
 		return (int)sum;
 	}
 	/*
-	 * ¼W¯q¸ÉÀv¹Bºâ
-	 * i - ÀW±a½s¸¹
-	 * data - °T¸¹¼Æ­È
-	 * db - °T¸¹­µ¶q
-	 * LorR - ¥ª©Î¥k
-	 * return ³B²z§¹ªº°T¸¹
+	 * å¢ç›Šè£œå„Ÿé‹ç®—
+	 * i - é »å¸¶ç·¨è™Ÿ
+	 * data - è¨Šè™Ÿæ•¸å€¼
+	 * db - è¨Šè™ŸéŸ³é‡
+	 * LorR - å·¦æˆ–å³
+	 * return è™•ç†å®Œçš„è¨Šè™Ÿ
 	 */
 	private short[] AutoGain(int i, short[] data, int db, int LorR)
 	{
-		//§PÂ_¥Ø«e¨ú¼ËÀW²v °µ¬°§PÂ_¨Ï¥Î¥ª¥k¦Õ§UÅ¥¾¹ ©Î ³æ¦Õ§UÅ¥¾¹
+		//åˆ¤æ–·ç›®å‰å–æ¨£é »ç‡ åšç‚ºåˆ¤æ–·ä½¿ç”¨å·¦å³è€³åŠ©è½å™¨ æˆ– å–®è€³åŠ©è½å™¨
 		if(SoundParameter.frequency==8000)
 		{
-			//¶i¦æ³æ¦Õ¼W¯q³B²z
+			//é€²è¡Œå–®è€³å¢ç›Šè™•ç†
 			short[] result = new short[data.length];
 	
 			if(db>=40 && db<60)
@@ -459,7 +459,7 @@ public class FilterBank extends Thread {
 		}
 		else
 		{
-			//¶i¦æÂù¦Õ¼W¯q³B²z
+			//é€²è¡Œé›™è€³å¢ç›Šè™•ç†
 			short[] result = new short[data.length];
 			short[] resultR = new short[data.length];
 			

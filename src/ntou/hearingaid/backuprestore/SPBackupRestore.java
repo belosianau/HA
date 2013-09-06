@@ -17,23 +17,23 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
 /*
- *		´£¨Ñ³]©wÀÉ³Æ¥÷ÁÙ­ì¥ÎAPI
+ *		æä¾›è¨­å®šæª”å‚™ä»½é‚„åŸç”¨API
  */
 
 public class SPBackupRestore {
 	
 	/*
-	 * ±N³]©wÀÉ³Æ¥÷
-	 * dst - ±ıÀx¦sªº¥Ø¼ĞÀÉ®×³sµ²¦ì¸m
-	 * return ¬O§_¦¨¥\
+	 * å°‡è¨­å®šæª”å‚™ä»½
+	 * dst - æ¬²å„²å­˜çš„ç›®æ¨™æª”æ¡ˆé€£çµä½ç½®
+	 * return æ˜¯å¦æˆåŠŸ
 	 */
 	public boolean saveSharedPreferencesToFile(File dst) {
 	    boolean res = false;
 	    ObjectOutputStream output = null;
 	    try {
-	        output = new ObjectOutputStream(new FileOutputStream(dst));	//«Ø¥ß¤@¿é¥XÀÉ®×ª«¥ó
-	        SharedPreferences pref = MainActivity.setting;	//¨ú±o¤º«Ø³]©wÀÉ
-	        output.writeObject(pref.getAll());	//±N³]©wÀÉ¤º®e¥ş³¡¼g¤JÀÉ®×
+	        output = new ObjectOutputStream(new FileOutputStream(dst));	//å»ºç«‹ä¸€è¼¸å‡ºæª”æ¡ˆç‰©ä»¶
+	        SharedPreferences pref = MainActivity.setting;	//å–å¾—å…§å»ºè¨­å®šæª”
+	        output.writeObject(pref.getAll());	//å°‡è¨­å®šæª”å…§å®¹å…¨éƒ¨å¯«å…¥æª”æ¡ˆ
 
 	        res = true;
 	    } catch (FileNotFoundException e) {
@@ -54,27 +54,27 @@ public class SPBackupRestore {
 	}
 	
 	/*
-	 * ±N³]©wÀÉÁÙ­ì
-	 * src - ÁÙ­ìÀÉ©Ò¦b¦ì¸m
-	 * return ¬O§_¦¨¥\
+	 * å°‡è¨­å®šæª”é‚„åŸ
+	 * src - é‚„åŸæª”æ‰€åœ¨ä½ç½®
+	 * return æ˜¯å¦æˆåŠŸ
 	 */
 	@SuppressWarnings({ "unchecked" })
 	public boolean loadSharedPreferencesFromFile(File src) {
 	    boolean res = false;
 	    ObjectInputStream input = null;
 	    try {
-	        input = new ObjectInputStream(new FileInputStream(src));	//«Ø¥ß¿é¤JÀÉ®×ª«¥ó
-	            Editor prefEdit = MainActivity.setting.edit();	//¨ú±o³]©wÀÉ¦ì¸m
-	            prefEdit.clear();	//±N­ì¥ı³]©wÀÉ¥ş³¡²MªÅ
+	        input = new ObjectInputStream(new FileInputStream(src));	//å»ºç«‹è¼¸å…¥æª”æ¡ˆç‰©ä»¶
+	            Editor prefEdit = MainActivity.setting.edit();	//å–å¾—è¨­å®šæª”ä½ç½®
+	            prefEdit.clear();	//å°‡åŸå…ˆè¨­å®šæª”å…¨éƒ¨æ¸…ç©º
 	            /*
-	             * ±N³Æ¥÷ÀÉ®×¤¤¥ş³¡ªºkey,valueÅª¥X
-	             * ¦A³v¤@¼g¦^¤º«Ø³]©wÀÉ
+	             * å°‡å‚™ä»½æª”æ¡ˆä¸­å…¨éƒ¨çš„key,valueè®€å‡º
+	             * å†é€ä¸€å¯«å›å…§å»ºè¨­å®šæª”
 	             */
 	            Map<String, ?> entries = (Map<String, ?>) input.readObject();
 	            for (Entry<String, ?> entry : entries.entrySet()) {
 	                Object v = entry.getValue();
 	                String key = entry.getKey();
-	                //¨Ì·Ó¤£¦P«¬ºA¼g¤J­È
+	                //ä¾ç…§ä¸åŒå‹æ…‹å¯«å…¥å€¼
 	                if (v instanceof Boolean)
 	                    prefEdit.putBoolean(key, ((Boolean) v).booleanValue());
 	                else if (v instanceof Float)
@@ -87,7 +87,7 @@ public class SPBackupRestore {
 	                    prefEdit.putString(key, ((String) v));
 	            }
 	            
-	            prefEdit.commit();	//ÀÉ®×¼g¤J§¹¦¨«á»İ¨Ï¥Îcommit±N¨äÀx¦s
+	            prefEdit.commit();	//æª”æ¡ˆå¯«å…¥å®Œæˆå¾Œéœ€ä½¿ç”¨commitå°‡å…¶å„²å­˜
 	        res = true;         
 	    } catch (FileNotFoundException e) {
 	        e.printStackTrace();

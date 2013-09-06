@@ -55,7 +55,7 @@ public class GainSetting extends Activity {
 				}
 				
 				
-				//±N¼W¯q¼g¤J
+				//å°‡å¢žç›Šå¯«å…¥
 				for(int index = 0; index < GainNumber; index++)
 				{
 					String db40 = "Gain40db"+String.valueOf(index+1);
@@ -108,7 +108,7 @@ public class GainSetting extends Activity {
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
-		//ÀË¬d¼W¯q­È ¬O§_¥¿½T³]©w
+		//æª¢æŸ¥å¢žç›Šå€¼ æ˜¯å¦æ­£ç¢ºè¨­å®š
 		boolean check = true;
 		for(int i=0;i<gain.length;i++)
 		{
@@ -140,7 +140,7 @@ public class GainSetting extends Activity {
 			
 		}
 		
-		//ÀË¬d§¹¦¨«á±N¨äÀx¦s¤º«Ø³]©wÀÉ
+		//æª¢æŸ¥å®Œæˆå¾Œå°‡å…¶å„²å­˜å…§å»ºè¨­å®šæª”
 		if(check)
 		{
 			for(int i=0;i<gain.length;i++)
@@ -158,7 +158,7 @@ public class GainSetting extends Activity {
 				edit.putInt(db60R, gainR[i].getGainValue60());
 				edit.putInt(db80R, gainR[i].getGainValue80());
 				edit.commit();
-				Toast.makeText(GainSetting.this, "³]©wÀÉÀx¦s!", 5).show();
+				Toast.makeText(GainSetting.this, "è¨­å®šæª”å„²å­˜!", 5).show();
 			}
 		}
 	}

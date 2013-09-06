@@ -6,9 +6,9 @@ import android.util.Log;
 import ntou.hearingaid.dsp.IIRFilter.Complex;
 
 /*
- * ³z¹L¦¹Ãş§O­pºâ¥XÂoªi¾¹ ¨t²ÎÀW²vÅTÀ³ ¼W¯q¹Ï¤Î¬Û¦ì¹Ï
- * ¦¹³¡¤À¤£»İ­×§ï!!!
- * ³z¹L§O¤Hexcel¹Bºâ§ï¼g¦Ó¦¨
+ * é€éæ­¤é¡åˆ¥è¨ˆç®—å‡ºæ¿¾æ³¢å™¨ ç³»çµ±é »ç‡éŸ¿æ‡‰ å¢ç›Šåœ–åŠç›¸ä½åœ–
+ * æ­¤éƒ¨åˆ†ä¸éœ€ä¿®æ”¹!!!
+ * é€éåˆ¥äººexcelé‹ç®—æ”¹å¯«è€Œæˆ
  */
 
 public class BodePlotGeneration {
@@ -22,8 +22,8 @@ public class BodePlotGeneration {
 	private double[] phase = new double[1000];
 	
 	/*
-	 * ¨ú±os<1­Ó¼Æ
-	 * return ­Ó¼Æ
+	 * å–å¾—s<1å€‹æ•¸
+	 * return å€‹æ•¸
 	 */
 	public int get_s_less1()
 	{
@@ -36,8 +36,8 @@ public class BodePlotGeneration {
 		return count;
 	}
 	/*
-	 * ¨ú±os>1­Ó¼Æ
-	 * return ­Ó¼Æ
+	 * å–å¾—s>1å€‹æ•¸
+	 * return å€‹æ•¸
 	 */
 	public int get_s_greater1()
 	{
@@ -50,8 +50,8 @@ public class BodePlotGeneration {
 		return count;
 	}
 	/*
-	 * ¨ú±os ¼Æ­È
-	 * return s °}¦C
+	 * å–å¾—s æ•¸å€¼
+	 * return s é™£åˆ—
 	 */
 	public double[] get_s()
 	{
@@ -62,28 +62,28 @@ public class BodePlotGeneration {
 	}
 	
 	/*
-	 * ¨ú±o¼W¯q¸ÉÀv­È
-	 * return ¼W¯q­È°}¦C
+	 * å–å¾—å¢ç›Šè£œå„Ÿå€¼
+	 * return å¢ç›Šå€¼é™£åˆ—
 	 */
 	public double[] get_db()
 	{
 		return this.db;
 	}
 	/*
-	 * ¨ú±o¬Û¦ì¹Ï­È
-	 * return ¬Û¦ì­È°}¦C
+	 * å–å¾—ç›¸ä½åœ–å€¼
+	 * return ç›¸ä½å€¼é™£åˆ—
 	 */
 	public double[] get_phase()
 	{
 		return this.phase;
 	}
 	/*
-	 * «Øºc¨ç¦¡
-	 * minRad »İ­nªº³Ì¤p¦ÛµMÀW²v
-	 * maxRad »İ­nªº³Ì¤j¦ÛµMÀW²v
-	 * Num Âoªi¾¹¹ê³¡°Ñ¼Æ
-	 * Den Âoªi¾¹µê³¡°Ñ¼Æ
-	 * ³z¹L³o¨Ç°Ñ¼Æ¥»Ãş§O·|¦Û°Ê­pºâ¨ú±oªi¼w¹Ï
+	 * å»ºæ§‹å‡½å¼
+	 * minRad éœ€è¦çš„æœ€å°è‡ªç„¶é »ç‡
+	 * maxRad éœ€è¦çš„æœ€å¤§è‡ªç„¶é »ç‡
+	 * Num æ¿¾æ³¢å™¨å¯¦éƒ¨åƒæ•¸
+	 * Den æ¿¾æ³¢å™¨è™›éƒ¨åƒæ•¸
+	 * é€éé€™äº›åƒæ•¸æœ¬é¡åˆ¥æœƒè‡ªå‹•è¨ˆç®—å–å¾—æ³¢å¾·åœ–
 	 */
 	public BodePlotGeneration(double minRad, double maxRad, double[] Num, double[] Den)
 	{
@@ -95,7 +95,7 @@ public class BodePlotGeneration {
 			double tmp = Math.log10(this.minRad)+i*((Math.log10(this.maxRad)-Math.log10(this.minRad))/1000);
 			s[i] = new Complex(0, Math.pow(10, tmp));
 			
-			//ªì©l¤Æ Num »P Den
+			//åˆå§‹åŒ– Num èˆ‡ Den
 			this.Num[i] = new Complex(0, 0);
 			this.Den[i] = new Complex(0, 0);
 		}

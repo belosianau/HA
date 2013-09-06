@@ -12,12 +12,12 @@ import android.media.MediaRecorder;
 import android.util.Log;
 
 /*
- * ­t³d¤£Â_±µ¦¬Án­µ
+ * è² è²¬ä¸æ–·æ¥æ”¶è²éŸ³
  */
 
 public class Microphone extends Thread {
 
-	//«Ø¥ß ºÊÅ¥¨Æ¥ó
+	//å»ºç«‹ ç›£è½äº‹ä»¶
 	public interface OnMicrophoneListener
 	{
 		public void OnRec(short[] data);
@@ -31,12 +31,12 @@ public class Microphone extends Thread {
 	}
 		
 	private int recBufSize;
-	private AudioRecord audioRecord;	//¿ı­µÃş§O
+	private AudioRecord audioRecord;	//éŒ„éŸ³é¡åˆ¥
 	private boolean isRecording = false;
 	
 	public Microphone()
 	{
-		//ªì©l¤Æ³Á§J­·¬ÛÃö³]©w
+		//åˆå§‹åŒ–éº¥å…‹é¢¨ç›¸é—œè¨­å®š
 		recBufSize = AudioRecord.getMinBufferSize(SoundParameter.frequency,
 				SoundParameter.channelConfiguration, SoundParameter.audioEncoding);
 		
@@ -72,14 +72,14 @@ public class Microphone extends Thread {
 			PerformanceParameter.recvTime = new ArrayList<Long>();
 			PerformanceParameter.avg_MicTime = 0;
 			
-			//¶}©l¤£Â_±µ¦¬Án­µ
+			//é–‹å§‹ä¸æ–·æ¥æ”¶è²éŸ³
 			while (isRecording) {
 				/*synchronized (PerformanceParameter.MicTime) 
 				{
 					PerformanceParameter.MicTime.add(System.currentTimeMillis());
 				}
 				*/
-				//°T¸¹Åª¨ú
+				//è¨Šè™Ÿè®€å–
 				int bufferReadResult = audioRecord.read(buffer, 0,
 						recBufSize);
 				/*
@@ -88,30 +88,30 @@ public class Microphone extends Thread {
 					PerformanceParameter.recvTime.add(System.currentTimeMillis());
 				}
 				*/
-				//§PÂ_¬O§_¦³±o¨ì¸ê®Æ
+				//åˆ¤æ–·æ˜¯å¦æœ‰å¾—åˆ°è³‡æ–™
 				if(bufferReadResult>0)
 				{
 					
 					short[] tmpBuf = new short[bufferReadResult];
 					System.arraycopy(buffer, 0, tmpBuf, 0, bufferReadResult);
-					onMicrophoneListener.OnRec(tmpBuf);	//±NÅª¨ú¨ì¸ê®Æ°e¦Ü¤U¤@¼h
+					onMicrophoneListener.OnRec(tmpBuf);	//å°‡è®€å–åˆ°è³‡æ–™é€è‡³ä¸‹ä¸€å±¤
 					/*synchronized (PerformanceParameter.MicTime) 
 					{
 						long MicTime = System.currentTimeMillis()-PerformanceParameter.MicTime.get(0);
-						//Log.d("debug", "³Á§J­·±µ¦¬©µ¿ğ:"+String.valueOf(MicTime));
+						//Log.d("debug", "éº¥å…‹é¢¨æ¥æ”¶å»¶é²:"+String.valueOf(MicTime));
 						PerformanceParameter.MicTime.remove(0);
 						if(PerformanceParameter.avg_MicTime ==0)
 							PerformanceParameter.avg_MicTime = MicTime;
 						else
 							PerformanceParameter.avg_MicTime = (PerformanceParameter.avg_MicTime + MicTime)/2;
-						Log.d("debug", "¥­§¡³Á§J­·±µ¦¬©µ¿ğ:"+String.valueOf(PerformanceParameter.avg_MicTime));
+						Log.d("debug", "å¹³å‡éº¥å…‹é¢¨æ¥æ”¶å»¶é²:"+String.valueOf(PerformanceParameter.avg_MicTime));
 					}*/
 					
 				}
 				/*
 				short[] tmpBuf = new short[bufferReadResult];
 				System.arraycopy(buffer, 0, tmpBuf, 0, bufferReadResult);
-				PerformanceParameter.recvTime.add(System.currentTimeMillis());	//°O¿ı±µ¦¬«Ê¥]®É¶¡
+				PerformanceParameter.recvTime.add(System.currentTimeMillis());	//è¨˜éŒ„æ¥æ”¶å°åŒ…æ™‚é–“
 				onMicrophoneListener.OnRec(tmpBuf);
 				time2 = System.currentTimeMillis();
 				if(Parameter.Mictime==0)
@@ -119,7 +119,7 @@ public class Microphone extends Thread {
 				else
 				{
 					Parameter.Mictime=(Parameter.Mictime+(time2-time1))/2;
-				}*/	//²¾°Ê¦Ü¤W¤è Á×§K¤£¥²­n«Ê¥] ¤Î ­pºâ®Ä¯à¥Î
+				}*/	//ç§»å‹•è‡³ä¸Šæ–¹ é¿å…ä¸å¿…è¦å°åŒ… åŠ è¨ˆç®—æ•ˆèƒ½ç”¨
 				
 			}
 			audioRecord.stop();

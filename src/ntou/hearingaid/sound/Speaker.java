@@ -11,7 +11,7 @@ import android.media.AudioTrack;
 import android.util.Log;
 
 /*
- * ±N³B²z§¹¦¨Án­µ¶i¦æ¿é¥X
+ * å°‡è™•ç†å®Œæˆè²éŸ³é€²è¡Œè¼¸å‡º
  */
 
 public class Speaker extends Thread {
@@ -23,8 +23,8 @@ public class Speaker extends Thread {
 	private int SampleRate = SoundParameter.frequency;
 	
 	/*
-	 * «Øºc¨ç¦¡
-	 * SampleRate - ¨ú¼ËÀW²v
+	 * å»ºæ§‹å‡½å¼
+	 * SampleRate - å–æ¨£é »ç‡
 	 */
 	public Speaker(int SampleRate)
 	{
@@ -49,8 +49,8 @@ public class Speaker extends Thread {
 	}
 	
 	/*
-	 * ¥[¤J·s°T¸¹
-	 * data - ±ı¥[¤Jªº°T¸¹
+	 * åŠ å…¥æ–°è¨Šè™Ÿ
+	 * data - æ¬²åŠ å…¥çš„è¨Šè™Ÿ
 	 */
 	public void AddSignals(short[] data)
 	{
@@ -65,7 +65,7 @@ public class Speaker extends Thread {
 		}*/
 	}
 	
-	//±NÁn­µ°T¸¹¶i¦æ¿é¥X
+	//å°‡è²éŸ³è¨Šè™Ÿé€²è¡Œè¼¸å‡º
 	public void run()
 	{
 		PerformanceParameter.SpeakerTime = new ArrayList<Long>();
@@ -75,7 +75,7 @@ public class Speaker extends Thread {
 		{
 			
 			/*
-			 * Åª¨ú³Ì¦­¤@µ§°T¸¹
+			 * è®€å–æœ€æ—©ä¸€ç­†è¨Šè™Ÿ
 			 */
 			short[] buff = null;
 			yield();
@@ -90,7 +90,7 @@ public class Speaker extends Thread {
 				//Calculatedb(buff);
 				if(buff.length>0)
 				{
-					//¼·©ñ
+					//æ’¥æ”¾
 				audioTrack.write(buff, 0, buff.length);
 				
 				
@@ -99,13 +99,13 @@ public class Speaker extends Thread {
 					if(PerformanceParameter.SpeakerTime.size()>0)
 					{
 						long delaytime = System.currentTimeMillis()-PerformanceParameter.SpeakerTime.get(0);
-						//Log.d("debug", "Speaker±µ¦¬¨ì¿é¥X©µ¿ğ:"+String.valueOf(delaytime));
+						//Log.d("debug", "Speakeræ¥æ”¶åˆ°è¼¸å‡ºå»¶é²:"+String.valueOf(delaytime));
 						PerformanceParameter.SpeakerTime.remove(0);
 						if(PerformanceParameter.avg_SpeakerTime==0)
 							PerformanceParameter.avg_SpeakerTime = delaytime;
 						else
 							PerformanceParameter.avg_SpeakerTime = (PerformanceParameter.avg_SpeakerTime + delaytime)/2;
-						Log.d("debug", "¥­§¡Speaker±µ¦¬¨ì¿é¥X©µ¿ğ:"+String.valueOf(PerformanceParameter.avg_SpeakerTime));
+						Log.d("debug", "å¹³å‡Speakeræ¥æ”¶åˆ°è¼¸å‡ºå»¶é²:"+String.valueOf(PerformanceParameter.avg_SpeakerTime));
 				
 					}
 				}*/
@@ -115,14 +115,14 @@ public class Speaker extends Thread {
 					if(PerformanceParameter.recvTime.size()>0)
 					{
 						long delaytime = System.currentTimeMillis()-PerformanceParameter.recvTime.get(0);
-						//Log.d("debug", "±µ¦¬¨ì¿é¥X©µ¿ğ:"+String.valueOf(delaytime));
+						//Log.d("debug", "æ¥æ”¶åˆ°è¼¸å‡ºå»¶é²:"+String.valueOf(delaytime));
 						PerformanceParameter.recvTime.remove(0);
 						if(PerformanceParameter.avg_recvTime ==0)
 							PerformanceParameter.avg_recvTime = delaytime;
 						else
 							PerformanceParameter.avg_recvTime = (PerformanceParameter.avg_recvTime + delaytime)/2;
 						
-						Log.d("debug", "¥­§¡±µ¦¬¨ì¿é¥X©µ¿ğ:"+String.valueOf(PerformanceParameter.avg_recvTime));
+						Log.d("debug", "å¹³å‡æ¥æ”¶åˆ°è¼¸å‡ºå»¶é²:"+String.valueOf(PerformanceParameter.avg_recvTime));
 					}
 				}*/
 				
@@ -151,9 +151,9 @@ public class Speaker extends Thread {
 		//this.stop();
 	}
 	/*
-	 * ­pºâ­µ¶q
-	 * data - ±ı¤ÀªR¸ê®Æ
-	 * return ­µ¶q
+	 * è¨ˆç®—éŸ³é‡
+	 * data - æ¬²åˆ†æè³‡æ–™
+	 * return éŸ³é‡
 	 */
 	private int Calculatedb(short[] data)
 	{

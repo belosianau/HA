@@ -8,9 +8,9 @@ import android.os.Build;
 
 public class SoundControl extends Activity {
 	private AudioManager audioManager = null;
-	private boolean isMicInput = true;	//true:¤º«Ø¦Õ¾÷¿é¤J false:ÂÅªŞ¿é¤J
+	private boolean isMicInput = true;	//true:å…§å»ºè€³æ©Ÿè¼¸å…¥ false:è—èŠ½è¼¸å…¥
 	public static SoundControl soundControl = null;
-	//°O¿ı°_©lª¬ºA
+	//è¨˜éŒ„èµ·å§‹ç‹€æ…‹
 	private boolean isWiredHeadsetOn = false;
 	private boolean isBluetoothA2DPOn = false;
 	
@@ -40,18 +40,18 @@ public class SoundControl extends Activity {
 	}
 	
 	/*
-	 * ÀË¬d¬O§_²Å¦X³nÅé»İ¨D
-	 * return ¨ú±o¦Õ¾÷©ÎÂÅ¤ú¦Õ¾÷ª¬ºA
+	 * æª¢æŸ¥æ˜¯å¦ç¬¦åˆè»Ÿé«”éœ€æ±‚
+	 * return å–å¾—è€³æ©Ÿæˆ–è—ç‰™è€³æ©Ÿç‹€æ…‹
 	 */
 	public boolean CheckSoundDeviceState()
 	{
-		//ÀË¬d¦Õ¾÷ª¬ºA
+		//æª¢æŸ¥è€³æ©Ÿç‹€æ…‹
 		if(audioManager.isWiredHeadsetOn())
 		{
 			return true;
 		}
 		
-		//ÀË¬dÂÅªŞª¬ºA
+		//æª¢æŸ¥è—èŠ½ç‹€æ…‹
 		if(audioManager.isBluetoothA2dpOn())
 		{
 			return true;
@@ -62,15 +62,15 @@ public class SoundControl extends Activity {
 
 
 	/*
-	 * ³]©w¿é¤J¸Ë¸m
-	 * state - ³]©w¿é¤J¨Ó·½ true¤º«Ø³Á§J­· falseÂÅ¤ú³Á§J­·
-	 * return ³]©w¬O§_¦¨¥\
+	 * è¨­å®šè¼¸å…¥è£ç½®
+	 * state - è¨­å®šè¼¸å…¥ä¾†æº trueå…§å»ºéº¥å…‹é¢¨ falseè—ç‰™éº¥å…‹é¢¨
+	 * return è¨­å®šæ˜¯å¦æˆåŠŸ
 	 */
 	public boolean setMicInput(boolean state)
 	{
 		if(state)
 		{
-			//¨Ï¥Î³Á§J­·¿é¤J
+			//ä½¿ç”¨éº¥å…‹é¢¨è¼¸å…¥
 			isMicInput = true;
 			audioManager.setBluetoothScoOn(false);
 			audioManager.stopBluetoothSco();
@@ -78,11 +78,11 @@ public class SoundControl extends Activity {
 		}
 		else
 		{
-			//¨Ï¥ÎÂÅªŞ³Á§J­·
+			//ä½¿ç”¨è—èŠ½éº¥å…‹é¢¨
 			//if(audioManager.isBluetoothA2dpOn())
 			if(audioManager.isBluetoothA2dpOn())
 			{
-				//§PÂ_A2DP¬O§_±Ò¥Î
+				//åˆ¤æ–·A2DPæ˜¯å¦å•Ÿç”¨
 				isMicInput = false;
 				audioManager.setBluetoothScoOn(true);
 				audioManager.startBluetoothSco();
@@ -91,7 +91,7 @@ public class SoundControl extends Activity {
 		}
 		return false;
 	}
-	//¨ú±o¥Ø«e¿é¤J¨Ó·½
+	//å–å¾—ç›®å‰è¼¸å…¥ä¾†æº
 	public boolean getMicInput()
 	{
 		return isMicInput;

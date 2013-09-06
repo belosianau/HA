@@ -82,13 +82,13 @@ public class Speaker extends Thread {
 					if(PerformanceParameter.SpeakerTime.size()>0)
 					{
 						long delaytime = System.currentTimeMillis()-PerformanceParameter.SpeakerTime.get(0);
-						//Log.d("debug", "Speaker±µ¦¬¨ì¿é¥X©µ¿ğ:"+String.valueOf(delaytime));
+						//Log.d("debug", "Speakeræ¥æ”¶åˆ°è¼¸å‡ºå»¶é²:"+String.valueOf(delaytime));
 						PerformanceParameter.SpeakerTime.remove(0);
 						if(PerformanceParameter.avg_SpeakerTime==0)
 							PerformanceParameter.avg_SpeakerTime = delaytime;
 						else
 							PerformanceParameter.avg_SpeakerTime = (PerformanceParameter.avg_SpeakerTime + delaytime)/2;
-						Log.d("debug", "¥­§¡Speaker±µ¦¬¨ì¿é¥X©µ¿ğ:"+String.valueOf(PerformanceParameter.avg_SpeakerTime));
+						Log.d("debug", "å¹³å‡Speakeræ¥æ”¶åˆ°è¼¸å‡ºå»¶é²:"+String.valueOf(PerformanceParameter.avg_SpeakerTime));
 				
 					}
 				}*/
@@ -98,14 +98,14 @@ public class Speaker extends Thread {
 					if(PerformanceParameter.recvTime.size()>0)
 					{
 						long delaytime = System.currentTimeMillis()-PerformanceParameter.recvTime.get(0);
-						//Log.d("debug", "±µ¦¬¨ì¿é¥X©µ¿ğ:"+String.valueOf(delaytime));
+						//Log.d("debug", "æ¥æ”¶åˆ°è¼¸å‡ºå»¶é²:"+String.valueOf(delaytime));
 						PerformanceParameter.recvTime.remove(0);
 						if(PerformanceParameter.avg_recvTime ==0)
 							PerformanceParameter.avg_recvTime = delaytime;
 						else
 							PerformanceParameter.avg_recvTime = (PerformanceParameter.avg_recvTime + delaytime)/2;
 						
-						Log.d("debug", "¥­§¡±µ¦¬¨ì¿é¥X©µ¿ğ:"+String.valueOf(PerformanceParameter.avg_recvTime));
+						Log.d("debug", "å¹³å‡æ¥æ”¶åˆ°è¼¸å‡ºå»¶é²:"+String.valueOf(PerformanceParameter.avg_recvTime));
 					}
 				}*/
 				

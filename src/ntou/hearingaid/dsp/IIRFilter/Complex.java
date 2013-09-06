@@ -1,7 +1,7 @@
 package ntou.hearingaid.dsp.IIRFilter;
 
 /*
- * ½Æ¼Æ¹BºâÃş§O
+ * è¤‡æ•¸é‹ç®—é¡åˆ¥
  */
 
 public class Complex {

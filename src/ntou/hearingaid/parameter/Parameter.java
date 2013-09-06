@@ -3,20 +3,20 @@ package ntou.hearingaid.parameter;
 import android.content.SharedPreferences;
 import android.os.Build;
 /*
- * APP¬ÛÃö°Ñ¼Æ
+ * APPç›¸é—œåƒæ•¸
  */
 public class Parameter {
-	//¤º«Ø³]©wÀÉ¦WºÙ
-	public static String PreferencesStr = "ntou.hearingaid.hearingaid_preferences";	//°Ñ¼Æ³]©wÀÉ
-	//³nÅéª©¥»
+	//å…§å»ºè¨­å®šæª”åç¨±
+	public static String PreferencesStr = "ntou.hearingaid.hearingaid_preferences";	//åƒæ•¸è¨­å®šæª”
+	//è»Ÿé«”ç‰ˆæœ¬
 	public static String SoftVersion = Build.VERSION.RELEASE;
 	/*
-	 * ®Ä¯à­pºâ¥Î
+	 * æ•ˆèƒ½è¨ˆç®—ç”¨
 	 */
 	public static long Mictime = 0;
 	public static long FilterBanktime = 0;
 	public static long SpeakerTime = 0;
-	//¤º«Ø³]©wÀÉÃş§O
+	//å…§å»ºè¨­å®šæª”é¡åˆ¥
 	public static SharedPreferences pref = null;
 	
 }

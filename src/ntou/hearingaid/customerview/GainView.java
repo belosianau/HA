@@ -11,20 +11,20 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 /*
- * «È»s¤Æ¤¸¥ó-¼W¯q¸ÉÀv³]©w
+ * å®¢è£½åŒ–å…ƒä»¶-å¢ç›Šè£œå„Ÿè¨­å®š
  */
 
 public class GainView extends LinearLayout {
 
 	private View view;
-	private TextView GainNo;	//Gain½s¸¹
-	private EditText GainValue40;	//Gain40dB¼W¯q
-	private SeekBar seekBar40;	//Gain40dB ¼W¯qseek
+	private TextView GainNo;	//Gainç·¨è™Ÿ
+	private EditText GainValue40;	//Gain40dBå¢ç›Š
+	private SeekBar seekBar40;	//Gain40dB å¢ç›Šseek
 	private EditText GainValue60;
 	private SeekBar seekBar60;
 	private EditText GainValue80;
 	private SeekBar seekBar80;
-	private int SeekMaxValue = 120;	//seek³Ì¤j­È©w¸q
+	private int SeekMaxValue = 120;	//seekæœ€å¤§å€¼å®šç¾©
 	public GainView(Context context) {
 		super(context);
 		// TODO Auto-generated constructor stub
@@ -46,14 +46,14 @@ public class GainView extends LinearLayout {
 		
 	}
 	
-	//SeekBarChange¨Æ¥ó
+	//SeekBarChangeäº‹ä»¶
 	public class SeekBarChange implements OnSeekBarChangeListener
 	{
 
 		public void onProgressChanged(SeekBar seekBar, int progress,
 				boolean fromUser) {
 			// TODO Auto-generated method stub
-			//¨Ì·Ó¤£¦PseekBar³Q§ïÅÜ §ó§ï¨ä¹ïÀ³Text­È
+			//ä¾ç…§ä¸åŒseekBarè¢«æ”¹è®Š æ›´æ”¹å…¶å°æ‡‰Textå€¼
 			switch(seekBar.getId())
 			{
 				case R.id.gainValueSeek40:
@@ -81,31 +81,31 @@ public class GainView extends LinearLayout {
 	}
 	
 	/*
-	 * ³]©w¼W¯qÀW¹D½s¸¹
-	 * ¤£§t¥ª¥kÁn¹D
-	 * No - ½s¸¹
+	 * è¨­å®šå¢ç›Šé »é“ç·¨è™Ÿ
+	 * ä¸å«å·¦å³è²é“
+	 * No - ç·¨è™Ÿ
 	 */
 	public void setGainNo(int No)
 	{
-		GainNo.setText("ÀW±a"+Integer.toString(No));
+		GainNo.setText("é »å¸¶"+Integer.toString(No));
 	}
 	/*
-	 * ³]©w¼W¯qÀW¹D½s¸¹
-	 * §t¥ª¥kÁn¹D
-	 * No - ½s¸¹
-	 * LeftorRight - ¥ª(0)©Î¥k(1)
+	 * è¨­å®šå¢ç›Šé »é“ç·¨è™Ÿ
+	 * å«å·¦å³è²é“
+	 * No - ç·¨è™Ÿ
+	 * LeftorRight - å·¦(0)æˆ–å³(1)
 	 */
 	public void setGainNo(int No,int LeftorRight)
 	{
 		if(LeftorRight==0)
-			GainNo.setText("ÀW±a"+Integer.toString(No)+"¥ªÁn¹D");
+			GainNo.setText("é »å¸¶"+Integer.toString(No)+"å·¦è²é“");
 		else
-			GainNo.setText("ÀW±a"+Integer.toString(No)+"¥kÁn¹D");
+			GainNo.setText("é »å¸¶"+Integer.toString(No)+"å³è²é“");
 	}
 	
 	/*
-	 * ³]©w40dB¼W¯q
-	 * value - ¼W¯q¼Æ­È
+	 * è¨­å®š40dBå¢ç›Š
+	 * value - å¢ç›Šæ•¸å€¼
 	 */
 	public void setGainValue40(int value)
 	{
@@ -113,8 +113,8 @@ public class GainView extends LinearLayout {
 		seekBar40.setProgress(value+(SeekMaxValue/2));
 	}
 	/*
-	 * ¨ú±o40dB¼W¯q
-	 * return ¼W¯q­È
+	 * å–å¾—40dBå¢ç›Š
+	 * return å¢ç›Šå€¼
 	 */
 	public int getGainValue40()
 	{
@@ -128,8 +128,8 @@ public class GainView extends LinearLayout {
 		}
 	}
 	/*
-	 * ³]©w60dB¼W¯q
-	 * value - ¼W¯q¼Æ­È
+	 * è¨­å®š60dBå¢ç›Š
+	 * value - å¢ç›Šæ•¸å€¼
 	 */
 	public void setGainValue60(int value)
 	{
@@ -137,8 +137,8 @@ public class GainView extends LinearLayout {
 		seekBar60.setProgress(value+(SeekMaxValue/2));
 	}
 	/*
-	 * ¨ú±o60dB¼W¯q
-	 * return ¼W¯q­È
+	 * å–å¾—60dBå¢ç›Š
+	 * return å¢ç›Šå€¼
 	 */
 	public int getGainValue60()
 	{
@@ -152,8 +152,8 @@ public class GainView extends LinearLayout {
 		}
 	}
 	/*
-	 * ³]©w80dB¼W¯q
-	 * value - ¼W¯q¼Æ­È
+	 * è¨­å®š80dBå¢ç›Š
+	 * value - å¢ç›Šæ•¸å€¼
 	 */
 	public void setGainValue80(int value)
 	{
@@ -161,8 +161,8 @@ public class GainView extends LinearLayout {
 		seekBar80.setProgress(value+(SeekMaxValue/2));
 	}
 	/*
-	 * ¨ú±o80dB¼W¯q
-	 * return ¼W¯q­È
+	 * å–å¾—80dBå¢ç›Š
+	 * return å¢ç›Šå€¼
 	 */
 	public int getGainValue80()
 	{

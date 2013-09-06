@@ -7,8 +7,8 @@ import android.view.Menu;
 import android.widget.RadioButton;
 
 /*
- * ¤wµL¨Ï¥Î
- * ¤w§ï¦ÜPrefSetting³B²z
+ * å·²ç„¡ä½¿ç”¨
+ * å·²æ”¹è‡³PrefSettingè™•ç†
  */
 
 public class SettingParameter extends Activity {

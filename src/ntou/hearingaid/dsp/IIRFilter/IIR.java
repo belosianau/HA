@@ -5,10 +5,10 @@ import ntou.hearingaid.sound.SoundParameter;
 import android.util.Log;
 
 /*
- * IIR Âoªi¾¹
- * ¦¹³¡¤À¤£¥Î­×§ï
- * ¥D­n­t³d²£¥ÍÂoªi¾¹°Ñ¼Æ
- * ²£¥ÍÂoªi¾¹°Ñ¼Æµ²ªG¤wÅçÃÒ¬O¥¿½Tªº
+ * IIR æ¿¾æ³¢å™¨
+ * æ­¤éƒ¨åˆ†ä¸ç”¨ä¿®æ”¹
+ * ä¸»è¦è² è²¬ç”¢ç”Ÿæ¿¾æ³¢å™¨åƒæ•¸
+ * ç”¢ç”Ÿæ¿¾æ³¢å™¨åƒæ•¸çµæœå·²é©—è­‰æ˜¯æ­£ç¢ºçš„
  */
 
 enum Prototype{BUTTERWORTH,CHEBYSHEV};
@@ -25,7 +25,7 @@ public class IIR {
 	private double[] Num;
 	private double[] DenC;
 	/*
-	 * ¹w³]Âoªi¾¹°Ñ¼Æ
+	 * é è¨­æ¿¾æ³¢å™¨åƒæ•¸
 	 */
 	private double[] band1_143_180_b = {1.0e-003*0.1432,0,1.0e-003*-0.4297,0,1.0e-003*0.4297,0,1.0e-003*-0.1432};
 	private double[] band1_143_180_a = {-5.7117,13.6650,-17.5272,12.7116,-4.9426,0.8050};
