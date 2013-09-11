@@ -27,6 +27,7 @@ public class PrefSetting extends PreferenceActivity
 	private SoundControl control = SoundControl.getSoundControl();
 	public SharedPreferences setting;
 	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{

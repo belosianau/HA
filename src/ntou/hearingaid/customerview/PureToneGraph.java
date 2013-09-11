@@ -14,8 +14,8 @@ import android.view.View;
  * 客制化元件-聽力圖
  */
 
-public class PureToneGraph extends View {
-
+public class PureToneGraph extends View
+{
 	private Bitmap background;
 	private Paint paint;
 	
@@ -35,30 +35,29 @@ public class PureToneGraph extends View {
 	private int data2000R = 0;
 	private int data4000R = 0;
 	
-	public PureToneGraph(Context context) {
+	
+	public PureToneGraph(Context context)
+	{
 		super(context);
-		// TODO Auto-generated constructor stub
 		paint = new Paint();
 	}
 
-	public PureToneGraph(Context context, AttributeSet attrs) {
+	public PureToneGraph(Context context, AttributeSet attrs)
+	{
 		super(context, attrs);
-		// TODO Auto-generated constructor stub
 		paint = new Paint();
-		
 	}
 
 	/*
 	 * 刷新畫布
 	 */
 	@Override
-	protected void onDraw(Canvas canvas) {
-		// TODO Auto-generated method stub
+	protected void onDraw(Canvas canvas)
+	{
 		super.onDraw(canvas);
 		//Log.e("debug","Draw");
 		DrawBackground(canvas);
-		DrawData(canvas);
-		
+		DrawData(canvas);	
 	}
 
 	/*
@@ -66,14 +65,14 @@ public class PureToneGraph extends View {
 	 * 如改變則更改設定值
 	 */
 	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		// TODO Auto-generated method stub
+	protected void onSizeChanged(int w, int h, int oldw, int oldh)
+	{
 		super.onSizeChanged(w, h, oldw, oldh);
 		//Log.e("debug",Integer.toString(w)+","+Integer.toString(h));
 		Width = w;
-		Height = h;
-		
+		Height = h;	
 	}
+	
 	//繪製聽力圖 座標軸 
 	private void DrawBackground(Canvas canvas)
 	{
@@ -191,8 +190,7 @@ public class PureToneGraph extends View {
 			case 4000:
 				freq = 4000;
 				db = data4000R;
-				break;
-				
+				break;			
 			}
 			int x_i = (freq/250)-1;
 			float y_i = (120.0f-db)/10;
@@ -210,7 +208,6 @@ public class PureToneGraph extends View {
 	 */
 	public void setData(int freq, int db, int LeftorRight)
 	{
-		
 		switch(freq)
 		{
 		case 250:

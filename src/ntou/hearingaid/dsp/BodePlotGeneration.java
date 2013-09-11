@@ -11,8 +11,8 @@ import ntou.hearingaid.dsp.IIRFilter.Complex;
  * 透過別人excel運算改寫而成
  */
 
-public class BodePlotGeneration {
-
+public class BodePlotGeneration
+{
 	private double minRad;
 	private double maxRad;
 	private Complex[] s = new Complex[1000];
@@ -28,9 +28,9 @@ public class BodePlotGeneration {
 	public int get_s_less1()
 	{
 		int count = 0;
-		for(int i=0;i<s.length;i++)
+		for(int i = 0; i < s.length; i++)
 		{
-			if(s[i].im()<1.0)
+			if(s[i].im() < 1.0)
 				count++;
 		}
 		return count;
@@ -42,9 +42,9 @@ public class BodePlotGeneration {
 	public int get_s_greater1()
 	{
 		int count = 0;
-		for(int i=0;i<s.length;i++)
+		for(int i = 0; i < s.length; i++)
 		{
-			if(s[i].im()>1.0)
+			if(s[i].im() > 1.0)
 				count++;
 		}
 		return count;
@@ -56,7 +56,7 @@ public class BodePlotGeneration {
 	public double[] get_s()
 	{
 		double[] s = new double[this.s.length];
-		for(int i=0;i<this.s.length;i++)
+		for(int i = 0; i < this.s.length; i++)
 			s[i] = this.s[i].im();
 		return s;
 	}
@@ -107,7 +107,6 @@ public class BodePlotGeneration {
 				bd.setScale(4, BigDecimal.ROUND_HALF_UP);
 				this.Num[i] = this.Num[i].plus((s[i].pow(j)).times(bd.doubleValue()));
 				//this.Num[i] = this.Num[i].plus((s[i].pow(j)).times(Num[j]));
-				
 			}
 			
 			for(int j=0; j<Den.length;j++)
@@ -118,7 +117,6 @@ public class BodePlotGeneration {
 				//this.Den[i] = this.Den[i].plus((s[i].pow(j)).times(Den[j]));
 			}
 			
-
 			this.db[i] = 20*Math.log10((this.Num[i].divides(this.Den[i])).abs());
 			Complex tmp = (this.Num[i].divides(this.Den[i]));
 			this.phase[i] = - Math.toDegrees(Math.atan2(tmp.im(),tmp.re()));
@@ -127,6 +125,5 @@ public class BodePlotGeneration {
 				this.phase[i] = this.phase[i];
 			}*/
 		}
-		
 	}
 }

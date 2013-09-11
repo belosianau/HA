@@ -72,7 +72,7 @@ public class MainActivity extends Activity
         {
         	Toast.makeText(MainActivity.this, "請檢查是否連接耳機或具有A2DP功能藍芽耳機", 5).show();
         	
-        	//  I can't stop here
+        	//  I can't stop here.
         	//  When I am debugging program, I do't want be stopped.
         	//  Just temporarily!!
         	if (Debug.version.equals("RELEASE"))

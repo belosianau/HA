@@ -25,8 +25,8 @@ import android.widget.Toast;
  * 則將此服務啟動
  */
 
-public class HearingAidService extends Service {
-
+public class HearingAidService extends Service
+{
 	public static boolean isService = false;
 	public static boolean isPauseByHeadsetUnplug = false;
 	private Microphone mic;
@@ -38,29 +38,29 @@ public class HearingAidService extends Service {
 	
 	public HearingAidService()
 	{
-		
-		
-		
-		/*gain1.setOnGainListener(new OnGainListener() {
-			
-			public void OnSuccess(short[] data) {
-				// TODO Auto-generated method stub
-				speaker.AddSignals(data);
+		/*
+		gain1.setOnGainListener
+		(
+			new OnGainListener()
+			{
+				public void OnSuccess(short[] data)
+				{
+					speaker.AddSignals(data);
+				}
 			}
-		});*/
-		
+		);
+		*/
 	}
 	
 	@Override
-	public IBinder onBind(Intent arg0) {
-		// TODO Auto-generated method stub
+	public IBinder onBind(Intent arg0)
+	{
 		return null;
 	}
-	
 
 	@Override
-	public void onStart(Intent intent, int startId) {
-		// TODO Auto-generated method stub
+	public void onStart(Intent intent, int startId)
+	{
 		//依序將執行緒啟動
 		isService = true;
 		mic.open();
@@ -74,8 +74,8 @@ public class HearingAidService extends Service {
 	}
 
 	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
+	public void onDestroy()
+	{
 		//依序將執行緒中斷
 		isService = false;
 		mic.close();
@@ -84,42 +84,44 @@ public class HearingAidService extends Service {
 		speaker.close();
 		super.onDestroy();
 		
-		
 		//Toast.makeText(HearingAidService.this, "Pass2", 10).show();
 	}
 
 	@Override
-	public void onCreate() {
-		// TODO Auto-generated method stub
+	public void onCreate()
+	{
 		super.onCreate();
 		setting = PreferenceManager.getDefaultSharedPreferences(this);
 		mic = new Microphone();
-		if(SoundParameter.frequency==8000)
+		if(SoundParameter.frequency == 8000)
 			speaker = new Speaker();
 		else
 			speaker = new Speaker(SoundParameter.frequency);
 		
 		filterBank = new FilterBank(setting);
 		
-		mic.setOnMicrophoneListener(new OnMicrophoneListener() {
-			
-			public void OnRec(short[] data) {
-				// TODO Auto-generated method stub
-				filterBank.AddSignals(data);	//mic處理完訊號送入filterBank
-				//eq.AddSignals(data);
-				
-			}
-		});
+		mic.setOnMicrophoneListener
+		(
+				new OnMicrophoneListener()
+				{
+					public void OnRec(short[] data)
+					{
+						filterBank.AddSignals(data);	//mic處理完訊號送入filterBank
+						//eq.AddSignals(data);
+					}
+				}
+		);
 		
-		
-		filterBank.setOnFilterBankListener(new OnFilterBankListener() {
-			
-			public void OnSuccess(short[] data) {
-				// TODO Auto-generated method stub
-				//gain1.AddSignals(data);
-				speaker.AddSignals(data);	//filterBank處理完訊號送至speaker
-			}
-		});
+		filterBank.setOnFilterBankListener
+		(
+				new OnFilterBankListener()
+				{	
+					public void OnSuccess(short[] data)
+					{
+						//gain1.AddSignals(data);
+						speaker.AddSignals(data);	//filterBank處理完訊號送至speaker
+					}
+				}
+		);
 	}
-
 }

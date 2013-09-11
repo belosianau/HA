@@ -121,8 +121,8 @@ public class BodePlotGraph extends View
 		{
 		//db座標軸
 		case db:
-			y_num = (max_y_axis-min_y_axis)/db_increase;//y軸切割個數
-			y_axis = (Height-40)/y_num;
+			y_num = (max_y_axis-min_y_axis) / db_increase;  //  y軸切割個數
+			y_axis = (Height-40) / y_num;
 			//設定畫筆基準線顏色
 			paint.setColor(Color.BLACK);
 			paint.setStyle(Style.STROKE);
@@ -152,14 +152,13 @@ public class BodePlotGraph extends View
 			//畫出x軸 並標上x軸對應數值
 			for(int i=0;i<2;i++)
 			{
-				
 				canvas.drawLine(20+(i+1)*x_axis, 20, 20+(i+1)*x_axis, Height-20, paint);
 				canvas.drawText(String.valueOf((int)(0.1*Math.pow(10, i+1))), 20+(i+1)*x_axis, ((Height-20))+20, paint);
 			}
 			break;
 		case phase:
-			y_num = (max_y_axis-min_y_axis)/phase_increase;//y軸切割個數
-			y_axis = (Height-40)/y_num;
+			y_num = (max_y_axis-min_y_axis) / phase_increase;  //  y軸切割個數
+			y_axis = (Height-40) / y_num;
 			paint.setColor(Color.BLACK);
 			paint.setStyle(Style.STROKE);
 			paint.setStrokeWidth(5);
@@ -189,14 +188,11 @@ public class BodePlotGraph extends View
 			//畫出x軸 並標上x軸對應數值
 			for(int i=0;i<2;i++)
 			{
-				
 				canvas.drawLine(20+(i+1)*x_axis, 20, 20+(i+1)*x_axis, Height-20, paint);
 				canvas.drawText(String.valueOf((int)(0.1*Math.pow(10, i+1))), 20+(i+1)*x_axis, ((Height-20))+20, paint);
 			}
 			break;
-		}
-		
-		
+		}		
 	}
 	
 	/*
@@ -269,8 +265,7 @@ public class BodePlotGraph extends View
 						prePoint[0] = 20+((i)*x_axis_greater1-1);
 						prePoint[1] = ((float)(Height-20))-((float)((this.db[999-i]-min_y_axis)*y_axis));
 					}
-					//canvas.drawPoint(20+((i)*x_axis_greater1-1),((float)(Height-20))-((float)((this.db[999-i]-min_y_axis)*y_axis)),paint);
-					
+					//canvas.drawPoint(20+((i)*x_axis_greater1-1),((float)(Height-20))-((float)((this.db[999-i]-min_y_axis)*y_axis)),paint);		
 				}
 			}
 			break;
@@ -323,12 +318,10 @@ public class BodePlotGraph extends View
 						prePoint[1] = ((float)(Height-20))-((float)((this.phase[999-i]-min_y_axis)*y_axis));
 					}
 					//canvas.drawPoint(20+((i)*x_axis_greater1-1),((float)(Height-20))-((float)((this.phase[999-i]-min_y_axis)*y_axis)),paint);
-					
 				}
 			}
 			break;
 		}
-		
 	}
 	
 	/*

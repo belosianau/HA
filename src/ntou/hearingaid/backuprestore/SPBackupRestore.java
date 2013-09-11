@@ -20,33 +20,45 @@ import android.content.SharedPreferences.Editor;
  *		提供設定檔備份還原用API
  */
 
-public class SPBackupRestore {
-	
+public class SPBackupRestore
+{
 	/*
 	 * 將設定檔備份
 	 * dst - 欲儲存的目標檔案連結位置
 	 * return 是否成功
 	 */
-	public boolean saveSharedPreferencesToFile(File dst) {
+	public boolean saveSharedPreferencesToFile(File dst)
+	{
 	    boolean res = false;
 	    ObjectOutputStream output = null;
-	    try {
+	    try
+	    {
 	        output = new ObjectOutputStream(new FileOutputStream(dst));	//建立一輸出檔案物件
 	        SharedPreferences pref = MainActivity.setting;	//取得內建設定檔
 	        output.writeObject(pref.getAll());	//將設定檔內容全部寫入檔案
 
 	        res = true;
-	    } catch (FileNotFoundException e) {
+	    }
+	    catch (FileNotFoundException e)
+	    {
 	        e.printStackTrace();
-	    } catch (IOException e) {
+	    }
+	    catch (IOException e)
+	    {
 	        e.printStackTrace();
-	    }finally {
-	        try {
-	            if (output != null) {
+	    }
+	    finally
+	    {
+	        try
+	        {
+	            if (output != null)
+	            {
 	                output.flush();
 	                output.close();
 	            }
-	        } catch (IOException ex) {
+	        }
+	        catch (IOException ex)
+	        {
 	            ex.printStackTrace();
 	        }
 	    }
@@ -59,10 +71,12 @@ public class SPBackupRestore {
 	 * return 是否成功
 	 */
 	@SuppressWarnings({ "unchecked" })
-	public boolean loadSharedPreferencesFromFile(File src) {
+	public boolean loadSharedPreferencesFromFile(File src)
+	{
 	    boolean res = false;
 	    ObjectInputStream input = null;
-	    try {
+	    try
+	    {
 	        input = new ObjectInputStream(new FileInputStream(src));	//建立輸入檔案物件
 	            Editor prefEdit = MainActivity.setting.edit();	//取得設定檔位置
 	            prefEdit.clear();	//將原先設定檔全部清空
@@ -89,22 +103,33 @@ public class SPBackupRestore {
 	            
 	            prefEdit.commit();	//檔案寫入完成後需使用commit將其儲存
 	        res = true;         
-	    } catch (FileNotFoundException e) {
+	    }
+	    catch (FileNotFoundException e)
+	    {
 	        e.printStackTrace();
-	    } catch (IOException e) {
+	    }
+	    catch (IOException e)
+	    {
 	        e.printStackTrace();
-	    } catch (ClassNotFoundException e) {
+	    }
+	    catch (ClassNotFoundException e)
+	    {
 	        e.printStackTrace();
-	    }finally {
-	        try {
-	            if (input != null) {
+	    }
+	    finally
+	    {
+	        try
+	        {
+	            if (input != null)
+	            {
 	                input.close();
 	            }
-	        } catch (IOException ex) {
+	        }
+	        catch (IOException ex)
+	        {
 	            ex.printStackTrace();
 	        }
 	    }
 	    return res;
 	}
-
 }

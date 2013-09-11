@@ -1,18 +1,20 @@
 package ntou.hearingaid.sound;
 
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.media.AudioManager;
 import android.os.Build;
 
-public class SoundControl extends Activity {
+
+public class SoundControl extends Activity
+{
 	private AudioManager audioManager = null;
-	private boolean isMicInput = true;	//true:內建耳機輸入 false:藍芽輸入
+	private boolean isMicInput = true;	//  true:內建耳機輸入 false:藍芽輸入
 	public static SoundControl soundControl = null;
-	//記錄起始狀態
+	//  記錄起始狀態
 	private boolean isWiredHeadsetOn = false;
 	private boolean isBluetoothA2DPOn = false;
+	
 	
 	private SoundControl(AudioManager _audioManager)
 	{
@@ -21,13 +23,12 @@ public class SoundControl extends Activity {
 		audioManager.setMode(AudioManager.MODE_NORMAL);
 		
 		isWiredHeadsetOn = audioManager.isWiredHeadsetOn();
-		isBluetoothA2DPOn = audioManager.isBluetoothA2dpOn();
-		
+		isBluetoothA2DPOn = audioManager.isBluetoothA2dpOn();	
 	}
 	
 	public static SoundControl getSoundControl(AudioManager _audioManager)
 	{
-		if(SoundControl.soundControl==null)
+		if(SoundControl.soundControl == null)
 		{
 			soundControl = new SoundControl(_audioManager);
 		}
@@ -59,7 +60,6 @@ public class SoundControl extends Activity {
 		
 		return false;
 	}
-
 
 	/*
 	 * 設定輸入裝置

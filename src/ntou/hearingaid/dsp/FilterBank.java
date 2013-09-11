@@ -23,8 +23,8 @@ import ntou.hearingaid.sound.SoundParameter;
  * 音訊處理模組- 濾波器組
  * 進行頻帶切割 並 將輸入訊號進行濾波處理
  */
-public class FilterBank extends Thread {
-	
+public class FilterBank extends Thread
+{	
 	private boolean isRunning = false;	//判斷執行續是否執行
 	private ArrayList<short[]> Signals = new ArrayList<short[]>();	//記錄未處理訊號
 	public static int filterorder = 3 ;	//設定濾波器階數 階數愈高愈佳
@@ -66,48 +66,47 @@ public class FilterBank extends Thread {
 	public FilterBank(SharedPreferences setting)
 	{
 		if(setting.contains("FilterBankNumber"))	//判斷是否包含FilterBankNumber設定值
-		{
-			
+		{			
 			FilterBankNumber = setting.getInt("FilterBankNumber", -1);	//取出數值
 			//Log.d("Debug", String.valueOf(FilterBankNumber));
 			
-			if(FilterBankNumber!=-1)
+			if(FilterBankNumber != -1)
 			{
 				/*
 				 * 動態產生對應的濾波器及增益補償變數個數
 				 */
 				iir_bands = new IIR[FilterBankNumber];
-				gain40 = new Gain2[FilterBankNumber];
-				gain60 = new Gain2[FilterBankNumber];
-				gain80 = new Gain2[FilterBankNumber];
-				gain40R = new Gain2[FilterBankNumber];
-				gain60R = new Gain2[FilterBankNumber];
-				gain80R = new Gain2[FilterBankNumber];
+				gain40    = new Gain2[FilterBankNumber];
+				gain60    = new Gain2[FilterBankNumber];
+				gain80    = new Gain2[FilterBankNumber];
+				gain40R   = new Gain2[FilterBankNumber];
+				gain60R   = new Gain2[FilterBankNumber];
+				gain80R   = new Gain2[FilterBankNumber];
 				for(int i = 0; i < FilterBankNumber ; i++)
 				{
-					String db40 = "Gain40db"+String.valueOf(i+1);
-					String db60 = "Gain60db"+String.valueOf(i+1);
-					String db80 = "Gain80db"+String.valueOf(i+1);
-					String db40R = "Gain40db"+String.valueOf(i+1)+"R";
-					String db60R = "Gain60db"+String.valueOf(i+1)+"R";
-					String db80R = "Gain80db"+String.valueOf(i+1)+"R";
+					String db40 = "Gain40db"  + String.valueOf(i+1);
+					String db60 = "Gain60db"  + String.valueOf(i+1);
+					String db80 = "Gain80db"  + String.valueOf(i+1);
+					String db40R = "Gain40db" + String.valueOf(i+1) + "R";
+					String db60R = "Gain60db" + String.valueOf(i+1) + "R";
+					String db80R = "Gain80db" + String.valueOf(i+1) + "R";
 					
-					if(setting.contains(db40)&&setting.contains(db60)&&setting.contains(db80))
+					if(setting.contains(db40) && setting.contains(db60) && setting.contains(db80))
 					{
 						/*
 						 * 如增益補償相關設定存在
 						 * 則將其初始化
 						 */
-						double value40 = setting.getInt(db40, 0);
-						double value60 = setting.getInt(db60, 0);
-						double value80 = setting.getInt(db80, 0);
+						double value40  = setting.getInt(db40, 0);
+						double value60  = setting.getInt(db60, 0);
+						double value80  = setting.getInt(db80, 0);
 						double value40R = setting.getInt(db40R, 0);
 						double value60R = setting.getInt(db60R, 0);
 						double value80R = setting.getInt(db80R, 0);
 						
-						gain40[i] = new Gain2(value40);
-						gain60[i] = new Gain2(value60);
-						gain80[i] = new Gain2(value80);
+						gain40[i]  = new Gain2(value40);
+						gain60[i]  = new Gain2(value60);
+						gain80[i]  = new Gain2(value80);
 						gain40R[i] = new Gain2(value40R);
 						gain60R[i] = new Gain2(value60R);
 						gain80R[i] = new Gain2(value80R);
@@ -118,24 +117,23 @@ public class FilterBank extends Thread {
 						 * 如增益補償相關設定不存在
 						 * 則將其初始化為0
 						 */
-						gain40[i] = new Gain2(0);
-						gain60[i] = new Gain2(0);
-						gain80[i] = new Gain2(0);
+						gain40[i]  = new Gain2(0);
+						gain60[i]  = new Gain2(0);
+						gain80[i]  = new Gain2(0);
 						gain40R[i] = new Gain2(0);
 						gain60R[i] = new Gain2(0);
 						gain80R[i] = new Gain2(0);
-						
 					}
 					//讀取濾波器高低頻帶值
 					String band_Low_str = "FilterLow" + String.valueOf((i+1));
-					String band_Hi_str = "FilterHi" + String.valueOf((i+1));
+					String band_Hi_str  = "FilterHi"  + String.valueOf((i+1));
 					//將頻帶初始化
 					iir_bands[i] = new IIR(FilterBank.filterorder,(double)setting.getInt(band_Low_str, 1),(double)setting.getInt(band_Hi_str, 3999));
 				}
-				
 			}
 		}
 	}
+	
 	//功能同上
 	public FilterBank()
 	{
@@ -145,61 +143,57 @@ public class FilterBank extends Thread {
 		if(setting == null) return;
 		if(setting.contains("FilterBankNumber"))
 		{
-			
 			FilterBankNumber = setting.getInt("FilterBankNumber", -1);
 			//Log.d("Debug", String.valueOf(FilterBankNumber));
-			if(FilterBankNumber!=-1)
+			if(FilterBankNumber != -1)
 			{
 				iir_bands = new IIR[FilterBankNumber];
-				gain40 = new Gain2[FilterBankNumber];
-				gain60 = new Gain2[FilterBankNumber];
-				gain80 = new Gain2[FilterBankNumber];
-				gain40R = new Gain2[FilterBankNumber];
-				gain60R = new Gain2[FilterBankNumber];
-				gain80R = new Gain2[FilterBankNumber];
+				gain40    = new Gain2[FilterBankNumber];
+				gain60    = new Gain2[FilterBankNumber];
+				gain80    = new Gain2[FilterBankNumber];
+				gain40R   = new Gain2[FilterBankNumber];
+				gain60R   = new Gain2[FilterBankNumber];
+				gain80R   = new Gain2[FilterBankNumber];
 				for(int i = 0; i < FilterBankNumber ; i++)
 				{
-					String db40 = "Gain40db"+String.valueOf(i+1);
-					String db60 = "Gain60db"+String.valueOf(i+1);
-					String db80 = "Gain80db"+String.valueOf(i+1);
+					String db40  = "Gain40db"+String.valueOf(i+1);
+					String db60  = "Gain60db"+String.valueOf(i+1);
+					String db80  = "Gain80db"+String.valueOf(i+1);
 					String db40R = "Gain40db"+String.valueOf(i+1)+"R";
 					String db60R = "Gain60db"+String.valueOf(i+1)+"R";
 					String db80R = "Gain80db"+String.valueOf(i+1)+"R";
 					
 					if(setting.contains(db40)&&setting.contains(db60)&&setting.contains(db80))
 					{
-						double value40 = setting.getInt(db40, 0);
-						double value60 = setting.getInt(db60, 0);
-						double value80 = setting.getInt(db80, 0);
+						double value40  = setting.getInt(db40, 0);
+						double value60  = setting.getInt(db60, 0);
+						double value80  = setting.getInt(db80, 0);
 						double value40R = setting.getInt(db40R, 0);
 						double value60R = setting.getInt(db60R, 0);
 						double value80R = setting.getInt(db80R, 0);
 						
-						gain40[i] = new Gain2(value40);
-						gain60[i] = new Gain2(value60);
-						gain80[i] = new Gain2(value80);
+						gain40[i]  = new Gain2(value40);
+						gain60[i]  = new Gain2(value60);
+						gain80[i]  = new Gain2(value80);
 						gain40R[i] = new Gain2(value40R);
 						gain60R[i] = new Gain2(value60R);
 						gain80R[i] = new Gain2(value80R);
 					}
 					else
 					{
-						gain40[i] = new Gain2(0);
-						gain60[i] = new Gain2(0);
-						gain80[i] = new Gain2(0);
+						gain40[i]  = new Gain2(0);
+						gain60[i]  = new Gain2(0);
+						gain80[i]  = new Gain2(0);
 						gain40R[i] = new Gain2(0);
 						gain60R[i] = new Gain2(0);
 						gain80R[i] = new Gain2(0);
-						
 					}
 					String band_Low_str = "FilterLow" + String.valueOf((i+1));
-					String band_Hi_str = "FilterHi" + String.valueOf((i+1));
+					String band_Hi_str  = "FilterHi"  + String.valueOf((i+1));
 					iir_bands[i] = new IIR(FilterBank.filterorder,(double)setting.getInt(band_Low_str, 1),(double)setting.getInt(band_Hi_str, 3999));
 				}
-				
 			}
 		}
-		
 	}
 	
 	//執行緒 進行濾波處理
@@ -217,28 +211,27 @@ public class FilterBank extends Thread {
 			 */
 			short[] buff = null;
 			yield();	//避免此程序一直卡住旗標 造成無法新增訊號
-			synchronized (Signals) {
-				if(Signals.size()==0)
+			synchronized (Signals)
+			{
+				if(Signals.size() == 0)
 					continue;
 				buff = Signals.get(0);
-				Signals.remove(0);
-				
+				Signals.remove(0);	
 			}
 			
-			short[] tmp = new short[buff.length];	//將原訊號暫存起來! 等待運算 左耳
+			short[] tmp  = new short[buff.length];	//將原訊號暫存起來! 等待運算 左耳
 			short[] tmpR = new short[buff.length];	//將原訊號暫存起來! 等待運算 右耳
 			System.arraycopy(buff, 0, tmp, 0, buff.length);
 			
-			
-			if(iir_bands!=null)	//如果動態頻帶切割有初始化
+			if(iir_bands != null)	//如果動態頻帶切割有初始化
 			{
 				short[][] tmp_bands;
 				short[][] tmp_bandsL;
 				short[][] tmp_bandsR;
-				tmp_bands = new short[iir_bands.length][];	//原訊號
+				tmp_bands  = new short[iir_bands.length][];	//原訊號
 				tmp_bandsL = new short[iir_bands.length][];	//左耳數值
 				tmp_bandsR = new short[iir_bands.length][];	//右耳數值
-				for(int i=0;i<iir_bands.length;i++)
+				for(int i = 0; i < iir_bands.length; i++)
 				{
 					tmp_bands[i] = iir_bands[i].process(tmp.clone());	//將原訊號進行處理
 					int db = Calculatedb(tmp_bands[i]);	//計算音量
@@ -250,11 +243,11 @@ public class FilterBank extends Thread {
 				 * 左右耳分別加總
 				 * 把各頻帶處理過的訊號組合成原始訊號
 				 */
-				for(int j=0;j<tmp.length;j++)
+				for(int j = 0; j < tmp.length; j++)
 				{
 					short sumL = 0;
 					short sumR = 0;
-					for(int i=0;i<iir_bands.length;i++)
+					for(int i = 0; i < iir_bands.length; i++)
 					{
 						sumL += tmp_bandsL[i][j];
 						sumR += tmp_bandsR[i][j];
@@ -263,8 +256,6 @@ public class FilterBank extends Thread {
 					tmpR[j] = sumR;
 					//Log.d("debug", String.valueOf(tmp[j]));
 				}
-				
-				
 			}
 			else	//如果動態頻帶切割未初始化
 			{
@@ -288,28 +279,27 @@ public class FilterBank extends Thread {
 				/*
 				 * 把各頻帶處理過的訊號組合成原始訊號
 				 */
-				for(int i=0;i<tmp.length;i++)
+				for(int i = 0; i < tmp.length; i++)
 				{
 					//tmp[i] = (short)(tmp1[i] * gain);
 					//tmp[i] = tmp5[i];
-					tmp[i] = (short) (tmp1[i]+tmp2[i]+tmp3[i]+tmp4[i]+tmp5[i]);
+					tmp[i] = (short) (tmp1[i] + tmp2[i] + tmp3[i] + tmp4[i] + tmp5[i]);
 				}
 			}
 			
 			//判斷目前取樣頻率 做為判斷使用左右耳助聽器 或 單耳助聽器
-			if(SoundParameter.frequency==8000)
+			if(SoundParameter.frequency == 8000)
 			{
-				onFilterBankListener.OnSuccess(tmp);	//若為單耳則直接送出
+				onFilterBankListener.OnSuccess(tmp);  //  若為單耳則直接送出
 			}
 			else
 			{
 				//若為雙耳則需將訊號 LRLR填入再送出
-				short[] tmp_out = new short[tmp.length*2];
-				for(int i=0;i<tmp_out.length/2;i++)
+				short[] tmp_out = new short[tmp.length * 2];
+				for(int i = 0; i < tmp_out.length / 2; i++)
 				{
-						tmp_out[i*2] = tmp[i];
-						tmp_out[i*2+1] = tmpR[i];
-					
+						tmp_out[i * 2]     = tmp[i];
+						tmp_out[i * 2 + 1] = tmpR[i];
 				}
 				onFilterBankListener.OnSuccess(tmp_out);
 			}
@@ -344,7 +334,6 @@ public class FilterBank extends Thread {
 				}*/
 				//onFilterBankListener.OnSuccess(tmp);
 			//}
-			
 		}
 		Signals.clear();
 		PerformanceParameter.FilterTime.clear();
@@ -370,24 +359,23 @@ public class FilterBank extends Thread {
 	 */
 	public void AddSignals(short[] data)
 	{
-		synchronized (Signals) {
-			Signals.add(data);
-			
+		synchronized (Signals)
+		{
+			Signals.add(data);		
 		}
-		/*synchronized(PerformanceParameter.FilterTime)
+		/*
+		synchronized(PerformanceParameter.FilterTime)
 		{
 			PerformanceParameter.FilterTime.add(System.currentTimeMillis());
-		}*/
+		}
+		*/
 	}
-	
 	
 	public void open()
 	{
-		
 		isRunning = true;
 		this.start();
 	}
-	
 	
 	public void close()
 	{
@@ -396,6 +384,7 @@ public class FilterBank extends Thread {
 		
 		//this.stop();
 	}
+	
 	//檢查目前模式
 	public boolean CheckMode()
 	{
@@ -414,22 +403,23 @@ public class FilterBank extends Thread {
 	{
 		short min = data[0];
 		double sum = 0;
-		for(int i=0;i<data.length;i++)
+		for(int i = 0; i < data.length; i++)
 		{
 			//sum += data[i]*data[i];
-			sum = sum+Math.pow(data[i],2);
+			sum = sum + Math.pow(data[i], 2);
 		}
 		/*for(int i=0;i<256;i++)
 		{
 			sum = sum+Math.pow(data[i],2);
 		}*/
 		//sum /=  (int) (Math.abs((int)(sum /(float)r)/10000) >> 1);
-		sum = 10*Math.log10(sum/data.length);
+		sum = 10 * Math.log10(sum / data.length);
 		//Log.d("debug", String.valueOf(SoundParameter.bufferSize));
 		//Log.d("debug", "vol"+String.valueOf(sum));
 		
 		return (int)sum;
 	}
+	
 	/*
 	 * 增益補償運算
 	 * i - 頻帶編號
@@ -441,12 +431,12 @@ public class FilterBank extends Thread {
 	private short[] AutoGain(int i, short[] data, int db, int LorR)
 	{
 		//判斷目前取樣頻率 做為判斷使用左右耳助聽器 或 單耳助聽器
-		if(SoundParameter.frequency==8000)
+		if(SoundParameter.frequency == 8000)
 		{
 			//進行單耳增益處理
 			short[] result = new short[data.length];
 	
-			if(db>=40 && db<60)
+			if(db >= 40 && db < 60)
 				result = gain40[i].process(data.clone());
 			else if(db>=60&&db<80)
 				result = gain60[i].process(data.clone());
@@ -460,32 +450,31 @@ public class FilterBank extends Thread {
 		else
 		{
 			//進行雙耳增益處理
-			short[] result = new short[data.length];
+			short[] result  = new short[data.length];
 			short[] resultR = new short[data.length];
 			
-			if(db>=40 && db<60)
+			if(db >= 40 && db < 60)
 			{
-				result = gain40[i].process(data.clone());
+				result  = gain40[i].process(data.clone());
 				resultR = gain40R[i].process(data.clone());
 			}
-			else if(db>=60&&db<80)
+			else if(db >= 60 && db < 80)
 			{
-				result = gain60[i].process(data.clone());
+				result  = gain60[i].process(data.clone());
 				resultR = gain60R[i].process(data.clone());
 			}
-			else if(db>=80)
+			else if(db >= 80)
 			{
-				result = gain80[i].process(data.clone());
+				result  = gain80[i].process(data.clone());
 				resultR = gain80R[i].process(data.clone());
 			}
 			else
 			{
-				result = data.clone();
+				result  = data.clone();
 				resultR = data.clone();
 			}
-			
 	
-			if(LorR==0)
+			if(LorR == 0)
 				return result;
 			else
 				return resultR;

@@ -14,7 +14,8 @@ import android.util.Log;
  * 將處理完成聲音進行輸出
  */
 
-public class Speaker extends Thread {
+public class Speaker extends Thread
+{
 	private int playBufSize;
 	private AudioTrack audioTrack;
 	private boolean isPlaying = false;
@@ -30,7 +31,7 @@ public class Speaker extends Thread {
 	{
 		this.SampleRate = SampleRate;
 		//playBufSize=AudioTrack.getMinBufferSize(SampleRate, SoundParameter.channelConfiguration, SoundParameter.audioEncoding);
-		playBufSize=AudioTrack.getMinBufferSize(SampleRate, AudioFormat.CHANNEL_CONFIGURATION_STEREO, SoundParameter.audioEncoding);
+		playBufSize = AudioTrack.getMinBufferSize(SampleRate, AudioFormat.CHANNEL_CONFIGURATION_STEREO, SoundParameter.audioEncoding);
 		
 		//STREAM_MUSIC MODE_STREAM
 		
@@ -40,7 +41,7 @@ public class Speaker extends Thread {
 	
 	public Speaker()
 	{	
-		playBufSize=AudioTrack.getMinBufferSize(SampleRate, SoundParameter.channelConfiguration, SoundParameter.audioEncoding);
+		playBufSize = AudioTrack.getMinBufferSize(SampleRate, SoundParameter.channelConfiguration, SoundParameter.audioEncoding);
 		
 		//STREAM_MUSIC MODE_STREAM
 		
@@ -54,7 +55,8 @@ public class Speaker extends Thread {
 	 */
 	public void AddSignals(short[] data)
 	{
-		synchronized (Signals) {
+		synchronized (Signals)
+		{
 			Signals.add(data);
 			
 			//PerformanceParameter.SpeakerTime.add(System.currentTimeMillis());
@@ -72,28 +74,27 @@ public class Speaker extends Thread {
 		PerformanceParameter.avg_SpeakerTime = 0;
 		audioTrack.play();
 		while(isPlaying)
-		{
-			
+		{	
 			/*
 			 * 讀取最早一筆訊號
 			 */
 			short[] buff = null;
 			yield();
-			synchronized (Signals) {
+			synchronized (Signals)
+			{
 				if(Signals.size()==0)
 					continue;
 				buff = Signals.get(0);
 				Signals.remove(0);
-			
 			}
 
 				//Calculatedb(buff);
-				if(buff.length>0)
+				if(buff.length > 0)
 				{
 					//撥放
 				audioTrack.write(buff, 0, buff.length);
 				
-				
+	
 				/*synchronized (PerformanceParameter.SpeakerTime) 
 				{
 					if(PerformanceParameter.SpeakerTime.size()>0)
@@ -128,7 +129,6 @@ public class Speaker extends Thread {
 				
 				
 				}
-
 		}
 		audioTrack.stop();
 		Signals.clear();
@@ -145,8 +145,7 @@ public class Speaker extends Thread {
 	public void close()
 	{
 		isPlaying = false;
-		this.interrupt();
-		
+		this.interrupt();	
 		
 		//this.stop();
 	}
@@ -159,16 +158,15 @@ public class Speaker extends Thread {
 	{
 		short min = data[0];
 		double sum = 0;
-		for(int i=0;i<data.length;i++)
-		{
-			
-			sum = sum+Math.pow(data[i],2);
+		for(int i = 0; i < data.length; i++)
+		{		
+			sum = sum + Math.pow(data[i],2);
 		}
 		/*for(int i=0;i<256;i++)
 		{
 			sum = sum+Math.pow(data[i],2);
 		}*/
-		sum = 10*Math.log10(sum/data.length);
+		sum = 10 * Math.log10(sum / data.length);
 		//Log.d("debug", String.valueOf(SoundParameter.bufferSize));
 		//Log.d("debug", String.valueOf(sum));
 		return (int)sum;

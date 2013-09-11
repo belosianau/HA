@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * 無作用!!!此程式內部無法使用
  * 請使用Gain2
  */
-public class Gain  extends Thread{
-
+public class Gain  extends Thread
+{
 	private boolean isRunning = false;
 	private ArrayList<short[]> Signals = new ArrayList<short[]>();
 	
@@ -17,7 +17,8 @@ public class Gain  extends Thread{
 		{
 			short[] buff = null;
 			yield();	//避免此程序一直卡住旗標 造成無法新增訊號
-			synchronized (Signals) {
+			synchronized (Signals)
+			{
 				if(Signals.size()==0)
 					continue;
 				buff = Signals.get(0);
@@ -53,7 +54,8 @@ public class Gain  extends Thread{
 	
 	public void AddSignals(short[] data)
 	{
-		synchronized (Signals) {
+		synchronized (Signals)
+		{
 			Signals.add(data);
 		}
 	}

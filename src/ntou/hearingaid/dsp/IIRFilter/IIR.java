@@ -27,16 +27,16 @@ public class IIR {
 	/*
 	 * 預設濾波器參數
 	 */
-	private double[] band1_143_180_b = {1.0e-003*0.1432,0,1.0e-003*-0.4297,0,1.0e-003*0.4297,0,1.0e-003*-0.1432};
-	private double[] band1_143_180_a = {-5.7117,13.6650,-17.5272,12.7116,-4.9426,0.8050};
-	private double[] band2_281_561_b = {0.0011,0,-0.0032,0,0.0032,0,-0.0011};
-	private double[] band2_281_561_a = {-5.2918,11.9196,-14.6161,10.2887,-3.9433,0.6436};
-	private double[] band3_561_1120_b = {0.0071,0,-0.0214,0,0.0214,0,-0.0071};
-	private double[] band3_561_1120_a = {-4.1504,7.9278,-8.7551,5.8955,-2.2947,0.4125};
+	private double[] band1_143_180_b   = {1.0e-003*0.1432,0,1.0e-003*-0.4297,0,1.0e-003*0.4297,0,1.0e-003*-0.1432};
+	private double[] band1_143_180_a   = {-5.7117,13.6650,-17.5272,12.7116,-4.9426,0.8050};
+	private double[] band2_281_561_b   = {0.0011,0,-0.0032,0,0.0032,0,-0.0011};
+	private double[] band2_281_561_a   = {-5.2918,11.9196,-14.6161,10.2887,-3.9433,0.6436};
+	private double[] band3_561_1120_b  = {0.0071,0,-0.0214,0,0.0214,0,-0.0071};
+	private double[] band3_561_1120_a  = {-4.1504,7.9278,-8.7551,5.8955,-2.2947,0.4125};
 	private double[] band4_1110_2240_b = {0.0428,0,-0.1284,0,0.1284,0,-0.0428};
 	private double[] band4_1110_2240_a = {-1.1925,1.7576,-1.2048,1.0200,-0.3454,0.1569};
 	private double[] band5_2230_3540_b = {0.0612,0,-0.1836,0,0.1836,0,-0.0612};
-	private double[] band5_2230_3540_a= {2.9426,4.0312,3.4351,1.9729,0.6874,0.1112};
+	private double[] band5_2230_3540_a = {2.9426,4.0312,3.4351,1.9729,0.6874,0.1112};
 	
 	private double[] band_coefficient_a;
 	private double[] band_coefficient_b;
@@ -109,8 +109,6 @@ public class IIR {
 			//System.out.println(band_coefficient_b[i]);
 		x = new double[band_coefficient_b.length-1];
 		y = new double[band_coefficient_a.length];
-		
-		
 	}
 	
 	double[] ComputeLP(int FilterOrder)
@@ -366,9 +364,8 @@ public class IIR {
 			value[i] = (short)tmp;
 			
 		}
-		return value;
-				
-				
+		
+		return value;				
 	}
 	
 	public double[] getNum()

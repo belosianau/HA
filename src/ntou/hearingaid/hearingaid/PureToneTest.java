@@ -26,8 +26,8 @@ import android.widget.Toast;
  * 真耳測試介面
  */
 
-public class PureToneTest extends Activity {
-
+public class PureToneTest extends Activity
+{
 	private Spinner PureToneFreq;
 	private EditText PureToneVolme;
 	private Button PureToneStart;
@@ -42,9 +42,11 @@ public class PureToneTest extends Activity {
 	
 	private RadioButton left;
 	private RadioButton right;
+
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_pure_tone_test);
 		
@@ -75,10 +77,10 @@ public class PureToneTest extends Activity {
 		//speaker = new Speaker();
 		gen = new PureToneGeneration(SoundParameter.frequency);
 		
-		filterBank.setOnFilterBankListener(new OnFilterBankListener() {
-			
-			public void OnSuccess(short[] data) {
-				// TODO Auto-generated method stub
+		filterBank.setOnFilterBankListener(new OnFilterBankListener()
+		{	
+			public void OnSuccess(short[] data)
+			{
 				//Toast.makeText(PureToneTest.this, Integer.toString(data.length), 5).show();
 				if(left.isChecked())
 				{
@@ -105,10 +107,10 @@ public class PureToneTest extends Activity {
 		//audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, SoundParameter.PureTonefrequency, SoundParameter.channelConfiguration, SoundParameter.audioEncoding, playBufSize, AudioTrack.MODE_STREAM);
 	}
 	
-	private class OnClick implements OnClickListener{
-
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+	private class OnClick implements OnClickListener
+	{
+		public void onClick(View arg0)
+		{
 			if(arg0.getId()==R.id.PureToneStart)
 			{
 				PureToneStart.setEnabled(false);
@@ -183,17 +185,15 @@ public class PureToneTest extends Activity {
 				//speaker.AddSignals(gen.GeneratePureTone(250, 5, 10));
 				
 			}
-		}
-		
+		}	
 	}
 
 	@Override
-	protected void onDestroy() {
-		// TODO Auto-generated method stub
+	protected void onDestroy()
+	{
 		filterBank.close();
 		speaker.close();
 		SoundParameter.frequency = 16000;
 		super.onDestroy();
 	}
-
 }

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 /*
  * 效能統計類別
  */
-public class PerformanceParameter {
+public class PerformanceParameter
+{
 	public static long SystemStartTime = 0;
 	
 	public static ArrayList<Long> recvTime = new ArrayList<Long>();

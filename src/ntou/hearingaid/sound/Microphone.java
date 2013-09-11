@@ -15,8 +15,8 @@ import android.util.Log;
  * 負責不斷接收聲音
  */
 
-public class Microphone extends Thread {
-
+public class Microphone extends Thread
+{
 	//建立 監聽事件
 	public interface OnMicrophoneListener
 	{
@@ -42,8 +42,6 @@ public class Microphone extends Thread {
 		
 		audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC, SoundParameter.frequency,
 				SoundParameter.channelConfiguration, SoundParameter.audioEncoding, recBufSize);
-		
-		
 	}
 	
 	public void open()
@@ -56,16 +54,14 @@ public class Microphone extends Thread {
 	{
 		isRecording = false;
 		this.interrupt();
-		
-		
+			
 		//this.stop();
 	}
 	
 	public void run()
 	{
-		
-		
-		try {
+		try
+		{
 			short[] buffer = new short[recBufSize];
 			audioRecord.startRecording();
 			PerformanceParameter.MicTime = new ArrayList<Long>();
@@ -73,15 +69,15 @@ public class Microphone extends Thread {
 			PerformanceParameter.avg_MicTime = 0;
 			
 			//開始不斷接收聲音
-			while (isRecording) {
+			while (isRecording)
+			{
 				/*synchronized (PerformanceParameter.MicTime) 
 				{
 					PerformanceParameter.MicTime.add(System.currentTimeMillis());
 				}
 				*/
 				//訊號讀取
-				int bufferReadResult = audioRecord.read(buffer, 0,
-						recBufSize);
+				int bufferReadResult = audioRecord.read(buffer, 0, recBufSize);
 				/*
 				synchronized (PerformanceParameter.recvTime) 
 				{
@@ -89,9 +85,8 @@ public class Microphone extends Thread {
 				}
 				*/
 				//判斷是否有得到資料
-				if(bufferReadResult>0)
+				if(bufferReadResult > 0)
 				{
-					
 					short[] tmpBuf = new short[bufferReadResult];
 					System.arraycopy(buffer, 0, tmpBuf, 0, bufferReadResult);
 					onMicrophoneListener.OnRec(tmpBuf);	//將讀取到資料送至下一層
@@ -120,14 +115,14 @@ public class Microphone extends Thread {
 				{
 					Parameter.Mictime=(Parameter.Mictime+(time2-time1))/2;
 				}*/	//移動至上方 避免不必要封包 及 計算效能用
-				
 			}
 			audioRecord.stop();
 			PerformanceParameter.recvTime.clear();
 			PerformanceParameter.MicTime.clear();
-		} catch (Throwable t) {
-			
 		}
-		
+		catch (Throwable t)
+		{
+			//  nothing
+		}		
 	}
 }

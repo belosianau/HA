@@ -4,8 +4,8 @@ package ntou.hearingaid.dsp;
  * 增益處理
  */
 
-public class Gain2 {
-
+public class Gain2
+{
 	private double _gain = 0.0;
 	/*
 	 * 建構函式
@@ -29,9 +29,9 @@ public class Gain2 {
 			int tmp = data[i];
 			tmp = (int) (tmp * _gain);
 			//避免overflow
-			if(tmp>Short.MAX_VALUE)
+			if(tmp > Short.MAX_VALUE)
 				data[i] = Short.MAX_VALUE;
-			else if(tmp<Short.MIN_VALUE)
+			else if(tmp < Short.MIN_VALUE)
 				data[i] = Short.MIN_VALUE;
 			else
 				data[i] = (short)tmp;

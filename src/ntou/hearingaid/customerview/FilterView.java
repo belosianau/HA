@@ -16,8 +16,9 @@ import android.widget.Toast;
  * 客製化元件-濾波器切割設定
  */
 
-public class FilterView extends LinearLayout {
 
+public class FilterView extends LinearLayout
+{
 	private View view;
 	private TextView FreqNo;	//頻帶數
 	private TextView LowFreq;	//低頻
@@ -25,10 +26,11 @@ public class FilterView extends LinearLayout {
 	private Button BodePlotButton;	//BodePlot檢視button
 	private Context context;
 	
-	public FilterView(Context context) {
+	
+	public FilterView(Context context)
+	{
 		super(context);
 		this.context = context;
-		// TODO Auto-generated constructor stub
 		LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		view = layoutInflater.inflate(R.layout.filterview,this);
 		FreqNo = (TextView)view.findViewById(R.id.FreqNo);
@@ -86,7 +88,6 @@ public class FilterView extends LinearLayout {
 		{
 			return -1;
 		}
-		
 	}
 	
 	/*
@@ -101,9 +102,8 @@ public class FilterView extends LinearLayout {
 	//Button Click事件
 	private class OnClick implements OnClickListener
 	{
-
-		public void onClick(View arg0) {
-			// TODO Auto-generated method stub
+		public void onClick(View arg0)
+		{
 			//如果按下bodeplotbutton
 			if(arg0.getId()==R.id.bodeplotbutton)
 			{
@@ -126,6 +126,5 @@ public class FilterView extends LinearLayout {
 				}
 			}
 		}
-		
 	}
 }

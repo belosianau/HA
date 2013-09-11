@@ -10,12 +10,14 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+
 /*
  * 客製化元件-增益補償設定
  */
 
-public class GainView extends LinearLayout {
 
+public class GainView extends LinearLayout
+{
 	private View view;
 	private TextView GainNo;	//Gain編號
 	private EditText GainValue40;	//Gain40dB增益
@@ -25,9 +27,11 @@ public class GainView extends LinearLayout {
 	private EditText GainValue80;
 	private SeekBar seekBar80;
 	private int SeekMaxValue = 120;	//seek最大值定義
-	public GainView(Context context) {
+	
+	
+	public GainView(Context context)
+	{
 		super(context);
-		// TODO Auto-generated constructor stub
 		LayoutInflater layoutInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		view = layoutInflater.inflate(R.layout.gainview,this);
 		GainNo = (TextView)view.findViewById(R.id.GainNo);
@@ -43,16 +47,13 @@ public class GainView extends LinearLayout {
 		seekBar40.setOnSeekBarChangeListener(new SeekBarChange());
 		seekBar60.setOnSeekBarChangeListener(new SeekBarChange());
 		seekBar80.setOnSeekBarChangeListener(new SeekBarChange());
-		
 	}
 	
 	//SeekBarChange事件
 	public class SeekBarChange implements OnSeekBarChangeListener
 	{
-
-		public void onProgressChanged(SeekBar seekBar, int progress,
-				boolean fromUser) {
-			// TODO Auto-generated method stub
+		public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
+		{
 			//依照不同seekBar被改變 更改其對應Text值
 			switch(seekBar.getId())
 			{
@@ -68,16 +69,15 @@ public class GainView extends LinearLayout {
 			}
 		}
 
-		public void onStartTrackingTouch(SeekBar seekBar) {
-			// TODO Auto-generated method stub
-			
+		public void onStartTrackingTouch(SeekBar seekBar)
+		{
+			//  nothing
 		}
 
-		public void onStopTrackingTouch(SeekBar seekBar) {
-			// TODO Auto-generated method stub
-			
+		public void onStopTrackingTouch(SeekBar seekBar)
+		{
+			//  nothing
 		}
-		
 	}
 	
 	/*
@@ -89,6 +89,7 @@ public class GainView extends LinearLayout {
 	{
 		GainNo.setText("頻帶"+Integer.toString(No));
 	}
+	
 	/*
 	 * 設定增益頻道編號
 	 * 含左右聲道
@@ -112,6 +113,7 @@ public class GainView extends LinearLayout {
 		GainValue40.setText(Integer.toString(value));
 		seekBar40.setProgress(value+(SeekMaxValue/2));
 	}
+	
 	/*
 	 * 取得40dB增益
 	 * return 增益值
@@ -127,6 +129,7 @@ public class GainView extends LinearLayout {
 			return -1;
 		}
 	}
+	
 	/*
 	 * 設定60dB增益
 	 * value - 增益數值
@@ -136,6 +139,7 @@ public class GainView extends LinearLayout {
 		GainValue60.setText(Integer.toString(value));
 		seekBar60.setProgress(value+(SeekMaxValue/2));
 	}
+	
 	/*
 	 * 取得60dB增益
 	 * return 增益值
@@ -151,6 +155,7 @@ public class GainView extends LinearLayout {
 			return -1;
 		}
 	}
+	
 	/*
 	 * 設定80dB增益
 	 * value - 增益數值
@@ -160,6 +165,7 @@ public class GainView extends LinearLayout {
 		GainValue80.setText(Integer.toString(value));
 		seekBar80.setProgress(value+(SeekMaxValue/2));
 	}
+	
 	/*
 	 * 取得80dB增益
 	 * return 增益值
@@ -175,5 +181,4 @@ public class GainView extends LinearLayout {
 			return -1;
 		}
 	}
-
 }
